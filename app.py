@@ -30,6 +30,8 @@ def index():  # def index()<--- nombre de la funcion
     # luego de la insercion nos dirige a la siguiente pagina
     return render_template('inventario/index.html')
 
+# si clonaste esto es porque ya aprendiste a actulizar desde la master
+
 
 if __name__ == '__main__':  # para empezar la aplicacion
     app.run(debug=True)
