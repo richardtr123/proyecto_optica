@@ -1,4 +1,4 @@
 # proyecto_optica
 
-pampus wadafa
+pampus 2.0 wadafa
 
