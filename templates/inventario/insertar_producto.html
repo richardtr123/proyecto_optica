@@ -5,57 +5,199 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar producto</title>
+    <link rel="stylesheet" href="estilos/insertar_producto.css">
+    <link rel="stylesheet" href="estilos/material_icons/css/boxicons.min.css">
 </head>
 <body> 
-    <form method="POST" action="/almacenar_pro" enctype="multipart/form-data">
-        <label for="nombre-pro">Nombre del producto</label><br>
-        <input type="text" name="nombre-pro" id="text-nombre-pro"><br>
-        <label for="marca-pro">Marca</label><br>
-        <input type="text" name="marca-pro" id="text-marca-pro"><br>
-        <label for="material-pro">Material</label><br>
-        <input type="text" name="material-pro" id="text-material-pro"><br>
-        <!-- Forma radiobotones -->
-        <input type="radio" name="forma" id="rectangulo" value="rectangulo">
-        <label for="rectangulo">Rectángulo</label>
-        <input type="radio" name="forma" id="circulo" value="circulo">
-        <label for="circulo">Círculo</label>
-        <input type="radio" name="forma" id="ovalo" value="ovalo">
-        <label for="ovalo">Ovalo</label>
-        <input type="radio" name="forma" id="otro">
-        <label for="otro">Otro</label><br><br>
+    <script src="script.js"></script>
 
-        <label for="codigo-pro">Código del producto</label><br>
-        <input type="text" name="codigo-pro" id="text-codigo-pro"><br><br>
-        <select name="categoria-pro" id="select-categoria">
-            <option value>Categoría</option>
-            <option value="1">Lentes de Sol</option>
-            <option value="2">Lentes Oftálmico</option>
-            <option value="3">Lentes de contacto</option>
-            <option value="4">Accesorios</option>
-        </select>
-<br><br>
-        <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
-        <label for="rectangulo">Hombre</label>
-        <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
-        <label for="circulo">Mujer</label>
-<br>
-<br>
-        Proteccion Uv:
-        <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
-        <label for="radio-uv-si">Si</label>
-        <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
-        <label for="radio-uv-no">No</label>
-<br>
-        <label for="stock-pro">Stock :</label>
-        <input type="number" name="stock-pro" id="number-stock-pro" min="0" size="4px"><br><br>
-        <label for="precio-pro">precio :</label>
-        <input type="number" name="precio-pro" id="number-precio-pro" min="0" size="4px"><br><br>
-        <label for="color-pro">Color: </label>
-        <input type="color" name="color-pro" id="color-color"><br><br>
-        <label for="imagen">Imagen</label>
-        <input type="file" name="imagen-pro" id="file-imagen">
-<br><br>
-        <input type="submit" value="Enviar">
-    </form>
+    
+    <!-- <i class='bx bx-user'></i>
+    <i class='bx bxs-user'></i>
+    <i class='bx bxl-facebook-square'></i>
+    <br> -->
+
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bx-glasses-alt'></i>
+            <span class="logo_name">Optica MyM</span>
+        </div>
+        <ul class="nav-links"> <!--! Enlaces--->
+          <li><a href="#">
+              <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
+              <span class="pagina_link">Dashboard</span>
+            </a>           
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-compass' ></i>
+              <span class="pagina_link">Productos</span>
+            </a>            
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-compass' ></i>
+              <span class="pagina_link">Inventario</span>
+            </a>            
+          </li>
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-collection' ></i>
+                <span class="pagina_link">Categoría</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="pagina_link" href="#">Category</a></li>
+              <li><a href="#">Luna</a></li>
+              <li><a href="#">Montura</a></li>
+              <li><a href="#">Lente de contacto</a></li>
+              <li><a href="#">Accesorios</a></li>
+            </ul>
+          </li>          
+          <li>
+            <a href="#">
+              <i class='bx bx-compass' ></i>
+              <span class="pagina_link">Clientes</span>
+            </a>            
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-line-chart' ></i>
+              <span class="pagina_link">Estadísticas</span>
+            </a>            
+          </li>
+          <li>
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-plug' ></i>
+                <span class="pagina_link">Plugins</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="pagina_link" href="#">Plugins</a></li>
+              <li><a href="#">UI Face</a></li>
+              <li><a href="#">Pigments</a></li>
+              <li><a href="#">Box Icons</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-compass' ></i>
+              <span class="pagina_link">Seguridad</span>
+            </a>            
+          </li>     
+          <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <!--<img src="image/profile.jpg" alt="profile">-->
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Sadbois'team</div>
+            <div class="job">Equipo de desarrollo</div>
+          </div>
+          <i class='bx bx-log-out' ></i>
+        </div>
+      </li>
+    </ul>
+      </div>
+      <section class="home-section">
+        <div class="home-content">
+          <i class='bx bx-menu' ></i>
+          <span class="text"></span>
+        </div>
+        <div class="home-espacio">
+
+                    <!-- * FORMULARIO -->
+            <form method="POST" action="/almacenar_pro" enctype="multipart/form-data">
+                <!-- * Combobox: Categoría -->
+                <select name="categoria-pro" id="select-categoria">
+                    <option value>Categoría</option>
+                    <option value="1">Luna</option>
+                    <option value="2">Montura</option>
+                    <option value="3">Lentes de contacto</option>
+                    <option value="4">Accesorios</option>
+                </select>
+                <!-- * Combobox: Categoría -->
+                <br>
+                <!-- * Componentes estaticos -->
+                <label for="nombre-pro">Nombre del producto :</label><br>
+                <input type="text" name="nombre-pro" id="text-nombre-pro" placeholder="Producto"><br>
+                <label for="marca-pro">Marca :</label><br>
+                <input type="text" name="marca-pro" id="text-marca-pro"><br>
+                <label for="codigo-pro">Código del producto :</label><br>
+                <input type="text" name="codigo-pro" id="text-codigo-pro"><br>
+                <!-- * Componentes estaticos -->
+                <!-- ! Componente dinamico -->
+               <!-- <label for="material-pro">Material</label><br>
+                <input type="text" name="material-pro" id="text-material-pro"><br>
+                <!-- *Forma radiobotones -->
+                <!--<input type="radio" name="forma" id="rectangulo" value="rectangulo">
+                <label for="rectangulo">Rectángulo</label>
+                <input type="radio" name="forma" id="circulo" value="circulo">
+                <label for="circulo">Círculo</label>
+                <input type="radio" name="forma" id="ovalo" value="ovalo">
+                <label for="ovalo">Ovalo</label>
+                <input type="radio" name="forma" id="otro">
+                <label for="otro">Otro</label><br><br>-->             
+                
+                <br><br>
+                <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                <label for="rectangulo">Hombre</label>
+                <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                <label for="circulo">Mujer</label>
+            <br>
+            <br>
+                Proteccion Uv:
+                <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
+                <label for="radio-uv-si">Si</label>
+                <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
+                <label for="radio-uv-no">No</label>
+            <br>
+                <label for="stock-pro">Stock :</label>
+                <input type="number" name="stock-pro" id="number-stock-pro" min="0" size="4px">
+                <label for="precio-pro">Precio :</label>
+                <input type="number" name="precio-pro" id="number-precio-pro" min="0" size="4px"><br><br>
+                <label for="color-pro">Color: </label>
+                <input type="color" name="color-pro" id="color-color"><br><br>
+                <label for="imagen">Imagen</label>
+                <input type="file" name="imagen-pro" id="file-imagen">
+            <br><br>
+                <input type="submit" value="Enviar">
+            </form>
+        <!-- * FORMULARIO -->
+                    
+        </div>
+      </section>
+    
+      <script>    
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e)=>{
+        let arrowParent = e.target.parentElement.parentElement;
+        arrowParent.classList.toggle("showMenu");
+            });
+        }
+        
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+        });
+      </script>
+
+
+
+
+
+
+
+
+
+        
+
 </body>
 </html>
