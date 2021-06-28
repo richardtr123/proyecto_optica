@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="estilos/material_icons/css/boxicons.min.css">
 </head>
 <body> 
-    <script src="script.js"></script>
+    <script src="scripts/insertar_producto.js"></script>
 
     
     <!-- <i class='bx bx-user'></i>
@@ -106,20 +106,46 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"></span>
+          <span class="text"><h1>Nuevo Producto</h1></span>
+          <div class="user-wrapper">
+            <img src="jb.png" alt="50px" height="50px" alt="">
+            <div> 
+                <h4> Karen D</h4>
+                <small>Admin</small>
+            </div>
+        </div>
         </div>
         <div class="home-espacio">
 
+          
+
+          <!--COLOCAR ACA EL CONTENIDO-->
                     <!-- * FORMULARIO -->
             <form method="POST" action="/almacenar_pro" enctype="multipart/form-data">
                 <!-- * Combobox: Categoría -->
-                <select name="categoria-pro" id="select-categoria">
-                    <option value>Categoría</option>
-                    <option value="1">Luna</option>
-                    <option value="2">Montura</option>
-                    <option value="3">Lentes de contacto</option>
-                    <option value="4">Accesorios</option>
-                </select>
+                <div class="select-categoria animated zoomIn">
+                  <!-- You can toggle select (disabled) -->
+                  <input type="radio" name="option">
+                  <i class="bx bxs-caret-down-square"></i>
+                  <i class="bx bxs-caret-up-square"></i>
+                  <span class="placeholder">Categoría</span>
+                  <label class="option">
+                    <input type="radio" name="option">
+                    <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Montura</p></span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="option">
+                    <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Luna</p></span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="option">
+                    <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Lente de contacto</p></span>
+                  </label>
+                  <label class="option">
+                    <input type="radio" name="option">
+                    <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Accesorios</p></span>
+                  </label>
+              </div>
                 <!-- * Combobox: Categoría -->
                 <br>
                 <!-- * Componentes estaticos -->
@@ -143,7 +169,8 @@
                 <input type="radio" name="forma" id="otro">
                 <label for="otro">Otro</label><br><br>-->             
                 
-                <br><br>
+                
+                <p>Género</p><br><br>
                 <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
                 <label for="rectangulo">Hombre</label>
                 <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
