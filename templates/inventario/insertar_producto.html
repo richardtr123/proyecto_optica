@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar producto</title>
-    <link rel="stylesheet" href="estilos/insertar_producto.css">
-    <link rel="stylesheet" href="estilos/material_icons/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/insertar_producto.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
 </head>
 <body> 
     <script src="scripts/insertar_producto.js"></script>
@@ -121,28 +121,28 @@
 
           <!--COLOCAR ACA EL CONTENIDO-->
                     <!-- * FORMULARIO -->
-            <form method="POST" action="/almacenar_pro" enctype="multipart/form-data">
+            <form method="POST" action="/almacenar_pro" enctype="multipart/form-data" name="nombreform">
                 <!-- * Combobox: Categoría -->
-                <div class="select-categoria animated zoomIn">
+                <div class="select-categoria animated zoomIn" onclick="cargarform();">
                   <!-- You can toggle select (disabled) -->
-                  <input type="radio" name="option">
+                  <input type="radio" name="option" id="categoria-combo">
                   <i class="bx bxs-caret-down-square"></i>
                   <i class="bx bxs-caret-up-square"></i>
                   <span class="placeholder">Categoría</span>
                   <label class="option">
-                    <input type="radio" name="option">
-                    <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Montura</p></span>
+                    <input type="radio" name="option" id="categoria-combo" value="1">
+                    <span class="title animated fadeIn"><i class="bx bx-glasses-alt" ></i><p>Montura</p></span>
                   </label>
                   <label class="option">
-                    <input type="radio" name="option">
+                    <input type="radio" name="option" id="categoria-combo" value="2">
                     <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Luna</p></span>
                   </label>
                   <label class="option">
-                    <input type="radio" name="option">
+                    <input type="radio" name="option" id="categoria-combo" value="3">
                     <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Lente de contacto</p></span>
                   </label>
                   <label class="option">
-                    <input type="radio" name="option">
+                    <input type="radio" name="option" id="categoria-combo" value="4">
                     <span class="title animated fadeIn"><i class="bx bx-glasses-alt"></i><p>Accesorios</p></span>
                   </label>
               </div>
@@ -167,14 +167,40 @@
                 <input type="radio" name="forma" id="ovalo" value="ovalo">
                 <label for="ovalo">Ovalo</label>
                 <input type="radio" name="forma" id="otro">
-                <label for="otro">Otro</label><br><br>-->             
+                <label for="otro">Otro</label><br><br>-->  
+
+                <div id="cambio-montura" style="display:none;">
+                  <p>Género</p><br><br>
+                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                  <label for="rectangulo">Hombre</label>
+                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                  <label for="circulo">Mujer</label>
+                </div>
+                <div id="cambio-luna" style="display:none;">
+                  <p>Género</p><br><br>
+                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                  <label for="rectangulo">Hombre</label>
+                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                  <label for="circulo">Mujer</label>
+                </div>
+                <div id="cambio-lentecontacto" style="display:none;">
+                  <p>Género</p><br><br>
+                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                  <label for="rectangulo">Hombre</label>
+                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                  <label for="circulo">Mujer</label>
+                </div>
+                <div id="cambio-accesorio" style="display:none;">
+                  <p>Género</p><br><br>
+                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                  <label for="rectangulo">Hombre</label>
+                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                  <label for="circulo">Mujer</label>
+                </div>
+          <!-- ! Componente dinamico -->
                 
                 
-                <p>Género</p><br><br>
-                <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
-                <label for="rectangulo">Hombre</label>
-                <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
-                <label for="circulo">Mujer</label>
+                
             <br>
             <br>
                 Proteccion Uv:
@@ -199,7 +225,48 @@
         </div>
       </section>
     
-      <script>    
+
+
+
+      <script>   
+
+      function cargarform(){
+        var a = document.getElementById("cambio-montura");
+        var b = document.getElementById("cambio-luna");
+        var c = document.getElementById("cambio-lentecontacto");
+        var d = document.getElementById("cambio-accesorio");
+        var val_categoria=document.nombreform.option.value;
+        switch(val_categoria){
+          case "1":
+              b.style.display = "none";
+              c.style.display = "none";
+              d.style.display = "none";
+              a.style.display = "block";
+            break;
+          case "2":
+              a.style.display = "none";
+              c.style.display = "none";
+              d.style.display = "none";
+              b.style.display = "block";
+            break;
+          case "3":
+              a.style.display = "none";
+              b.style.display = "none";
+              d.style.display = "none";
+              c.style.display = "block";
+            break;
+          case "4":
+              a.style.display = "none";
+              b.style.display = "none";
+              c.style.display = "none";
+              d.style.display = "block";
+            break;
+        } 
+      }
+
+
+
+      //no tocar
         let arrow = document.querySelectorAll(".arrow");
         for (var i = 0; i < arrow.length; i++) {
             arrow[i].addEventListener("click", (e)=>{
@@ -214,17 +281,6 @@
         sidebarBtn.addEventListener("click", ()=>{
             sidebar.classList.toggle("close");
         });
-      </script>
-
-
-
-
-
-
-
-
-
-        
-
+      </script>   
 </body>
 </html>
