@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar producto</title>
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../static/css/insertar_producto.css">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/insertar_producto.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
 </head>
 <body> 
-    <script src="scripts/insertar_producto.js"></script>
+    <script src="../../static/js/insertar_producto.js"></script>
 
     
     <!-- <i class='bx bx-user'></i>
@@ -123,7 +125,7 @@
                     <!-- * FORMULARIO -->
             <form method="POST" action="/almacenar_pro" enctype="multipart/form-data" name="nombreform">
                 <!-- * Combobox: Categoría -->
-                <div class="select-categoria animated zoomIn" onclick="cargarform();">
+                <div class="select-categoria animated zoomIn" onclick="cargarform();filtro();lentecontacto();" >
                   <!-- You can toggle select (disabled) -->
                   <input type="radio" name="option" id="categoria-combo">
                   <i class="bx bxs-caret-down-square"></i>
@@ -168,34 +170,84 @@
                 <label for="ovalo">Ovalo</label>
                 <input type="radio" name="forma" id="otro">
                 <label for="otro">Otro</label><br><br>-->  
-
+                <!-- OPCION DE Montura -->
                 <div id="cambio-montura" style="display:none;">
-                  <p>Género</p><br><br>
+                  <label> Género</label>
                   <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
                   <label for="rectangulo">Hombre</label>
                   <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
                   <label for="circulo">Mujer</label>
+                  <br>
+                  <label for="calibre-pro">Calibre</label>
+                  <input type="number" name="calibre-pro" id="number-calibre" min="0" size="5px">
+                  <label for="puente_pro">Puente</label>
+                  <input type="number" name="puente-pro" id="number-puente" min="0" size="5px">
+                  <label for="ancho_pro">Ancho</label>
+                  <input type="number" name="ancho-pro" id="number-ancho" min="0" size="5px">
+
+                  <label for="color-pro">Color: </label>
+                  <input type="color" name="color-pro" id="color-color"><br><br>
                 </div>
+                <!-- OPCION DE Montura -->
+
+                <!-- OPCION DE LUNA -->
                 <div id="cambio-luna" style="display:none;">
-                  <p>Género</p><br><br>
-                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
-                  <label for="rectangulo">Hombre</label>
-                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
-                  <label for="circulo">Mujer</label>
+                  <p>Proteccion Uv:</p><br>
+                  <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
+                  <label for="radio-uv-si">Si</label>
+                  <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
+                  <label for="radio-uv-no">No</label> <br><br>
+                  <label for="tipo-luna">Tipo de luna</label>
+                  <select name="tipoluna" id="select-luna">                    
+                    <option value="1">Monofocal</option>
+                    <option value="2">Bifocal</option>
+                    <option value="3">Multifocal</option>
+                  </select>
+                  <select name="tipomaterial" id="select-material" onclick="filtro();">                    
+                    <option value="1">Orgánico</option>
+                    <option value="2">Vidrio</option>
+                    <option value="3">Policarbonato</option>
+                  </select>
+                  <select name="tipo-filtro-organico" id="select-filtro-or" style="display: none;">                    
+                    <option value="1">Simple</option>
+                    <option value="2">Anti-reflex</option>
+                    <option value="3">Blue-defense</option>
+                    <option value="4">Fotomatic Anti-reflex</option>
+                    <option value="5">Fotomatic Blue</option>
+                  </select>
+                  <select name="tipo-filtro-vidrio" id="select-filtro-vi" style="display: none;">                    
+                    <option value="1">Simple</option>
+                    <option value="2">Anti-reflex</option>
+                    <option value="3">Fotocromático</option>
+                  </select>
+                  <select name="tipo-filtro-policarbonato" id="select-filtro-po" style="display: none;">                    
+                    <option value="1">Simple</option>
+                    <option value="2">Anti-reflex</option>
+                    <option value="3">Fotomatic Anti-reflex</option>
+                    <option value="4">Fotoblue</option>
+                  </select>
                 </div>
+                <!-- OPCION DE LUNA -->
+
                 <div id="cambio-lentecontacto" style="display:none;">
-                  <p>Género</p><br><br>
-                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
-                  <label for="rectangulo">Hombre</label>
-                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
-                  <label for="circulo">Mujer</label>
+                  <label for="tipocontacto">Tipo de lente de contacto</label><br>
+                  <select name="tipocontacto" id="select-tipocontacto" onclick="lentecontacto();">                    
+                    <option value="1">Cosmético</option>
+                    <option value="2">Miopía</option>
+                    <option value="3">Tórico</option>
+                  </select>
+                  <br>
+                  <label for="tipocontacto-color">Color</label><br>
+                  <select name="tipocontacto-color" id="select-tipocontacto-color" style="display: none;">                    
+                    <option value="1">Azul</option>
+                    <option value="2">Verde</option>
+                    <option value="3">Honey</option>
+                    <option value="4">Gray</option>
+                    <option value="5">Hazel</option>
+                  </select>
                 </div>
                 <div id="cambio-accesorio" style="display:none;">
-                  <p>Género</p><br><br>
-                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
-                  <label for="rectangulo">Hombre</label>
-                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
-                  <label for="circulo">Mujer</label>
+                  
                 </div>
           <!-- ! Componente dinamico -->
                 
@@ -203,18 +255,13 @@
                 
             <br>
             <br>
-                Proteccion Uv:
-                <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
-                <label for="radio-uv-si">Si</label>
-                <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
-                <label for="radio-uv-no">No</label>
+                
             <br>
                 <label for="stock-pro">Stock :</label>
                 <input type="number" name="stock-pro" id="number-stock-pro" min="0" size="4px">
                 <label for="precio-pro">Precio :</label>
                 <input type="number" name="precio-pro" id="number-precio-pro" min="0" size="4px"><br><br>
-                <label for="color-pro">Color: </label>
-                <input type="color" name="color-pro" id="color-color"><br><br>
+                
                 <label for="imagen">Imagen</label>
                 <input type="file" name="imagen-pro" id="file-imagen">
             <br><br>
@@ -230,11 +277,11 @@
 
       <script>   
 
-      function cargarform(){
+      function cargarform(){   
         var a = document.getElementById("cambio-montura");
         var b = document.getElementById("cambio-luna");
         var c = document.getElementById("cambio-lentecontacto");
-        var d = document.getElementById("cambio-accesorio");
+        var d = document.getElementById("cambio-accesorio");    
         var val_categoria=document.nombreform.option.value;
         switch(val_categoria){
           case "1":
@@ -260,6 +307,46 @@
               b.style.display = "none";
               c.style.display = "none";
               d.style.display = "block";
+            break;
+        } 
+      }
+
+      function filtro(){
+        var a = document.getElementById("select-filtro-or");
+        var b = document.getElementById("select-filtro-vi");
+        var c = document.getElementById("select-filtro-po");
+        var val_filtro=document.nombreform.tipomaterial.value;
+        switch(val_filtro){
+          case "1":
+              b.style.display = "none";
+              c.style.display = "none";
+              a.style.display = "block";
+            break;
+          case "2":
+              a.style.display = "none";
+              c.style.display = "none";
+              b.style.display = "block";
+            break;
+          case "3":
+              a.style.display = "none";
+              b.style.display = "none";
+              c.style.display = "block";
+            break;
+        } 
+      }
+
+      function lentecontacto(){
+        var a = document.getElementById("select-tipocontacto-color");
+        var val_filtro=document.nombreform.tipocontacto.value;
+        switch(val_filtro){
+          case "1":
+              a.style.display = "block";
+            break;
+          case "2":
+              a.style.display = "none";
+            break;
+          case "3":
+              a.style.display = "none";
             break;
         } 
       }
