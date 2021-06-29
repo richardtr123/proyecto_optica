@@ -7,6 +7,7 @@
     <title>Insertar producto</title>
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/insertar_producto.css">
+    <!-- estilos para produccion -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/insertar_producto.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
 </head>
@@ -32,13 +33,13 @@
           </li>
           <li>
             <a href="#">
-              <i class='bx bx-compass' ></i>
+              <i class='bx bxl-dropbox' ></i>
               <span class="pagina_link">Productos</span>
             </a>            
           </li>
           <li>
             <a href="#">
-              <i class='bx bx-compass' ></i>
+              <i class='bx bx-list-check' ></i>
               <span class="pagina_link">Inventario</span>
             </a>            
           </li>
@@ -57,10 +58,16 @@
               <li><a href="#">Lente de contacto</a></li>
               <li><a href="#">Accesorios</a></li>
             </ul>
-          </li>          
+          </li>   
           <li>
             <a href="#">
-              <i class='bx bx-compass' ></i>
+              <i class='bx bxs-truck' ></i>
+              <span class="pagina_link">Proveedores</span>
+            </a>            
+          </li>       
+          <li>
+            <a href="#">
+              <i class='bx bx-user' ></i>
               <span class="pagina_link">Clientes</span>
             </a>            
           </li>
@@ -87,7 +94,7 @@
           </li>
           <li>
             <a href="#">
-              <i class='bx bx-compass' ></i>
+              <i class='bx bx-shield-quarter' ></i>
               <span class="pagina_link">Seguridad</span>
             </a>            
           </li>     
@@ -108,7 +115,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Nuevo Producto</h1></span>
+          <span class="text"><h1>Nuevo producto</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -184,7 +191,6 @@
                   <input type="number" name="puente-pro" id="number-puente" min="0" size="5px">
                   <label for="ancho_pro">Ancho</label>
                   <input type="number" name="ancho-pro" id="number-ancho" min="0" size="5px">
-
                   <label for="color-pro">Color: </label>
                   <input type="color" name="color-pro" id="color-color"><br><br>
                 </div>

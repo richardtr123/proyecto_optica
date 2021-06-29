@@ -1,3 +1,8 @@
+@font-face{
+    font-family: "Poppins-Medium";
+    src: url("../fonts/Poppins-Medium.ttf");
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -37,7 +42,7 @@
   line-height: 50px;
 }
 .sidebar .logo-details .logo_name{
-  font-size: 22px;
+  font-size: 28px;
   color: #fff;
   font-weight: 600;
   transition: 0.3s ease;
@@ -97,7 +102,7 @@
   text-decoration: none;
 }
 .sidebar .nav-links li a .pagina_link{
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   color: #fff;
   transition: all 0.4s ease;
@@ -112,12 +117,13 @@
   background: #952613;
   display: none;
 }
+
 .sidebar .nav-links li.showMenu .sub-menu{
   display: block;
 }
 .sidebar .nav-links li .sub-menu a{
   color: #fff;
-  font-size: 15px;
+  font-size: 18px;
   padding: 5px 0;
   white-space: nowrap;
   opacity: 0.6;
@@ -224,11 +230,12 @@
   width: calc(100% - 78px);
 }
 .home-section .home-content{
-  height: 60px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content:left;
-  background: #e675ee;
+  background: whitesmoke;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text{
@@ -270,7 +277,8 @@
   left: 0;
   padding: 0 0;
   position: static;
-  
+  font-family: 'Poppins-Medium',sans-serif;
+  font-weight: lighter;
 }
 
 .home-espacio .select-categoria {
