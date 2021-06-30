@@ -205,53 +205,56 @@
                   <label for="radio-uv-no">No</label> <br><br>
                   <label for="tipo-luna">Tipo de luna</label>
                   <select name="tipoluna" id="select-luna">                    
-                    <option value="1">Monofocal</option>
-                    <option value="2">Bifocal</option>
-                    <option value="3">Multifocal</option>
+                    <option value="Monofocal">Monofocal</option>
+                    <option value="Bifocal">Bifocal</option>
+                    <option value="Multifocal">Multifocal</option>
                   </select>
                   <select name="tipomaterial" id="select-material" onclick="filtro();">                    
-                    <option value="1">Orgánico</option>
-                    <option value="2">Vidrio</option>
-                    <option value="3">Policarbonato</option>
+                    <option value="Organico">Orgánico</option>
+                    <option value="Vidrio">Vidrio</option>
+                    <option value="Policarbonato">Policarbonato</option>
                   </select>
                   <select name="tipo-filtro-organico" id="select-filtro-or" style="display: none;">                    
-                    <option value="1">Simple</option>
-                    <option value="2">Anti-reflex</option>
-                    <option value="3">Blue-defense</option>
-                    <option value="4">Fotomatic Anti-reflex</option>
-                    <option value="5">Fotomatic Blue</option>
+                    <option value="Simple">Simple</option>
+                    <option value="Anti-reflex">Anti-reflex</option>
+                    <option value="Blue-defense">Blue-defense</option>
+                    <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
+                    <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
                   </select>
                   <select name="tipo-filtro-vidrio" id="select-filtro-vi" style="display: none;">                    
-                    <option value="1">Simple</option>
-                    <option value="2">Anti-reflex</option>
-                    <option value="3">Fotocromático</option>
+                    <option value="Simple">Simple</option>
+                    <option value="Anti-reflex">Anti-reflex</option>
+                    <option value="Fotocromatico">Fotocromático</option>
                   </select>
                   <select name="tipo-filtro-policarbonato" id="select-filtro-po" style="display: none;">                    
-                    <option value="1">Simple</option>
-                    <option value="2">Anti-reflex</option>
-                    <option value="3">Fotomatic Anti-reflex</option>
-                    <option value="4">Fotoblue</option>
+                    <option value="Simple">Simple</option>
+                    <option value="Anti-reflex">Anti-reflex</option>
+                    <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
+                    <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
                   </select>
                 </div>
-                <!-- OPCION DE LUNA -->
 
+                <!-- OPCION DE Lente de contacto -->
                 <div id="cambio-lentecontacto" style="display:none;">
                   <label for="tipocontacto">Tipo de lente de contacto</label><br>
                   <select name="tipocontacto" id="select-tipocontacto" onclick="lentecontacto();">                    
-                    <option value="1">Cosmético</option>
-                    <option value="2">Miopía</option>
-                    <option value="3">Tórico</option>
+                    <option value="Cosmetico">Cosmético</option>
+                    <option value="Miopia">Miopía</option>
+                    <option value="Torico">Tórico</option>
                   </select>
                   <br>
-                  <label for="tipocontacto-color">Color</label><br>
-                  <select name="tipocontacto-color" id="select-tipocontacto-color" style="display: none;">                    
-                    <option value="1">Azul</option>
-                    <option value="2">Verde</option>
-                    <option value="3">Honey</option>
-                    <option value="4">Gray</option>
-                    <option value="5">Hazel</option>
-                  </select>
+                  <div id="lente-cosmetico" style="display:none;">
+                    <label for="tipocontacto-color">Color</label><br>
+                    <select name="tipocontacto-color" id="select-tipocontacto-color">                    
+                      <option value="Azul">Azul</option>
+                      <option value="Verde">Verde</option>
+                      <option value="Honey">Honey</option>
+                      <option value="Gray">Gray</option>
+                      <option value="Hazel">Hazel</option>
+                    </select>
+                  </div>                  
                 </div>
+                <!-- OPCION DE Lente de contacto -->
                 <div id="cambio-accesorio" style="display:none;">
                   
                 </div>
@@ -323,17 +326,17 @@
         var c = document.getElementById("select-filtro-po");
         var val_filtro=document.nombreform.tipomaterial.value;
         switch(val_filtro){
-          case "1":
+          case "Organico":
               b.style.display = "none";
               c.style.display = "none";
               a.style.display = "block";
             break;
-          case "2":
+          case "Vidrio":
               a.style.display = "none";
               c.style.display = "none";
               b.style.display = "block";
             break;
-          case "3":
+          case "Policarbonato":
               a.style.display = "none";
               b.style.display = "none";
               c.style.display = "block";
@@ -342,16 +345,16 @@
       }
 
       function lentecontacto(){
-        var a = document.getElementById("select-tipocontacto-color");
+        var a = document.getElementById("lente-cosmetico");
         var val_filtro=document.nombreform.tipocontacto.value;
         switch(val_filtro){
-          case "1":
+          case "Cosmetico":
               a.style.display = "block";
             break;
-          case "2":
+          case "Miopia":
               a.style.display = "none";
             break;
-          case "3":
+          case "Torico":
               a.style.display = "none";
             break;
         } 

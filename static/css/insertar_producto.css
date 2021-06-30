@@ -267,8 +267,12 @@
 }
 
 .home-espacio{
-  padding-top: 10em;
+   /* !NO TOCAR */
+   width: 100%;
+   height: 93.3vh;
+   /* !NO TOCAR */
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
