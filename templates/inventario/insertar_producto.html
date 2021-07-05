@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar producto</title>
+    <!-- Estilos de la pagina -->
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/insertar_producto.css">
     <!-- estilos para produccion -->
@@ -125,9 +126,6 @@
         </div>
         </div>
         <div class="home-espacio">
-
-          
-
           <!--COLOCAR ACA EL CONTENIDO-->
                     <!-- * FORMULARIO -->
             <form method="POST" action="/almacenar_pro" enctype="multipart/form-data" name="nombreform">
@@ -157,124 +155,146 @@
               </div>
                 <!-- * Combobox: Categoría -->
                 <br>
-                <!-- * Componentes estaticos -->
-                <label for="nombre-pro">Nombre del producto :</label><br>
-                <input type="text" name="nombre-pro" id="text-nombre-pro" placeholder="Producto"><br>
-                <label for="marca-pro">Marca :</label><br>
-                <input type="text" name="marca-pro" id="text-marca-pro"><br>
-                <label for="codigo-pro">Código del producto :</label><br>
-                <input type="text" name="codigo-pro" id="text-codigo-pro"><br>
-                <!-- * Componentes estaticos -->
-                <!-- ! Componente dinamico -->
-               <!-- <label for="material-pro">Material</label><br>
-                <input type="text" name="material-pro" id="text-material-pro"><br>
-                <!-- *Forma radiobotones -->
-                <!--<input type="radio" name="forma" id="rectangulo" value="rectangulo">
-                <label for="rectangulo">Rectángulo</label>
-                <input type="radio" name="forma" id="circulo" value="circulo">
-                <label for="circulo">Círculo</label>
-                <input type="radio" name="forma" id="ovalo" value="ovalo">
-                <label for="ovalo">Ovalo</label>
-                <input type="radio" name="forma" id="otro">
-                <label for="otro">Otro</label><br><br>-->  
-                <!-- OPCION DE Montura -->
-                <div id="cambio-montura" style="display:none;">
-                  <label> Género</label>
-                  <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
-                  <label for="rectangulo">Hombre</label>
-                  <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
-                  <label for="circulo">Mujer</label>
-                  <br>
-                  <label for="calibre-pro">Calibre</label>
-                  <input type="number" name="calibre-pro" id="number-calibre" min="0" size="5px">
-                  <label for="puente_pro">Puente</label>
-                  <input type="number" name="puente-pro" id="number-puente" min="0" size="5px">
-                  <label for="ancho_pro">Ancho</label>
-                  <input type="number" name="ancho-pro" id="number-ancho" min="0" size="5px">
-                  <label for="color-pro">Color: </label>
-                  <input type="color" name="color-pro" id="color-color"><br><br>
-                </div>
-                <!-- OPCION DE Montura -->
+                <div class="contenido-left">
+                      <!-- * Componentes estaticos -->
+                      <label for="nombre-pro">Nombre del producto :</label><br>
+                      <input type="text" name="nombre-pro" id="text-nombre-pro" placeholder="Producto"><br>
+                      <label for="marca-pro">Marca :</label><br>
+                      <input type="text" name="marca-pro" id="text-marca-pro"><br>
+                      <label for="codigo-pro">Código del producto :</label><br>
+                      <input type="text" name="codigo-pro" id="text-codigo-pro"><br>
+                      <!-- * Componentes estaticos -->
+                      <!-- ! Componente dinamico -->
+                    <!-- <label for="material-pro">Material</label><br>
+                      <input type="text" name="material-pro" id="text-material-pro"><br>
+                      <!-- *Forma radiobotones -->
+                      <!--<input type="radio" name="forma" id="rectangulo" value="rectangulo">
+                      <label for="rectangulo">Rectángulo</label>
+                      <input type="radio" name="forma" id="circulo" value="circulo">
+                      <label for="circulo">Círculo</label>
+                      <input type="radio" name="forma" id="ovalo" value="ovalo">
+                      <label for="ovalo">Ovalo</label>
+                      <input type="radio" name="forma" id="otro">
+                      <label for="otro">Otro</label><br><br>-->  
+                      <!-- OPCION DE Montura -->
+                      <div id="cambio-montura" style="display:none;">
+                        <div class="cajitas">
+                          <label>Género :</label>
+                          <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                          <label for="rectangulo">Hombre</label>
+                          <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                          <label for="circulo">Mujer</label>
+                          <input type="radio" name="genero-pro" id="radio-ninos" value="ninos">
+                          <label for="circulo">Niños</label>
+                        </div>
+                        <div class="cajitas">
+                          <label>Forma :</label>
+                          <select name="forma-montura" id="select-forma-montura">
+                              <option value="redonda">redonda</option>
+                              <option value="ovalada">ovalada</option>
+                              <option value="diamante">diamante</option>
+                              <option value="cuadrada">cuadrada</option>
+                              <option value="corazón">corazón</option>
+                          </select>  
+                        </div>
+                        <div class="cajitas">
+                          <label for="">Medida de la montura :</label><br>
+                          <label for="calibre-pro">Calibre</label>
+                          <input type="number" name="calibre-pro" id="number-calibre" min="0" size="3px">
+                          <label for="puente_pro">Puente</label>
+                          <input type="number" name="puente-pro" id="number-puente" min="0" size="3px">
+                          <label for="ancho_pro">Ancho</label>
+                          <input type="number" name="ancho-pro" id="number-ancho" min="0" size="3px"><br>
+                        </div>
+                        <div class="cajitas">
+                          <label for="color-pro">Color: </label><br>
+                          <input type="text" name="color-pro" id="color-color">
+                        </div>
+                      </div>
+                      <!-- OPCION DE Montura -->
 
-                <!-- OPCION DE LUNA -->
-                <div id="cambio-luna" style="display:none;">
-                  <p>Proteccion Uv:</p><br>
-                  <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
-                  <label for="radio-uv-si">Si</label>
-                  <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
-                  <label for="radio-uv-no">No</label> <br><br>
-                  <label for="tipo-luna">Tipo de luna</label>
-                  <select name="tipoluna" id="select-luna">                    
-                    <option value="Monofocal">Monofocal</option>
-                    <option value="Bifocal">Bifocal</option>
-                    <option value="Multifocal">Multifocal</option>
-                  </select>
-                  <select name="tipomaterial" id="select-material" onclick="filtro();">                    
-                    <option value="Organico">Orgánico</option>
-                    <option value="Vidrio">Vidrio</option>
-                    <option value="Policarbonato">Policarbonato</option>
-                  </select>
-                  <select name="tipo-filtro-organico" id="select-filtro-or" style="display: none;">                    
-                    <option value="Simple">Simple</option>
-                    <option value="Anti-reflex">Anti-reflex</option>
-                    <option value="Blue-defense">Blue-defense</option>
-                    <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
-                    <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
-                  </select>
-                  <select name="tipo-filtro-vidrio" id="select-filtro-vi" style="display: none;">                    
-                    <option value="Simple">Simple</option>
-                    <option value="Anti-reflex">Anti-reflex</option>
-                    <option value="Fotocromatico">Fotocromático</option>
-                  </select>
-                  <select name="tipo-filtro-policarbonato" id="select-filtro-po" style="display: none;">                    
-                    <option value="Simple">Simple</option>
-                    <option value="Anti-reflex">Anti-reflex</option>
-                    <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
-                    <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
-                  </select>
-                </div>
+                      <!-- OPCION DE LUNA -->
+                      <div id="cambio-luna" style="display:none;">
+                        <p>Proteccion Uv:</p><br>
+                        <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
+                        <label for="radio-uv-si">Si</label>
+                        <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
+                        <label for="radio-uv-no">No</label> <br><br>
+                        <label for="tipo-luna">Tipo de luna</label>
+                        <select name="tipoluna" id="select-luna">                    
+                          <option value="Monofocal">Monofocal</option>
+                          <option value="Bifocal">Bifocal</option>
+                          <option value="Multifocal">Multifocal</option>
+                        </select>
+                        <select name="tipomaterial" id="select-material" onclick="filtro();">                    
+                          <option value="Organico">Orgánico</option>
+                          <option value="Vidrio">Vidrio</option>
+                          <option value="Policarbonato">Policarbonato</option>
+                        </select>
+                        <select name="tipo-filtro-organico" id="select-filtro-or" style="display: none;">                    
+                          <option value="Simple">Simple</option>
+                          <option value="Anti-reflex">Anti-reflex</option>
+                          <option value="Blue-defense">Blue-defense</option>
+                          <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
+                          <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
+                        </select>
+                        <select name="tipo-filtro-vidrio" id="select-filtro-vi" style="display: none;">                    
+                          <option value="Simple">Simple</option>
+                          <option value="Anti-reflex">Anti-reflex</option>
+                          <option value="Fotocromatico">Fotocromático</option>
+                        </select>
+                        <select name="tipo-filtro-policarbonato" id="select-filtro-po" style="display: none;">                    
+                          <option value="Simple">Simple</option>
+                          <option value="Anti-reflex">Anti-reflex</option>
+                          <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
+                          <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
+                        </select>
+                      </div>
 
-                <!-- OPCION DE Lente de contacto -->
-                <div id="cambio-lentecontacto" style="display:none;">
-                  <label for="tipocontacto">Tipo de lente de contacto</label><br>
-                  <select name="tipocontacto" id="select-tipocontacto" onclick="lentecontacto();">                    
-                    <option value="Cosmetico">Cosmético</option>
-                    <option value="Miopia">Miopía</option>
-                    <option value="Torico">Tórico</option>
-                  </select>
-                  <br>
-                  <div id="lente-cosmetico" style="display:none;">
-                    <label for="tipocontacto-color">Color</label><br>
-                    <select name="tipocontacto-color" id="select-tipocontacto-color">                    
-                      <option value="Azul">Azul</option>
-                      <option value="Verde">Verde</option>
-                      <option value="Honey">Honey</option>
-                      <option value="Gray">Gray</option>
-                      <option value="Hazel">Hazel</option>
-                    </select>
-                  </div>                  
+                      <!-- OPCION DE Lente de contacto -->
+                      <div id="cambio-lentecontacto" style="display:none;">
+                        <label for="tipocontacto">Tipo de lente de contacto</label><br>
+                        <select name="tipocontacto" id="select-tipocontacto" onclick="lentecontacto();">                    
+                          <option value="Cosmetico">Cosmético</option>
+                          <option value="Miopia">Miopía</option>
+                          <option value="Torico">Tórico</option>
+                        </select>
+                        <br>
+                        <div id="lente-cosmetico" style="display:none;">
+                          <label for="tipocontacto-color">Color</label><br>
+                          <select name="tipocontacto-color" id="select-tipocontacto-color">                    
+                            <option value="Azul">Azul</option>
+                            <option value="Verde">Verde</option>
+                            <option value="Honey">Honey</option>
+                            <option value="Gray">Gray</option>
+                            <option value="Hazel">Hazel</option>
+                          </select>
+                        </div>                  
+                      </div>
+                      <!-- OPCION DE Lente de contacto -->
+                      <div id="cambio-accesorio" style="display:none;">
+                        
+                      </div>
+                <!-- ! Componente dinamico -->                               
+                        <label for="stock-pro">Stock :</label>
+                        <input type="number" name="stock-pro" id="number-stock-pro" min="0" size="4px">
+                        <label for="precio-pro">Precio :</label>
+                        <input type="number" name="precio-pro" id="number-precio-pro" min="0" size="4px"><br><br>
+                        <div class="botones">
+                          <input type="button" value="Cancelar"> 
+                          <input type="submit" value="Registrar">                           
+                        </div>
+                                                                 
                 </div>
-                <!-- OPCION DE Lente de contacto -->
-                <div id="cambio-accesorio" style="display:none;">
-                  
+                
+                <div class="image-product">
+                  <label for="imagen">Imagen</label><br><br>
+                  <img id="previsualizacion" src="../../uploads/imagen.png" alt="imagen_defecto">
+                  <br><br>
+                  <input type="file" name="imagen-pro" id="file-imagen">
                 </div>
-          <!-- ! Componente dinamico -->
-                
-                
-                
-            <br>
-            <br>
-                
-            <br>
-                <label for="stock-pro">Stock :</label>
-                <input type="number" name="stock-pro" id="number-stock-pro" min="0" size="4px">
-                <label for="precio-pro">Precio :</label>
-                <input type="number" name="precio-pro" id="number-precio-pro" min="0" size="4px"><br><br>
-                
-                <label for="imagen">Imagen</label>
-                <input type="file" name="imagen-pro" id="file-imagen">
-            <br><br>
-                <input type="submit" value="Enviar">
+            <br><br>                
+                                
             </form>
         <!-- * FORMULARIO -->
                     
@@ -285,7 +305,6 @@
 
 
       <script>   
-
       function cargarform(){   
         var a = document.getElementById("cambio-montura");
         var b = document.getElementById("cambio-luna");

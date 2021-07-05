@@ -274,6 +274,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+}
+
+.home-espacio form{
+  width: 70%;
+  height: 70%;
+  background: 	#F8F2E5;
+  padding: 2em;
+  display: grid;
+  grid-template-columns: 50.2% 49.8%;
+}
+
+.home-espacio .contenido-left{
+  grid-column: 1/2;
+  
+}
+
+
+.home-espacio .image-product{
+  padding-left: 2em;
+  grid-column: 2/3;
+  place-self: center;
 }
 
 .home-content h1{
@@ -429,6 +451,10 @@
   font-size: 20px;
 }
 
+.home-espacio input[type='radio']{
+  margin-left: 1em;
+}
+
 .home-espacio input[type='text']{
   margin: 3px  0 20px 0;
   padding: 5px;
@@ -451,6 +477,7 @@
 }
 
 
+
 .home-espacio input[type='text']:focus{
   margin: 3px  0 20px 0;
   
@@ -459,9 +486,6 @@
   border: none;
 }
 
-
-
-
 .home-espacio input[type='number']{
   padding: 2px;
   font-size: 20px;
@@ -471,3 +495,68 @@
   padding: 2px;
   font-size: 20px;
 }
+
+.home-espacio #previsualizacion{
+  width: 150px;
+  height: 150px;
+}
+
+.home-espacio .cajitas{
+  margin-bottom: .5em;
+}
+
+.home-espacio .cajitas:last-child{
+  margin-top: 0px;
+}
+
+.home-espacio .contenido-left #number-stock-pro{
+  margin-right: 3em;
+}
+
+.home-espacio .contenido-left input[type='submit']{
+  background: white;
+  border-radius: 5px;
+  font-size: 1.5em;
+  border: none;
+  padding:0.5em 2em;
+  cursor: pointer;  
+}
+
+.botones{
+  width: 100%;
+  display: flex;
+  justify-content:flex-end;
+}
+
+.home-espacio .contenido-left input[type='submit']{
+  border:1px solid black;
+  margin-left: 1em;
+  background: rgb(9, 70, 121);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  font-size: 1.5em;
+  border: none;
+  padding:0.5em 1.5em;
+  cursor: pointer;  
+}
+
+.home-espacio .contenido-left input[type='button']{
+  background:whitesmoke ;
+  color: rgb(219, 66, 66);
+  border-radius: 5px;
+  font-size: 1.5em;
+  border: none;
+  padding:0.5em 1.5em;
+  cursor: pointer;  
+}
+
+.home-espacio .contenido-left input[type='button']:hover{
+  background:rgb(240, 225, 225);
+}
+
+.home-espacio .contenido-left input[type='submit']:hover{
+  background: rgb(30, 125, 202);
+}
+
+
+
