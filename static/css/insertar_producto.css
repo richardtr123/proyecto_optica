@@ -279,9 +279,9 @@
 
 .home-espacio form{
   width: 70%;
-  height: 70%;
+  height: 80%;
   background: 	#F8F2E5;
-  padding: 2em;
+  padding: 2em 2em 2em 2em;
   display: grid;
   grid-template-columns: 50.2% 49.8%;
 }
@@ -309,7 +309,7 @@
 
 .home-espacio .select-categoria {
   position:absolute;
-  top: 12%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%);
   overflow: hidden;
@@ -524,8 +524,7 @@
 
 .botones{
   width: 100%;
-  display: flex;
-  justify-content:flex-end;
+  margin-left: 11em;
 }
 
 .home-espacio .contenido-left input[type='submit']{
@@ -533,7 +532,7 @@
   margin-left: 1em;
   background: rgb(9, 70, 121);
   color: rgb(255, 255, 255);
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 1.5em;
   border: none;
   padding:0.5em 1.5em;
@@ -543,7 +542,7 @@
 .home-espacio .contenido-left input[type='button']{
   background:whitesmoke ;
   color: rgb(219, 66, 66);
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 1.5em;
   border: none;
   padding:0.5em 1.5em;
@@ -558,5 +557,33 @@
   background: rgb(30, 125, 202);
 }
 
+.home-espacio select{
+  display: inline-block;
+  margin-left: 1em;
+  background: white;
+  border: 1px solid rgb(51, 15, 255);
+  font-size: 18px;
+  padding:.3em;
+}
 
+.home-espacio form input[type='number']{
+  margin-right: 1.5em;
+}
 
+.home-espacio form input[type='submit']{
+  margin-right: 0px;
+}
+
+#lente-miopia input[type='number']{
+  margin-right: 1px;
+}
+
+#lente-miopia input:invalid+span:after {
+  content: '✖';
+  padding-left: 0;
+}
+
+#lente-miopia input:valid+span:after {
+  content: '✓';
+  padding-left: 0;
+}

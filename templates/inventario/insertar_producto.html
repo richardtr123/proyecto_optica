@@ -14,7 +14,9 @@
 </head>
 <body> 
     <script src="../../static/js/insertar_producto.js"></script>
-
+    <script src="{{
+      url_for('static', filename='js/insertar_producto.js') }}"></script>
+    
     
     <!-- <i class='bx bx-user'></i>
     <i class='bx bxs-user'></i>
@@ -33,10 +35,20 @@
             </a>           
           </li>
           <li>
-            <a href="#">
-              <i class='bx bxl-dropbox' ></i>
-              <span class="pagina_link">Productos</span>
-            </a>            
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bxl-dropbox' ></i>
+                <span class="pagina_link">Productos</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="pagina_link" href="#">Category</a></li>
+              <li><a href="#">Agregar Producto</a></li>
+              <li><a href="#">Almacen</a></li>
+              <li><a href="#">Lente de contacto</a></li>
+              <li><a href="#">Accesorios</a></li>
+            </ul>                      
           </li>
           <li>
             <a href="#">
@@ -159,10 +171,6 @@
                       <!-- * Componentes estaticos -->
                       <label for="nombre-pro">Nombre del producto :</label><br>
                       <input type="text" name="nombre-pro" id="text-nombre-pro" placeholder="Producto"><br>
-                      <label for="marca-pro">Marca :</label><br>
-                      <input type="text" name="marca-pro" id="text-marca-pro"><br>
-                      <label for="codigo-pro">Código del producto :</label><br>
-                      <input type="text" name="codigo-pro" id="text-codigo-pro"><br>
                       <!-- * Componentes estaticos -->
                       <!-- ! Componente dinamico -->
                     <!-- <label for="material-pro">Material</label><br>
@@ -178,6 +186,10 @@
                       <label for="otro">Otro</label><br><br>-->  
                       <!-- OPCION DE Montura -->
                       <div id="cambio-montura" style="display:none;">
+                        <label for="marca-pro-montura">Marca :</label><br>
+                        <input type="text" name="marca-pro-montura" class="text-marca-pro"><br>
+                        <label for="codigo-pro">Código del producto :</label><br>
+                        <input type="text" name="codigo-pro" id="text-codigo-pro"><br>
                         <div class="cajitas">
                           <label>Género :</label>
                           <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
@@ -187,6 +199,7 @@
                           <input type="radio" name="genero-pro" id="radio-ninos" value="ninos">
                           <label for="circulo">Niños</label>
                         </div>
+                        <br>
                         <div class="cajitas">
                           <label>Forma :</label>
                           <select name="forma-montura" id="select-forma-montura">
@@ -197,8 +210,9 @@
                               <option value="corazón">corazón</option>
                           </select>  
                         </div>
-                        <div class="cajitas">
-                          <label for="">Medida de la montura :</label><br>
+                        <br>
+                        <label for="">Medida de la montura :</label><br><br>
+                        <div class="cajitas">                          
                           <label for="calibre-pro">Calibre</label>
                           <input type="number" name="calibre-pro" id="number-calibre" min="0" size="3px">
                           <label for="puente_pro">Puente</label>
@@ -206,6 +220,7 @@
                           <label for="ancho_pro">Ancho</label>
                           <input type="number" name="ancho-pro" id="number-ancho" min="0" size="3px"><br>
                         </div>
+                        <br>
                         <div class="cajitas">
                           <label for="color-pro">Color: </label><br>
                           <input type="text" name="color-pro" id="color-color">
@@ -215,22 +230,28 @@
 
                       <!-- OPCION DE LUNA -->
                       <div id="cambio-luna" style="display:none;">
-                        <p>Proteccion Uv:</p><br>
+                        <label for="marca-pro-luna">Marca :</label><br>
+                        <input type="text" name="marca-pro-luna" id="text-marca-pro"><br>
+                        <!-- <p>Proteccion Uv:</p><br>
                         <input type="radio" name="uv-pro" id="radio-uv-si" value="1">
                         <label for="radio-uv-si">Si</label>
                         <input type="radio" name="uv-pro" id="radio-uv-no" value="0">
-                        <label for="radio-uv-no">No</label> <br><br>
-                        <label for="tipo-luna">Tipo de luna</label>
+                        <label for="radio-uv-no">No</label> <br><br> -->
+                        <label for="tipo-luna">Tipo de luna :</label>
                         <select name="tipoluna" id="select-luna">                    
                           <option value="Monofocal">Monofocal</option>
                           <option value="Bifocal">Bifocal</option>
                           <option value="Multifocal">Multifocal</option>
                         </select>
+                        <br><br>
+                        <label for="tipo-tipomaterial">material :</label>
                         <select name="tipomaterial" id="select-material" onclick="filtro();">                    
                           <option value="Organico">Orgánico</option>
                           <option value="Vidrio">Vidrio</option>
                           <option value="Policarbonato">Policarbonato</option>
                         </select>
+                        <br><br>
+                        <label for="tipo-filtro-organico">filtro :</label>
                         <select name="tipo-filtro-organico" id="select-filtro-or" style="display: none;">                    
                           <option value="Simple">Simple</option>
                           <option value="Anti-reflex">Anti-reflex</option>
@@ -249,19 +270,23 @@
                           <option value="Fotocromatico-AR">Fotocromático Anti-reflex</option>
                           <option value="Fotocromatico-BLUE">Fotocromático Blue</option>
                         </select>
+                        <br>
                       </div>
+                      <!-- OPCION DE LUNA -->
 
                       <!-- OPCION DE Lente de contacto -->
                       <div id="cambio-lentecontacto" style="display:none;">
-                        <label for="tipocontacto">Tipo de lente de contacto</label><br>
+                        <label for="marca-pro-lentecontacto">Marca :</label><br>
+                        <input type="text" name="marca-pro-lentecontacto" class="text-marca-pro"><br>
+                        <label for="tipocontacto">Tipo de lente de contacto :</label>
                         <select name="tipocontacto" id="select-tipocontacto" onclick="lentecontacto();">                    
                           <option value="Cosmetico">Cosmético</option>
                           <option value="Miopia">Miopía</option>
                           <option value="Torico">Tórico</option>
                         </select>
-                        <br>
+                        <br><br>
                         <div id="lente-cosmetico" style="display:none;">
-                          <label for="tipocontacto-color">Color</label><br>
+                          <label for="tipocontacto-color">Color :</label>
                           <select name="tipocontacto-color" id="select-tipocontacto-color">                    
                             <option value="Azul">Azul</option>
                             <option value="Verde">Verde</option>
@@ -269,12 +294,31 @@
                             <option value="Gray">Gray</option>
                             <option value="Hazel">Hazel</option>
                           </select>
-                        </div>                  
+                        </div>
+                        <div id="lente-miopia" style="display:none;">
+                          <label for="medida-contacto">Medida :</label>
+                          <input type="number" name="medida-contacto" id="number-contacto" step="0.25" min="-0.50" max="22.00" size="4px" placeholder="-0.25">
+                          <span class="validity"></span>
+                        </div> 
+                        <br>                      
                       </div>
                       <!-- OPCION DE Lente de contacto -->
-                      <div id="cambio-accesorio" style="display:none;">
-                        
+
+                      <!-- OPCION DE Accesorio -->
+                      <div id="cambio-accesorio" style="display:none;">                        
+                          <div class="cajitas">
+                            <label>Género :</label>
+                            <input type="radio" name="genero-pro" id="radio-masculino" value="hombre">
+                            <label for="rectangulo">Hombre</label>
+                            <input type="radio" name="genero-pro" id="radio-femenino" value="mujer">
+                            <label for="circulo">Mujer</label>
+                            <input type="radio" name="genero-pro" id="radio-ninos" value="unisex">
+                            <label for="circulo">unisex</label>
+                            
+                          </div>
+                          <br>
                       </div>
+                      <!-- OPCION DE Accesorio -->
                 <!-- ! Componente dinamico -->                               
                         <label for="stock-pro">Stock :</label>
                         <input type="number" name="stock-pro" id="number-stock-pro" min="0" size="4px">
@@ -283,18 +327,18 @@
                         <div class="botones">
                           <input type="button" value="Cancelar"> 
                           <input type="submit" value="Registrar">                           
-                        </div>
+                        </div>   
                                                                  
-                </div>
-                
+                </div>                
                 <div class="image-product">
                   <label for="imagen">Imagen</label><br><br>
-                  <img id="previsualizacion" src="../../uploads/imagen.png" alt="imagen_defecto">
+                  <!-- <img id="previsualizacion" src="../../uploads/imagen.png" alt="imagen_defecto"> -->
+                  <img src="{{url_for('static', filename='image/imagen.png')}}" id="previsualizacion"  alt="imagen_defecto">
                   <br><br>
                   <input type="file" name="imagen-pro" id="file-imagen">
                 </div>
-            <br><br>                
-                                
+            <br><br>              
+                        
             </form>
         <!-- * FORMULARIO -->
                     
@@ -365,16 +409,20 @@
 
       function lentecontacto(){
         var a = document.getElementById("lente-cosmetico");
+        var b = document.getElementById("lente-miopia");
         var val_filtro=document.nombreform.tipocontacto.value;
         switch(val_filtro){
           case "Cosmetico":
               a.style.display = "block";
+              b.style.display = "none";
             break;
           case "Miopia":
               a.style.display = "none";
+              b.style.display = "block";
             break;
           case "Torico":
               a.style.display = "none";
+              b.style.display = "none";
             break;
         } 
       }
