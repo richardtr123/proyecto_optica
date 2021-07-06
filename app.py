@@ -2,6 +2,7 @@ from re import template
 from flask import Flask, url_for, redirect
 # Referencia a herramientas y librerias
 from flask import render_template, request
+from  datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
 # TODO: DETALLES BD
 app = Flask(__name__)  # *Aca creamos la aplicacion
@@ -89,6 +90,12 @@ def almacenarproducto():
     _stock = request.form['stock-pro']    
     _precio = request.form['precio-pro']
     _foto = request.files['imagen-pro']
+    now=datetime.now()
+    tiempo=now.strftime("%Y%Y%M%S")
+    if _foto.filename!='':
+        nuevoNombreFoto=tiempo+_foto.filename
+        _foto.save("uploads/"+nuevoNombreFoto)
+    
     
  # recepcion de datos
     sql = "INSERT INTO `PRODUCTO` (`pro_cat_fk`, `pro_stock`, `pro_color`, `pro_material`, `pro_precio`, `pro_marca`, `pro_codigo`, `pro_proteccionuv`, `pro_genero`, `pro_nombre`, `pro_imagen`, `pro_tipoluna`, `pro_filtro`, `pro_lentecontacto`,`pro_medida`,`pro_forma`) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s)"
