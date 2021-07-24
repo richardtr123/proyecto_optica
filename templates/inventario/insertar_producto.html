@@ -29,12 +29,12 @@
             <span class="logo_name">Optica MyM</span>
         </div>
         <ul class="nav-links"> <!--! Enlaces--->
-          <li><a href="#">
+          <li class="list active"><a href="#">
               <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
               <span class="pagina_link">Dashboard</span>
             </a>           
           </li>
-          <li>
+          <li class="list">
             <div class="iocn-link">
               <a href="#">
                 <i class='bx bxl-dropbox' ></i>
@@ -50,13 +50,13 @@
               <li><a href="#">Accesorios</a></li>
             </ul>                      
           </li>
-          <li>
+          <li class="list">
             <a href="#">
               <i class='bx bx-list-check' ></i>
               <span class="pagina_link">Inventario</span>
             </a>            
           </li>
-          <li>
+          <li class="list">
             <div class="iocn-link">
               <a href="#">
                 <i class='bx bx-collection' ></i>
@@ -72,25 +72,25 @@
               <li><a href="#">Accesorios</a></li>
             </ul>
           </li>   
-          <li>
+          <li class="list">
             <a href="#">
               <i class='bx bxs-truck' ></i>
               <span class="pagina_link">Proveedores</span>
             </a>            
           </li>       
-          <li>
+          <li class="list">
             <a href="#">
               <i class='bx bx-user' ></i>
               <span class="pagina_link">Clientes</span>
             </a>            
           </li>
-          <li>
+          <li class="list">
             <a href="#">
               <i class='bx bx-line-chart' ></i>
               <span class="pagina_link">Estadísticas</span>
             </a>            
           </li>
-          <li>
+          <li class="list">
             <div class="iocn-link">
               <a href="#">
                 <i class='bx bx-plug' ></i>
@@ -105,7 +105,7 @@
               <li><a href="#">Box Icons</a></li>
             </ul>
           </li>
-          <li>
+          <li class="list">
             <a href="#">
               <i class='bx bx-shield-quarter' ></i>
               <span class="pagina_link">Seguridad</span>
@@ -444,6 +444,15 @@
         sidebarBtn.addEventListener("click", ()=>{
             sidebar.classList.toggle("close");
         });
+
+        const list=document.querySelectorAll('.list');
+        function activeLink(){
+          list.forEach((item) =>
+          item.classList.remove('active'));
+          this.classList.add('active')
+        }
+        list.forEach((item)=>
+        item.addEventListener('click',activeLink));
       </script>   
 </body>
 </html>
