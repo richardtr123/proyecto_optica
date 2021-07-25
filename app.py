@@ -4,6 +4,7 @@ from flask import Flask, url_for, redirect
 from flask import render_template, request
 from  datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
+from datetime import date #para la hora :v
 # TODO: DETALLES BD
 app = Flask(__name__)  # *Aca creamos la aplicacion
 
@@ -104,6 +105,35 @@ def almacenarproducto():
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(sql, datos)
+
+    sql = "INSERT INTO `Optica`.`KARDEX` (\
+        `kar_det_fk`,\
+        `kar_movimiento`,\
+        `kar_det_pro_fk`,\
+        `kar_cantidad`,\
+        `kar_entra`,\
+        `kar_sale`,\
+        `kar_total`,\
+        `kar_queda`,\
+        `kar_cop_fk`,\
+        `kar_cop_pro_fk`,\
+        `kar_fecha`) \
+        VALUES (NULL,%s,NULL,%s,%s,%s,%s,%s,NULL,NULL,%s)"
+#! INSERCION AL KARDEX
+    _kar_det_fk=""
+    _kar_movimiento=1
+    _kar_det_pro_fk=""  
+    _kar_cantidad=_stock
+    _kar_entra=_stock
+    _kar_sale=""
+    _kar_total=_stock
+    _kar_queda=""
+    _kar_cop_fk=""
+    _kar_cop_pro_fk=""
+    _kar_fecha=date.today()
+    datos = (_kar_movimiento,_kar_cantidad,_kar_entra,_kar_sale,_kar_total,_kar_queda,_kar_fecha)
+    cursor.execute(sql, datos)
+        #*el valor kar_queda se utilizara cuando se hagan las ventas
     conn.commit()  # commit hace que la conexion se termine
     return render_template('inventario/index.html')
 
