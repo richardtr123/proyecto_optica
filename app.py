@@ -5,6 +5,29 @@ from flask import render_template, request
 from  datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
 from datetime import date #para la hora :v
+
+#* declaracion de funciones
+def insertarSql(sql,datos):
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(sql, datos)    
+        conn.commit()
+    except OSError:
+        raise RuntimeError from None
+
+def consultarSql(sql):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    registros=cursor.fetchall()    
+    conn.commit()
+    return registros
+#* funciones
+
+
+
+
 # TODO: DETALLES BD
 app = Flask(__name__)  # *Aca creamos la aplicacion
 
@@ -102,10 +125,10 @@ def almacenarproducto():
     sql = "INSERT INTO `PRODUCTO` (`pro_cat_fk`, `pro_stock`, `pro_color`, `pro_material`, `pro_precio`, `pro_marca`, `pro_codigo`, `pro_proteccionuv`, `pro_genero`, `pro_nombre`, `pro_imagen`, `pro_tipoluna`, `pro_filtro`, `pro_lentecontacto`,`pro_medida`,`pro_forma`) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s)"
     # los parametros segun el orden de datos
     datos = (_categoria,_stock,_color,_tipomaterial,_precio,_marca,_codigo,_uv,_genero,_nombre,_foto.filename,_tipoluna,_tipofiltro,_tipocontacto,_medida,_forma)
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute(sql, datos)
-
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    insertarSql(sql,datos)
     sql = "INSERT INTO `Optica`.`KARDEX` (\
         `kar_det_fk`,\
         `kar_movimiento`,\
@@ -132,11 +155,15 @@ def almacenarproducto():
     _kar_cop_pro_fk=""
     _kar_fecha=date.today()
     datos = (_kar_movimiento,_kar_cantidad,_kar_entra,_kar_sale,_kar_total,_kar_queda,_kar_fecha)
-    cursor.execute(sql, datos)
+    insertarSql(sql,datos)
+    # cursor.execute(sql, datos)
         #*el valor kar_queda se utilizara cuando se hagan las ventas
-    conn.commit()  # commit hace que la conexion se termine
+    # conn.commit()  # commit hace que la conexion se termine
     return render_template('inventario/index.html')
 
 
 if __name__ == '__main__':  # para empezar la aplicacion
     app.run(debug=True)
+
+
+
