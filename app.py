@@ -44,7 +44,7 @@ mysql.init_app(app)
 
 @app.route('/')  # Recibe solicitudes mediante la url
 def index():  # def index()<--- nombre de la funcion
-    return render_template('inventario/index.html')
+    return render_template('/index.html')
 
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
 
@@ -53,6 +53,9 @@ def index():  # def index()<--- nombre de la funcion
 def insertar_producto():
     return render_template('inventario/insertar_producto.html')
 
+@app.route('/proveedor')
+def proveedor():
+    return render_template('proveedor/proveedor.html')
 
 @app.route('/almacenar_pro', methods=['POST'])
 def almacenarproducto():
@@ -159,7 +162,7 @@ def almacenarproducto():
     # cursor.execute(sql, datos)
         #*el valor kar_queda se utilizara cuando se hagan las ventas
     # conn.commit()  # commit hace que la conexion se termine
-    return render_template('inventario/index.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':  # para empezar la aplicacion

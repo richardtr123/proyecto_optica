@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Principal</title>
     <!-- Estilos de la pagina -->
-    <link rel="stylesheet" href="../static/css/boxicons.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../static/css/proveedor.css">
     <!-- estilos para produccion -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/proveedor.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
 </head>
 <body> 
@@ -146,100 +146,121 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
-            
-            <div class="cards">
-                <a href="Producto.html">
-                <div class="card-single">
-                    <div>
-                        <h1>50</h1>
-                        <span>Producto</span>
-                    </div>
-                    <div>
-                        <span class="icon-box"></span>
+            <div class="box">
+              <form >
+                  
+                 
+                 
+                  <div class="row">
+                  
+                      <div class="input-group">
+                          <input type="text" id="nombre" required>
+                          <label for="nombre"> Nombres</label>
+                      </div>
+                      <div class="input-group">
+                          <input type="text" id="numero" required>
+                          <label for="numero">N.telefono</label>
+                      </div>
+                      
+                  </div>
+                  
+                <div class="row">
+                  <div class="input-group">
+                      <input type="email" id="email"required>
+                      <label for="email">correo </label>
+                  </div>
+      
+                  <div class="input-group">
+                      <input type="text" id="empre" required>
+                      <label for="empre">Empresa</label>
+                  </div>
+      
+                  
+                </div>
+      
+               <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">-->
+      
+               <input class="form" type="submit" name="Registrar" value="Registrar">
+                
+                <div class="container">
+                    <div class="row">
+                        <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>
                     </div>
                 </div>
-               </a>
-                <a href="Inventario.html">
-                <div class="card-single">
-                    <div>
-                        <h1>100</h1>
-                        <span>Inventario</span>
-                    </div>
-                    <div>
-                        <span class="icon-clipboard-list"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Categoria.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Categoria</span>
-                    </div>
-                    <div>
-                        <span class="icon-tag-cord"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Proveedor.html">
-                <div class="card-single">
-                    <div>
-                        <h1>10</h1>
-                        <span>Proveedor</span>
-                    </div>
-                    <div>
-                        <span class="icon-local_shipping"></span>
-                    </div>
-                </div>
-                </a>
-
-                <a href="Clientes.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Clientes</span>
-                    </div>
-                    <div>
-                        <span class="icon-user"></span>
-                    </div>
-                </div>
-               </a>
-               <a href="Estadistica.html">
-                <div class="card-single">
-                    <div>
-                        <h1>35 </h1>
-                        <span>Estadistica</span>
-                    </div>
-                    <div>
-                        <span class="icon-connection-25"></span>
-                    </div>
-                </div>
-               </a>
-            </div>
-            <div class="recent-flex">
-                <div class="Producto">
-                </div>
-                <div class="Inventario">
-                    <div class="card-header">
-                        <h2></h2>
-                        <button> <pan class="las la-arrow-right"></pan></button>
-                    </div>
-                    <div class="card-body">
-                        <table>
-                            <thead>
+               
+                   
+                      <div class="container">
+                          <table class="table">
+                              <thead id="tablapersonas"class="text-center">
                                 <tr>
-                                    <td>    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Nombres</th>
+                                  <th scope="col">N.telefono</th>
+                                  <th scope="col">correo</th>
+                                  <th scope="col">Empresa</th>
+                                  <th scope="col">Acciones</th>
                                 </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
+                              </thead>
+                              
+                             
+                            </table>
+                          <tbody>
+                              <tr>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th>
+                                      
+                                  </th>
+                                  
+                              </tr>
+                          </tbody>
+                          
+                      </div>
+      
+              </form>
+              
+          </div>
+          <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Launch static backdrop modal
+        </button> -->
+        
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="modalCRUD" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ejampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+           <form id="formpersonas">
+               <div class="modal-body">
+                   <div class="form-group">
+                   <label for="nombre"class="col-form label">Nombres</label>
+                   <input type="text" class="form-control" id="nombre" >
+               </div>
+               <div class="modal-body">
+                  <div class="form-group">
+                  <label for="numero"class="col-form label">N.telefono</label>
+                  <input type="text" class="form-control" id="numero" >
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                  <label for="email"class="col-form label">correo</label>
+                  <input type="text" class="form-control" id="email" >
+              </div>
+              
+              </div>      
+           </from>   
+      
             </div>
+           </div>
+          </div>
+          </div>    
+      </div> -->
         </main>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
