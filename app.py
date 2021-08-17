@@ -23,6 +23,7 @@ def consultarSql(sql):
     registros=cursor.fetchall()    
     conn.commit()
     return registros
+
 #* funciones
 
 
@@ -49,13 +50,57 @@ def index():  # def index()<--- nombre de la funcion
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
 
 
-@app.route('/insertar_producto')
-def insertar_producto():
-    return render_template('inventario/insertar_producto.html')
+@app.route("/insertar_paciente")
+def insertar_paciente():
+    return render_template('paciente/paciente.html')
+
+
+@app.route('/almacenar_paciente', methods=['POST'])
+def almacenarpaciente():
+    _nombre = ""
+    _apellido1 = ""
+    _apellido2 = ""
+    _dnioruc = ""
+    _correo = ""
+    _telefono = ""
+    _fechanac = ""
+    _genero = ""
+    _direccion = ""
+    # RECEPCION DE CATEGORIA
+    _nombre = request.form['nombre-pac']
+    _apellido = request.form['apellido-pac']
+    _dnioruc = request.form['dni_o_ruc-pac']
+    _correo = request.form['correo-pac']
+    _fechanac = request.form['fechanac-pac']
+    _genero = request.form['genero-pac']
+    _telefono = request.form['telefono-pac']
+    _direccion = request.form['direccion-pac']
+                       
+    #!revisar luego el apellido OPTICA    
+    
+
+
+    
+ # recepcion de datos
+    sql = "INSERT INTO `CLIENTE` (`cli_id`, `cli_nombre`, `cli_apellido1`, `cli_apellido2`, `cli_correo`, `cli_dni_o_ruc`, `cli_fechanac`, `cli_genero`, `cli_telefono`, `cli_direccion`) VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    # los parametros segun el orden de datos
+    datos = (_nombre,_apellido,_apellido2,_correo,_dnioruc,_fechanac,_genero,_telefono,_direccion)
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    insertarSql(sql,datos)
+
+    return render_template('index.html')
+
 
 @app.route('/proveedor')
 def proveedor():
     return render_template('proveedor/proveedor.html')
+
+# *PRODUCTOS
+@app.route('/insertar_producto')
+def insertar_producto():
+    return render_template('inventario/insertar_producto.html')
 
 @app.route('/almacenar_pro', methods=['POST'])
 def almacenarproducto():
@@ -163,6 +208,10 @@ def almacenarproducto():
         #*el valor kar_queda se utilizara cuando se hagan las ventas
     # conn.commit()  # commit hace que la conexion se termine
     return render_template('index.html')
+#* PRODUCTOS
+
+#* CLIENTE
+
 
 
 if __name__ == '__main__':  # para empezar la aplicacion

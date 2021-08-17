@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+    <title>Paciente</title>
     <!-- Estilos de la pagina -->
-    <link rel="stylesheet" href="../static/css/boxicons.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../static/css/paciente.css">
     <!-- estilos para produccion -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
 </head>
 <body> 
@@ -144,7 +144,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Menu Principal</h1></span>
+          <span class="text"><h1>Nuevo paciente</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -156,100 +156,35 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
+            <form method="POST" action="/almacenar_paciente" enctype="multipart/form-data" name="pacienteform">
+            <label for="text-nombre">Nombre </label>
+            <input type="text" name="nombre-pac" id="text-nombre" placeholder="nombre">
+            <label for="text-apellido">Apellido</label>
+            <input type="text" name="apellido-pac" id="text-apellido" placeholder="apellido">
+            <label for="text-dni_o_ruc">Dni/Ruc</label>
+            <input type="text" name="dni_o_ruc-pac" id="text-dni_o_ruc" placeholder="dni o ruc">
+            <label for="correo">Fecha de nacimiento</label>
+            <input type="date" name="fechanac-pac" id="date-fechanac" placeholder="18/05/2000">
+            <label for="text-genero">Género</label>
+              <div class="genero">
+                <input type="radio" name="genero-pac" id="radio-masculino" value="hombre">
+                <label for="rectangulo">Hombre</label>
+                <input type="radio" name="genero-pac" id="radio-femenino" value="mujer">
+                <label for="circulo">Mujer</label>                
+              </div>              
+            <label for="correo">Correo</label>
+            <input type="email" name="correo-pac" id="email-correo" placeholder="richard.alex.t1@gmail.com">
+            <label for="text-telefono">Teléfono</label>
+            <input type="text" name="telefono-pac" id="text-telefono" placeholder="telefono">
+            <label for="text-direccion">Dirección</label>
+            <input type="text" name="direccion-pac" id="text-direccion" placeholder="direccion">
+            <img src="../../static/image/paciente.png" alt="ofltamologo.png" id="imagenpaciente">
+            <div class="botones">
+              <button type="reset">Limpiar</button>
+              <button type="submit">Registrar</button>              
+            </div>
             
-            <div class="cards">
-                <a href="Producto.html">
-                <div class="card-single">
-                    <div>
-                        <h1>50</h1>
-                        <span>Producto</span>
-                    </div>
-                    <div>
-                        <span class="icon-box"></span>
-                    </div>
-                </div>
-               </a>
-                <a href="Inventario.html">
-                <div class="card-single">
-                    <div>
-                        <h1>100</h1>
-                        <span>Inventario</span>
-                    </div>
-                    <div>
-                        <span class="icon-clipboard-list"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Categoria.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Categoria</span>
-                    </div>
-                    <div>
-                        <span class="icon-tag-cord"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Proveedor.html">
-                <div class="card-single">
-                    <div>
-                        <h1>10</h1>
-                        <span>Proveedor</span>
-                    </div>
-                    <div>
-                        <span class="icon-local_shipping"></span>
-                    </div>
-                </div>
-                </a>
-
-                <a href="Clientes.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Clientes</span>
-                    </div>
-                    <div>
-                        <span class="icon-user"></span>
-                    </div>
-                </div>
-               </a>
-               <a href="Estadistica.html">
-                <div class="card-single">
-                    <div>
-                        <h1>35 </h1>
-                        <span>Estadistica</span>
-                    </div>
-                    <div>
-                        <span class="icon-connection-25"></span>
-                    </div>
-                </div>
-               </a>
-            </div>
-            <div class="recent-flex">
-                <div class="Producto">
-                </div>
-                <div class="Inventario">
-                    <div class="card-header">
-                        <h2></h2>
-                        <button> <pan class="las la-arrow-right"></pan></button>
-                    </div>
-                    <div class="card-body">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            </form>
         </main>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
