@@ -8,15 +8,19 @@
     <!-- Estilos de la pagina -->
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/paciente.css">
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <!-- estilos para produccion -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+    <!-- <script src="../../static/js/paciente.js"></script> -->
 </head>
 <body> 
-    <!-- <script src="../../static/js/insertar_producto.js"></script>
-    <script src="{{
-      url_for('static', filename='js/insertar_producto.js') }}"></script> -->
     
+    <!-- <script src="{{
+      url_for('static', filename='js/paciente.js') }}"></script> -->
+      <!-- <script type="text/javascript"  src="../../static/js/paciente.js" charset="utf-8"></script> -->
+
     
     <!-- <i class='bx bx-user'></i>
     <i class='bx bxs-user'></i>
@@ -181,10 +185,10 @@
             <img src="../../static/image/paciente.png" alt="ofltamologo.png" id="imagenpaciente">
             <div class="botones">
               <button type="reset">Limpiar</button>
-              <button type="submit">Registrar</button>              
-            </div>
-            
+              <button id="open" type="submit">Registrar</button>              
+            </div>            
             </form>
+           
         </main>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
@@ -219,6 +223,7 @@
         }
         list.forEach((item)=>
         item.addEventListener('click',activeLink));
+        
       </script>
 </body>
 </html>

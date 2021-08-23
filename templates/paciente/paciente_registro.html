@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+    <title>Registro de pacientes</title>
     <!-- Estilos de la pagina -->
-    <link rel="stylesheet" href="../../static/css/boxicons.min.css">
-    <link rel="stylesheet" href="../../static/css/proveedor.css">
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">    
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/paciente_registro.css">
     <script src="../../static/js/jquery.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     <!-- estilos para produccion -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/proveedor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente_registro.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+    <!-- <script src="../../static/js/paciente.js"></script> -->
 </head>
 <body> 
-    <!-- <script src="../../static/js/insertar_producto.js"></script>
-    <script src="{{
-      url_for('static', filename='js/insertar_producto.js') }}"></script> -->
     
+    <!-- <script src="{{
+      url_for('static', filename='js/paciente.js') }}"></script> -->
+      <!-- <script type="text/javascript"  src="../../static/js/paciente.js" charset="utf-8"></script> -->
+
     
     <!-- <i class='bx bx-user'></i>
     <i class='bx bxs-user'></i>
@@ -146,7 +152,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Menu Principal</h1></span>
+          <span class="text"><h1>Registro de paciente</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -158,122 +164,59 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
-            <div class="box">
-              <form >
-                  
-                 
-                 
-                  <div class="row">
-                  
-                      <div class="input-group">
-                          <input type="text" id="nombre" required>
-                          <label for="nombre"> Nombres</label>
-                      </div>
-                      <div class="input-group">
-                          <input type="text" id="numero" required>
-                          <label for="numero">N.telefono</label>
-                      </div>
-                      
-                  </div>
-                  
-                <div class="row">
-                  <div class="input-group">
-                      <input type="email" id="email"required>
-                      <label for="email">correo </label>
-                  </div>
-      
-                  <div class="input-group">
-                      <input type="text" id="empre" required>
-                      <label for="empre">Empresa</label>
-                  </div>
-      
-                  
-                </div>
-      
-               <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">-->
-      
-               <input class="form" type="submit" name="Registrar" value="Registrar">
-                
-                <div class="container">
-                    <div class="row">
-                        <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>
-                    </div>
-                </div>
-               
-                   
-                      <div class="container">
-                          <table class="table">
-                              <thead id="tablapersonas"class="text-center">
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Nombres</th>
-                                  <th scope="col">N.telefono</th>
-                                  <th scope="col">correo</th>
-                                  <th scope="col">Empresa</th>
-                                  <th scope="col">Acciones</th>
-                                </tr>
-                              </thead>
-                              
-                             
-                            </table>
-                          <tbody>
-                              <tr>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th>
-                                      
-                                  </th>
-                                  
-                              </tr>
-                          </tbody>
-                          
-                      </div>
-      
-              </form>
-              
-          </div>
-          <!-- Button trigger modal -->
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Launch static backdrop modal
-        </button> -->
-        
-        <!-- Modal -->
-        <!-- <div class="modal fade" id="modalCRUD" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="ejampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-           <form id="formpersonas">
-               <div class="modal-body">
-                   <div class="form-group">
-                   <label for="nombre"class="col-form label">Nombres</label>
-                   <input type="text" class="form-control" id="nombre" >
-               </div>
-               <div class="modal-body">
-                  <div class="form-group">
-                  <label for="numero"class="col-form label">N.telefono</label>
-                  <input type="text" class="form-control" id="numero" >
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                  <label for="email"class="col-form label">correo</label>
-                  <input type="text" class="form-control" id="email" >
-              </div>
-              
-              </div>      
-           </from>   
-      
-            </div>
-           </div>
-          </div>
-          </div>    
-      </div> -->
+           <table class="table table-light">
+             <thead class="thead-light">
+               <tr>
+                 <th>#</th>
+                 <th>Nombre</th>
+                 <th>Apellidos</th>
+                 <th>Correo</th>
+                 <th>DNI</th>
+                 <th>Teléfono</th>
+                 <th>Acciones</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for paciente in resultados %}
+               <tr>
+                <td>{{ paciente[0] }}</td>
+                <td>{{ paciente[1] }}</td>
+                <td>{{ paciente[2] }}</td>
+                <td>{{ paciente[5] }}</td>
+                <td>{{ paciente[6] }}</td>
+                <td>{{ paciente[9] }}</td>
+                <td>
+                    <a href="/editar_paciente/{{paciente[0]}}">Editar</a>
+                    <a href="/destruir_paciente/{{paciente[0]}}">Eliminar</a>
+                </td>
+              </tr>
+               {% endfor %}               
+             </tbody>
+           </table>
         </main>
+        <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
       </section>
@@ -307,6 +250,7 @@
         }
         list.forEach((item)=>
         item.addEventListener('click',activeLink));
+        
       </script>
 </body>
 </html>

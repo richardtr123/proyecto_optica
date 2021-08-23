@@ -24,6 +24,8 @@ def consultarSql(sql):
     conn.commit()
     return registros
 
+
+
 #* funciones
 
 
@@ -90,7 +92,64 @@ def almacenarpaciente():
     # cursor.execute(sql, datos)
     insertarSql(sql,datos)
 
-    return render_template('index.html')
+    return render_template('paciente/paciente.html')
+#*Ver registro de paciente
+@app.route("/registro_paciente")
+def lista_pacientes():
+    sql = "SELECT * FROM `CLIENTE`"
+    # los parametros segun el orden de datos
+    
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    resultados=consultarSql(sql)
+    print(resultados)
+    return render_template('paciente/paciente_registro.html', resultados=resultados)
+#*Eliminar paciente
+@app.route('/destruir_paciente/<int:id>')#recibimos un parametro el id
+def destroy_paciente(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM CLIENTE WHERE cli_id=%s",(id))
+    conn.commit()
+    return redirect('/registro_paciente')
+
+#*editar paciente
+@app.route("/editar_paciente/<int:id>")
+def edit_paciente(id):  
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM CLIENTE WHERE cli_id=%s",(id))
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template('paciente/paciente_editar.html',registros=registros)
+
+#*actualizar
+
+@app.route("/actualizar_paciente", methods=['POST'])
+def actualizar_paciente():
+    
+    _nombre = request.form['nombre-pac']
+    _apellido = request.form['apellido-pac']
+    _dnioruc = request.form['dni_o_ruc-pac']
+    _correo = request.form['correo-pac']
+    _fechanac = request.form['fechanac-pac']
+    #_genero = request.form['genero-pac']
+    _telefono = request.form['telefono-pac']
+    _direccion = request.form['direccion-pac']
+    _id=request.form['idtxt']
+                       
+    #!revisar luego el apellido OPTICA 
+ # recepcion de datos
+    sql = "UPDATE `CLIENTE` SET `cli_nombre`=%s, `cli_apellido1`=%s, `cli_correo`=%s, `cli_dni_o_ruc`=%s, `cli_fechanac`=%s, `cli_telefono`=%s, `cli_direccion=%s` WHERE cli_id=%s;"
+    # los parametros segun el orden de datos
+    datos = (_nombre,_apellido,_correo,_dnioruc,_fechanac,_telefono,_direccion,_id)
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit() 
+
+    return redirect('/registro_paciente')
 
 
 @app.route('/proveedor')
