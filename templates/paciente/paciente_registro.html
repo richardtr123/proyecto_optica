@@ -186,8 +186,30 @@
                 <td>{{ paciente[6] }}</td>
                 <td>{{ paciente[9] }}</td>
                 <td>
-                    <a href="/editar_paciente/{{paciente[0]}}">Editar</a>
-                    <a href="/destruir_paciente/{{paciente[0]}}">Eliminar</a>
+                  <a href="/editar_paciente/{{paciente[0]}}">Editar</a>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Eliminar
+                  </button>      
+                                                <!-- Modal -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle"><i class='bx bxs-error'></i>Eliminar paciente </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                  OJO: Se eliminará el historial oftalmológico y el de compras del cliente relacionado
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-primary alerta"><a id="alerta_roja" href="/destruir_paciente/{{paciente[0]}}">Eliminar</a></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>        
                 </td>
               </tr>
                {% endfor %}               
@@ -197,26 +219,7 @@
         <!-- Button trigger modal -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
       </section>

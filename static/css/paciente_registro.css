@@ -332,3 +332,29 @@ main {
   padding: 2rem 1.5rem;
   background: #f1f3f5;
 }
+
+#alerta_roja{
+  color: white;
+  text-decoration: none;
+}
+
+.alerta{
+  border: rgb(207, 1, 1) solid 1px;
+  outline: none;
+  background: rgb(245, 77, 77);
+}
+
+.alerta:hover{
+  background: rgb(218, 57, 57);
+}
+
+h5{
+  line-height: 20px;
+}
+
+h5 .bxs-error{
+  font-size: 2em;
+  margin-right: .5em;
+}
+
+
