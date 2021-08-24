@@ -21,6 +21,7 @@ mysql.init_app(app)
 
 @app.route('/')  # Recibe solicitudes mediante la url
 def index():  # def index()<--- nombre de la funcion
+
     return render_template('inventario/index.html')
 
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
@@ -135,6 +136,59 @@ def almacenarproducto():
     cursor.execute(sql, datos)
         #*el valor kar_queda se utilizara cuando se hagan las ventas
     conn.commit()  # commit hace que la conexion se termine
+    return render_template('inventario/index.html')
+
+
+@app.route('/Proveedor')
+def proveedor():
+
+    sql='SELECT * FROM `proveedor`;'
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+
+    proveedores=cursor.fetchall()
+    print(proveedores)
+
+    conn.commit()
+    return render_template('proveedor/Proveedor.html', proveedores=proveedores)
+
+@app.route('/borrarP/<int:id>')
+def borrarP(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM proveedor WHERE id=%s",(id))
+    conn.commit()
+    #return redirect('proveedor/Proveedor.html')
+
+@app.route('/editarP/<int:id>')
+def editarP(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM proveedor WHERE id=%s",(id))
+    proveedores=cursor.fetchall()
+    conn.commit()
+        
+    #return render_template('proveedor/Proveedor.html',proveedores=proveedores)
+    
+@app.route('/registrar_Proveedor', methods=['POST'])
+def registrarProveedor():
+
+    _nombreP=request.form['nombre']
+    _telefonoP=request.form['numero']
+    _correoP=request.form['email']
+    _direccionP=request.form['']
+    _dnirucP=request.form['']
+    _empresaP=request.form['empre']
+
+    sql='INSERT INTO `proveedor` (`prov_id`, `prov_nombre`, `prov_telefono`, `prov_correo`, `prov_direccion`, `prov_dni_o_ruc`, `prov_empresa`) VALUES (NULL, %s, %s, %s, %s, %s, %s);'    
+    
+    datos=(_nombreP, _telefonoP, _correoP, _direccionP, _dnirucP, _empresaP)
+    
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql, datos)  
+    conn.commit() 
     return render_template('inventario/index.html')
 
 
