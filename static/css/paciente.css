@@ -341,7 +341,7 @@ form {
 }
 
 input{
-  color: rgb(116, 108, 108);
+  color: rgb(109, 101, 101);
   margin-bottom: 1em;
 }
 
@@ -416,6 +416,28 @@ input[type='email']:focus{
   font-size: 18px;
   margin-right: 5em;
 }
+
+#text-idtxt{
+  
+  background: rgb(190, 186, 186);
+}
+
+.bx-check-circle{
+  font-size: 1.5em;
+  color: green;
+}
+
+.home-espacio #regresar{
+  background:whitesmoke ;
+  color: rgb(77, 57, 57);
+  border-radius: 3px;
+  font-size: 1.5em;
+  border: none;
+  padding:0.5em 1.5em;
+  cursor: pointer;  
+}
+
+
 /* 
 .modal-container {
   display: flex;

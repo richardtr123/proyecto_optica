@@ -325,37 +325,119 @@
 /** MENU PRINCIPAL */
 
 main {
-  
   width: 100%;
   height: 100%;
   margin-left: 18px;
   padding: 2rem 1.5rem;
-  background: #f1f3f5;
+  background: #eceef0;
+}
+.cards{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  margin-top: 1rem;
+  
+  
+}
+.card-single{
+  display: flex;
+  justify-content:  space-between;
+  background: rgba(255, 252, 252, 0.801);
+  padding: 2rem;
+  
+}
+.card-single div:last-child span{
+  font-size: 4.7rem;
+  color: var(--main-color);
+ 
+}
+.card-single div:first-child span{
+  color: var(--text-grey);
 }
 
-#alerta_roja{
-  color: white;
-  text-decoration: none;
+
+/*.card-single:last-child {
+  background: var(--main-color);
+
+}
+.card-single:last-child h1{
+  background: var(--main-color);
+}
+.card-single:last-child div:last-child span{
+  color: #fff;
+}
+.card-single:last-child div:first-child span{
+  color: #fff;
+}*/
+
+
+
+
+/* *ICONOS */
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.alerta{
-  border: rgb(207, 1, 1) solid 1px;
-  outline: none;
-  background: rgb(245, 77, 77);
+.icon-connection-25:before {
+  content: "\e908";
+}
+.icon-news:before {
+  content: "\e900";
+}
+.icon-trash:before {
+  content: "\e907";
+}
+.icon-shopping-cart:before {
+  content: "\e901";
+}
+.icon-local_shipping:before {
+  content: "\e902";
+}
+.icon-menu:before {
+  content: "\e906";
+}
+.icon-user:before {
+  content: "\f007";
+}
+.icon-bars:before {
+  content: "\f0c9";
+}
+.icon-navicon:before {
+  content: "\f0c9";
+}
+.icon-reorder:before {
+  content: "\f0c9";
+}
+.icon-low-vision:before {
+  content: "\f2a8";
+}
+.icon-clipboard-list:before {
+  content: "\e903";
+}
+.icon-box:before {
+  content: "\e904";
+}
+.icon-tag-cord:before {
+  content: "\e905";
+}
+.icon-search:before {
+  content: "\e986";
 }
 
-.alerta:hover{
-  background: rgb(218, 57, 57);
-}
+/*! Agregado por Runi */
 
-h5{
-  line-height: 20px;
-}
 
-h5 .bxs-error{
-  font-size: 2em;
-  margin-right: .5em;
-}
 
 
 

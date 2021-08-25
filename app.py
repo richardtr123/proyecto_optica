@@ -137,13 +137,13 @@ def actualizar_paciente():
     #_genero = request.form['genero-pac']
     _telefono = request.form['telefono-pac']
     _direccion = request.form['direccion-pac']
-    _id=request.form['idtxt']
+    id = request.form['idtxt']
                        
     #!revisar luego el apellido OPTICA 
  # recepcion de datos
-    sql = "UPDATE `CLIENTE` SET `cli_nombre`=%s, `cli_apellido1`=%s, `cli_correo`=%s, `cli_dni_o_ruc`=%s, `cli_fechanac`=%s, `cli_telefono`=%s, `cli_direccion=%s` WHERE cli_id=%s;"
+    sql = "UPDATE `CLIENTE` SET `cli_nombre`=%s, `cli_apellido1`=%s, `cli_correo`=%s, `cli_dni_o_ruc`=%s, `cli_fechanac`=%s, `cli_telefono`=%s, `cli_direccion`=%s WHERE cli_id=%s;"
     # los parametros segun el orden de datos
-    datos = (_nombre,_apellido,_correo,_dnioruc,_fechanac,_telefono,_direccion,_id)
+    datos = (_nombre,_apellido,_correo,_dnioruc,_fechanac,_telefono,_direccion,id)
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(sql, datos)
@@ -151,6 +151,14 @@ def actualizar_paciente():
 
     return redirect('/registro_paciente')
 
+@app.route("/historial_paciente")
+def paciente_historial():
+    # conn=mysql.connect()
+    # cursor=conn.cursor()
+    # cursor.execute("SELECT a.his_ojoizq,a.his_ojoder,a.his_distanciainter,a.his_adicion,a.his_observacion,a.his_fecha,a.his_cli_fk FROM HISTORIAL_OFT a INNER JOIN CLIENTE b on a.his_cli_fk=b.%s",(id))
+    # registros=cursor.fetchall()
+    # conn.commit()
+    return render_template("paciente/paciente_historial.html")
 
 @app.route('/proveedor')
 def proveedor():
