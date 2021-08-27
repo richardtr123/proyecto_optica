@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% for registro in registros %}
+        
+
+  <form method="POST" action="/actualizar_paciente" enctype="multipart/form-data" name="pacienteform">
+    <label for="idtxt">ID </label>
+    <input type="text" value="{{ registro[0] }}" name="idtxt" id="text-idtxt">
+    <label for="text-nombre">Nombre </label>
+    <input type="text" value="{{ registro[1] }}" name="nombre-pac" id="text-nombre" placeholder="nombre">
+    <label for="text-apellido">Apellido</label>
+    <input type="text" value="{{ registro[2] }}" name="apellido-pac" id="text-apellido" placeholder="apellido">
+    <label for="text-dni_o_ruc">Dni/Ruc</label>
+    <input type="text" value="{{ registro[6] }}" name="dni_o_ruc-pac" id="text-dni_o_ruc" placeholder="dni o ruc">
+    <label for="correo">Fecha de nacimiento</label>
+    <input type="date" value="{{ registro[7] }}" name="fechanac-pac" id="date-fechanac" placeholder="18/05/2000">         
+    <label for="correo">Correo</label>
+    <input type="email" value="{{ registro[5] }}" name="correo-pac" id="email-correo" placeholder="richard.alex.t1@gmail.com">
+    <label for="text-telefono">Teléfono</label>
+    <input type="text" value="{{ registro[9] }}" name="telefono-pac" id="text-telefono" placeholder="telefono">
+    <label for="text-direccion">Dirección</label>
+    <input type="text" value="{{ registro[10] }}" name="direccion-pac" id="text-direccion" placeholder="direccion">
+    <img src="../../static/image/paciente.png" alt="ofltamologo.png" id="imagenpaciente">
+    <div class="botones">
+      <button type="reset">Cancelar</button>
+      <button id="open" type="submit">Guardar</button>              
+    </div>            
+  </form>
+
+
+  {% endfor %}
+   
+</body>
+</html>
+

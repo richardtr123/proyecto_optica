@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+    <title>Registro de pacientes</title>
     <!-- Estilos de la pagina -->
-    <link rel="stylesheet" href="../static/css/boxicons.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">    
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/paciente_registro.css">
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     <!-- estilos para produccion -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente_registro.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+    <!-- <script src="../../static/js/paciente.js"></script> -->
 </head>
 <body> 
-    <!-- <script src="../../static/js/insertar_producto.js"></script>
-    <script src="{{
-      url_for('static', filename='js/insertar_producto.js') }}"></script> -->
     
+    <!-- <script src="{{
+      url_for('static', filename='js/paciente.js') }}"></script> -->
+      <!-- <script type="text/javascript"  src="../../static/js/paciente.js" charset="utf-8"></script> -->
+
     
     <!-- <i class='bx bx-user'></i>
     <i class='bx bxs-user'></i>
@@ -144,7 +152,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Menu Principal</h1></span>
+          <span class="text"><h1>Registro de paciente</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -156,101 +164,62 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
-            
-            <div class="cards">
-                <a href="Producto.html">
-                <div class="card-single">
-                    <div>
-                        <h1>50</h1>
-                        <span>Producto</span>
-                    </div>
-                    <div>
-                        <span class="icon-box"></span>
-                    </div>
-                </div>
-               </a>
-                <a href="Inventario.html">
-                <div class="card-single">
-                    <div>
-                        <h1>100</h1>
-                        <span>Inventario</span>
-                    </div>
-                    <div>
-                        <span class="icon-clipboard-list"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Categoria.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Categoria</span>
-                    </div>
-                    <div>
-                        <span class="icon-tag-cord"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Proveedor.html">
-                <div class="card-single">
-                    <div>
-                        <h1>10</h1>
-                        <span>Proveedor</span>
-                    </div>
-                    <div>
-                        <span class="icon-local_shipping"></span>
-                    </div>
-                </div>
-                </a>
-
-                <a href="Clientes.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Clientes</span>
-                    </div>
-                    <div>
-                        <span class="icon-user"></span>
-                    </div>
-                </div>
-               </a>
-               <a href="Estadistica.html">
-                <div class="card-single">
-                    <div>
-                        <h1>35 </h1>
-                        <span>Estadistica</span>
-                    </div>
-                    <div>
-                        <span class="icon-connection-25"></span>
-                    </div>
-                </div>
-               </a>
-            </div>
-            <div class="recent-flex">
-                <div class="Producto">
-                </div>
-                <div class="Inventario">
-                    <div class="card-header">
-                        <h2></h2>
-                        <button> <pan class="las la-arrow-right"></pan></button>
-                    </div>
-                    <div class="card-body">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
+           <table class="table table-light">
+             <thead class="thead-light">
+               <tr>
+                 <th>#</th>
+                 <th>Nombre</th>
+                 <th>Apellidos</th>
+                 <th>Correo</th>
+                 <th>DNI</th>
+                 <th>Teléfono</th>
+                 <th>Acciones</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for paciente in resultados %}
+               <tr>
+                <td>{{ paciente[0] }}</td>
+                <td>{{ paciente[1] }}</td>
+                <td>{{ paciente[2] }}</td>
+                <td>{{ paciente[5] }}</td>
+                <td>{{ paciente[6] }}</td>
+                <td>{{ paciente[9] }}</td>
+                <td>
+                  <a href="/editar_paciente/{{paciente[0]}}">Editar</a>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Eliminar
+                  </button>      
+                                                <!-- Modal -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle"><i class='bx bxs-error'></i>Eliminar paciente </h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                  OJO: Se eliminará el historial oftalmológico y el de compras del cliente relacionado
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-primary alerta"><a id="alerta_roja" href="/destruir_paciente/{{paciente[0]}}">Eliminar</a></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>        
+                </td>
+              </tr>
+               {% endfor %}               
+             </tbody>
+           </table>
         </main>
+        <!-- Button trigger modal -->
+
+
+
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
       </section>
@@ -284,6 +253,7 @@
         }
         list.forEach((item)=>
         item.addEventListener('click',activeLink));
+        
       </script>
 </body>
 </html>

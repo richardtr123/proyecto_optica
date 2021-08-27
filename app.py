@@ -5,6 +5,32 @@ from flask import render_template, request
 from  datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
 from datetime import date #para la hora :v
+
+#* declaracion de funciones
+def insertarSql(sql,datos):
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(sql, datos)    
+        conn.commit()
+    except OSError:
+        raise RuntimeError from None
+
+def consultarSql(sql):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    registros=cursor.fetchall()    
+    conn.commit()
+    return registros
+
+
+
+#* funciones
+
+
+
+
 # TODO: DETALLES BD
 app = Flask(__name__)  # *Aca creamos la aplicacion
 
@@ -21,16 +47,120 @@ mysql.init_app(app)
 
 @app.route('/')  # Recibe solicitudes mediante la url
 def index():  # def index()<--- nombre de la funcion
+    return render_template('/index.html')
 
-    return render_template('inventario/index.html')
 
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
 
 
+@app.route("/insertar_paciente")
+def insertar_paciente():
+    return render_template('paciente/paciente.html')
+
+
+@app.route('/almacenar_paciente', methods=['POST'])
+def almacenarpaciente():
+    _nombre = ""
+    _apellido1 = ""
+    _apellido2 = ""
+    _dnioruc = ""
+    _correo = ""
+    _telefono = ""
+    _fechanac = ""
+    _genero = ""
+    _direccion = ""
+    # RECEPCION DE CATEGORIA
+    _nombre = request.form['nombre-pac']
+    _apellido = request.form['apellido-pac']
+    _dnioruc = request.form['dni_o_ruc-pac']
+    _correo = request.form['correo-pac']
+    _fechanac = request.form['fechanac-pac']
+    _genero = request.form['genero-pac']
+    _telefono = request.form['telefono-pac']
+    _direccion = request.form['direccion-pac']
+                       
+    #!revisar luego el apellido OPTICA    
+    
+
+
+    
+ # recepcion de datos
+    sql = "INSERT INTO `CLIENTE` (`cli_id`, `cli_nombre`, `cli_apellido1`, `cli_apellido2`, `cli_correo`, `cli_dni_o_ruc`, `cli_fechanac`, `cli_genero`, `cli_telefono`, `cli_direccion`) VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    # los parametros segun el orden de datos
+    datos = (_nombre,_apellido,_apellido2,_correo,_dnioruc,_fechanac,_genero,_telefono,_direccion)
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    insertarSql(sql,datos)
+
+    return render_template('paciente/paciente.html')
+#*Ver registro de paciente
+@app.route("/registro_paciente")
+def lista_pacientes():
+    sql = "SELECT * FROM `CLIENTE`"
+    # los parametros segun el orden de datos
+    
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    resultados=consultarSql(sql)
+    print(resultados)
+    return render_template('paciente/paciente_registro.html', resultados=resultados)
+#*Eliminar paciente
+@app.route('/destruir_paciente/<int:id>')#recibimos un parametro el id
+def destroy_paciente(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM CLIENTE WHERE cli_id=%s",(id))
+    conn.commit()
+    return redirect('/registro_paciente')
+
+#*editar paciente
+@app.route("/editar_paciente/<int:id>")
+def edit_paciente(id):  
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM CLIENTE WHERE cli_id=%s",(id))
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template('paciente/paciente_editar.html',registros=registros)
+
+#*actualizar
+
+@app.route("/actualizar_paciente", methods=['POST'])
+def actualizar_paciente():
+    
+    _nombre = request.form['nombre-pac']
+    _apellido = request.form['apellido-pac']
+    _dnioruc = request.form['dni_o_ruc-pac']
+    _correo = request.form['correo-pac']
+    _fechanac = request.form['fechanac-pac']
+    #_genero = request.form['genero-pac']
+    _telefono = request.form['telefono-pac']
+    _direccion = request.form['direccion-pac']
+    _id=request.form['idtxt']
+                       
+    #!revisar luego el apellido OPTICA 
+ # recepcion de datos
+    sql = "UPDATE `CLIENTE` SET `cli_nombre`=%s, `cli_apellido1`=%s, `cli_correo`=%s, `cli_dni_o_ruc`=%s, `cli_fechanac`=%s, `cli_telefono`=%s, `cli_direccion=%s` WHERE cli_id=%s;"
+    # los parametros segun el orden de datos
+    datos = (_nombre,_apellido,_correo,_dnioruc,_fechanac,_telefono,_direccion,_id)
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit() 
+
+    return redirect('/registro_paciente')
+
+
+#@app.route('/proveedor')
+#def proveedor():
+#    return render_template('proveedor/proveedor.html')
+
+# *PRODUCTOS
 @app.route('/insertar_producto')
 def insertar_producto():
     return render_template('inventario/insertar_producto.html')
-
 
 @app.route('/almacenar_pro', methods=['POST'])
 def almacenarproducto():
@@ -103,10 +233,10 @@ def almacenarproducto():
     sql = "INSERT INTO `PRODUCTO` (`pro_cat_fk`, `pro_stock`, `pro_color`, `pro_material`, `pro_precio`, `pro_marca`, `pro_codigo`, `pro_proteccionuv`, `pro_genero`, `pro_nombre`, `pro_imagen`, `pro_tipoluna`, `pro_filtro`, `pro_lentecontacto`,`pro_medida`,`pro_forma`) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s)"
     # los parametros segun el orden de datos
     datos = (_categoria,_stock,_color,_tipomaterial,_precio,_marca,_codigo,_uv,_genero,_nombre,_foto.filename,_tipoluna,_tipofiltro,_tipocontacto,_medida,_forma)
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute(sql, datos)
-
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    insertarSql(sql,datos)
     sql = "INSERT INTO `Optica`.`KARDEX` (\
         `kar_det_fk`,\
         `kar_movimiento`,\
@@ -133,16 +263,20 @@ def almacenarproducto():
     _kar_cop_pro_fk=""
     _kar_fecha=date.today()
     datos = (_kar_movimiento,_kar_cantidad,_kar_entra,_kar_sale,_kar_total,_kar_queda,_kar_fecha)
-    cursor.execute(sql, datos)
+    insertarSql(sql,datos)
+    # cursor.execute(sql, datos)
         #*el valor kar_queda se utilizara cuando se hagan las ventas
-    conn.commit()  # commit hace que la conexion se termine
-    return render_template('inventario/index.html')
+    # conn.commit()  # commit hace que la conexion se termine
+    return render_template('index.html')
+#* PRODUCTOS
+
+#* CLIENTE
 
 
-@app.route('/Proveedor')
-def proveedor():
 
-    sql='SELECT * FROM `proveedor`;'
+@app.route('/proveedor')
+def visualizarP():
+    sql="SELECT * FROM `proveedor`;"
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute(sql)
@@ -151,46 +285,48 @@ def proveedor():
     print(proveedores)
 
     conn.commit()
-    return render_template('proveedor/Proveedor.html', proveedores=proveedores)
+    return render_template('proveedor/proveedor.html', proveedores=proveedores)
 
-@app.route('/borrarP/<int:id>')
-def borrarP(id):
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    cursor.execute("DELETE FROM proveedor WHERE id=%s",(id))
-    conn.commit()
-    #return redirect('proveedor/Proveedor.html')
-
-@app.route('/editarP/<int:id>')
-def editarP(id):
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    cursor.execute("SELECT * FROM proveedor WHERE id=%s",(id))
-    proveedores=cursor.fetchall()
-    conn.commit()
-        
-    #return render_template('proveedor/Proveedor.html',proveedores=proveedores)
-    
-@app.route('/registrar_Proveedor', methods=['POST'])
+@app.route('/proveedor', methods=['POST'])
 def registrarProveedor():
 
     _nombreP=request.form['nombre']
     _telefonoP=request.form['numero']
     _correoP=request.form['email']
-    _direccionP=request.form['']
-    _dnirucP=request.form['']
+    #_direccionP=request.form['']
+    #_dnirucP=request.form['']
     _empresaP=request.form['empre']
 
-    sql='INSERT INTO `proveedor` (`prov_id`, `prov_nombre`, `prov_telefono`, `prov_correo`, `prov_direccion`, `prov_dni_o_ruc`, `prov_empresa`) VALUES (NULL, %s, %s, %s, %s, %s, %s);'    
-    
-    datos=(_nombreP, _telefonoP, _correoP, _direccionP, _dnirucP, _empresaP)
-    
+    sql="INSERT INTO proveedor (prov_id, prov_nombre, prov_telefono, prov_correo, prov_direccion, prov_dni_o_ruc, prov_empresa) VALUES (NULL, %s, %s, %s, NULL, NULL, %s);"
+
+    datos=(_nombreP, _telefonoP, _correoP,_empresaP) #_direccionP, _dnirucP, 
+
     conn=mysql.connect()
     cursor=conn.cursor()
-    cursor.execute(sql, datos)  
+    cursor.execute(sql, datos)
     conn.commit() 
-    return render_template('inventario/index.html')
+    return redirect('/proveedor')
 
+@app.route('/borrarP/<int:id>')
+def borrarP(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM proveedor WHERE prov_id = %s",(id))
+    conn.commit()
+    return redirect('/proveedor')
+
+#@app.route('/editarP/<int:id>')
+#def editarP(id):
+#    conn=mysql.connect()
+#    cursor=conn.cursor()
+#    cursor.execute("SELECT * FROM proveedor WHERE prov_id = %s",(id))
+#    proveedores=cursor.fetchall()
+#    conn.commit()
+
+#    return render_template('proveedor/Proveedor.html',proveedores=proveedores)
 
 if __name__ == '__main__':  # para empezar la aplicacion
     app.run(debug=True)
+
+
+
