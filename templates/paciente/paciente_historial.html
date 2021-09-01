@@ -162,7 +162,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Nuevo paciente</h1></span>
+          <span class="text"><h1>Historial paciente</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -173,12 +173,78 @@
         </div>
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
-          <main>      
-            <select class="selectpicker form-control" id="number" data-container="body" data-live-search="true" title="Selecciona el historial" data-hide-disabled="true">
-              <option value="1">gaa</option>
-          </select>
-           <input type="text" name="dni-pac" id="text-dni-pac" placeholder="DNI">
-           <button class="agregar">+</button>
+          <main>    
+            <div class="w-25">
+              <select name="tipopaciente" class="form-control" id="tipopaciente" data-container="body" data-live-search="true" title="Selecciona el historial" data-hide-disabled="true"  >
+              {% for row in registros %}
+              <option value="{{row[0]}}">{{row[5]}}</option>              
+              {% endfor %}
+            </select>
+          </div>        
+
+          <div class="w-25">
+            <select name="histopaciente" class="form-control" id="histopaciente" data-container="body" data-live-search="true" title="Selecciona el historial" data-hide-disabled="true"></select>
+            <input type ="submit" name="Delete All" value="Delete All" onclick="{{ url_for('delall') }}"/>
+            <input type="text" name="valor2" size="40" id="valor2" value="Aquí saldrá el valor del select cuando cambie">
+            {% for abduscan in rellenito %}
+            <table class="table table-dark">
+              <tbody>
+                <tr>
+                  <td>{{abduscan[0]}}</td>
+                  <td>{{abduscan[1]}}</td>
+                  <td>{{abduscan[2]}}</td>
+                  <td>{{abduscan[3]}}</td>
+                  <td>{{abduscan[4]}}</td>
+                  <td>{{abduscan[5]}}</td>
+                </tr>
+              </tbody>
+            </table>
+            {% endfor %}             
+        </div>
+            
+        <div class="contenedor-historial" id="panquesito">
+          <h3>Consultorio oftalmológico</h3> 
+          <h4>Receta de lentes</h4> 
+          <p>Nombre:</p>
+          <input type="text" name="nombre" id="text-nombre">
+          <p>Medida</p>
+          <table class="table table-light">
+              <thead class="thead-light">
+                  <tr>
+                      <th>#</th>
+                      <th>ESF</th>
+                      <th>CIL</th>
+                      <th>EJE</th>
+                      <th>ADD</th>
+                      <th>DIF</th>
+                      <th>AVL</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <th>OD</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <th>OI</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </tbody>
+          </table>
+          Diagnóstico:
+          <input type="text" name="diagnostico" id="text-diagnostico">
+      </div>
+          
         </main>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
@@ -189,9 +255,59 @@
       <script src="../../static/js/bootstrap-select.js"></script>
 
       <script>
-        $(document).ready(function () {
-            $("#historia_brand").selectpicker();
-        })
+
+        // Paciente
+         $(document).ready(function () {
+                $("#tipopaciente").selectpicker();   
+                $("#histopaciente").selectpicker();
+   
+                function load_data(type, category_id) {
+                    $.ajax({
+                        url: "/tipopaciente",
+                        method: "POST",
+                        data: { type: type, category_id: category_id },
+                        dataType: "json",
+                        success: function (data) { alert(category_id)
+                            var html = "";
+                            for (var count = 0; count < data.length; count++) {
+                                html += '<option value="' + data[count].id + '">' + data[count].name + "</option>";
+                            }
+                            // html += '<input type="text" value="' + data[count].ojoizq + '">' +  "</input>";
+                            if (type == "carData") {
+                                $("#tipopaciente").html(html);
+                                $("#tipopaciente").selectpicker("refresh");
+                            } else {
+                                $("#histopaciente").html(html);
+                                $("#histopaciente").selectpicker("refresh");
+                            }
+                        },
+                    });
+                }
+   
+                $(document).on("change", "#tipopaciente", function () {
+                    var category_id = $("#tipopaciente").val();
+                    load_data("carModeldata", category_id);
+                    
+                });
+            });
+
+
+            $(document).ready(function(){              
+              $("#histopaciente").change(function(){
+                        alert($('select[id=histopaciente]').val());
+                        $('#valor2').val($(this).val());
+                        // document.getElementById("text-nombre").innerHTML=value.substring(0,3).toUpperCase();
+              });
+             
+            });
+
+           
+
+
+
+
+
+
 
         // NO TOCAR
            let arrow = document.querySelectorAll(".arrow");

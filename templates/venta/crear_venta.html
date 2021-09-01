@@ -8,13 +8,14 @@
     <!-- Estilos de la pagina -->
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/css/visualizar_producto.css">
     
+    <link rel="stylesheet" href="../../static/css/crear_venta.css">
+
     <script src="../../static/js/jquery.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
 
     <!-- estilos para produccion -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/visualizar_producto.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/crear_venta.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
     <script src="https://kit.fontawesome.com/f97c2c50ed.js" crossorigin="anonymous"></script>
@@ -151,7 +152,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Visualizar producto</h1></span>
+          <span class="text"><h1>Crear venta</h1></span>
           <div class="user-wrapper">
             <img src="../../static/image/visualizar_producto/admin.png" alt="50px" height="50px" alt="">
             <div> 
@@ -161,94 +162,80 @@
         </div>
         </div>
         <div class="home-espacio">
+          <main>
+              <!-- Datos del cliente -->
+          <div class="box1">
+            <fieldset>
+              <legend>Datos del cliente</legend>  
+              <input type="text"placeholder="Nombre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text"placeholder="Teléfono">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text"placeholder="Número" >
+            </fieldset>
+        </div>
 
+        <!-- Logo -->
+       <div class="box2">
+         <img src="../../static/image/visualizar_producto/logo_2.png" alt="logo"tittle="Logo"width="300px">
+        </div>
+
+        <!-- Especificaciones del producto -->
+        <div class="box3">
+          <fieldset>
+            <legend>Producto</legend>  
+            <input type="text"placeholder="Código">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text"placeholder="Nombre">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text"placeholder="Cantidad">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text"placeholder="Precio Unitario">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text"placeholder="Precio Total">
+          </fieldset>
+        </div>
+        <!-- Opciones Gurdar y Editar -->
+        <div class="box4">
+                </div>
+        <!-- Tabla de Registros -->
+        <div class="box5">
+              <br>
+                  <table class="table table-light">
+                    <thead class="thead-warning">
+                      <tr>
+                          <th>Código</th>
+                          <th>Fecha</th>
+                          <th>Producto</th>
+                          <th>Cliente</th>
+                          <th>Cantidad</th>
+                          <th>Precio Unitario</th>
+                          <th>Precio Total</th>
+                          <th colspan="2">Editar / Eliminar</th>
+                      </tr>
+                    </thead>
+                    <!-- <tbody>
+
+                      {% for venta in ventas %}
+                      <tr>
+                        <td>{{venta[0] }}</td>
+                        <td>{{venta[1] }}</td>
+                        <td>{{venta[2] }}</td>
+                        <td>{{venta[3] }}</td>
+                        <td>{{venta[4] }}</td>
+                        <td>{{venta[5] }}</td>
+                        <td>{{venta[6] }}</td>
+                        <td>
+                          <a href="/editarP/{venta[0]}"><button ><img src="../../static/image/visualizar_producto/editar.png" alt="edit"width="20px"></button></a>
+                        </td>
+                        <td>
+                          <a onclick="return confirm('¿Está seguro que desea eliminarlo?')" href="/borrarP/{{venta[0]}}"><button><img src="../../static/image/visualizar_producto/eliminar.png" alt="delete"width="20px"></button></a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+        
+                    </tbody> -->
+                  </table>
+              
+        </div>
+          </main>
           <!-- CONTENIDO -->
 
-          <main>
-             <!-- Imagen del producto y selectbox -->
-          <div class="box1">
-            <input type="text"placeholder="Nombre" size="30">
-            <br>
-            <img src="../../static/image/visualizar_producto/imagen.png" alt="inicio"tittle="Estandar"width="200px">
-            <br>
-              <!-- Opciones -->
-            <div >
-              <select>
-                <option value="Categoria">Categoría</option>
-                <option value="Lente">Lente</option>
-                <option value="Montura">Montura</option>
-                <option value="Luna">Luna</option>
-                <option value="Accesorio">Accesorio</option>
-              </select>
-              <span class="custom arrow"></span>
-            </div>
-          </div>
-
-          <!-- Logo -->
-         <div class="box2">
-           <img src="../../static/image/visualizar_producto/logo_2.png" alt="logo"tittle="Logo"width="300px">
-          </div>
-
-          <!-- Información del producto -->
-          <div class="box3">
-            <input type="text"placeholder="ID">
-            <input type="text"placeholder="Género">
-            <br>
-            <br>
-            <input type="text"placeholder="Categoría">
-            <input type="text"placeholder="Material">
-            <br>    
-            <br>
-            <input type="text"placeholder="Search Here">
-            <button><img src="../../static/image/visualizar_producto/Lupa.png" alt="search"width="30px"></button>
-            <button><img src="../../static/image/visualizar_producto/guardar.png" alt="save"width="30px"></button>
-          </div>
-
-          <!-- Tabla de Registros -->
-          <div class="box4">
-            
-                <h2>Tabla de Registros</h2>
-                <br>
-                    <table class="table table-light">
-                      <thead class="table-warning">
-                        <tr>
-                            <th>#</th>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Marca</th>
-                            <th>Código</th>
-                            <th>Material</td>
-                            <th>Costo</th>
-                            <th colspan="2">Editar / Eliminar</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                        {% for producto in productos %}
-                        <tr>
-                          <td>{{producto[0] }}</td>
-                          <td>{{producto[1] }}</td>
-                          <td>{{producto[2] }}</td>
-                          <td>{{producto[3] }}</td>
-                          <td>{{producto[4] }}</td>
-                          <td>{{producto[5] }}</td>
-                          <td>{{producto[6] }}</td>
-                          <td>
-                            <a href="/editarP/{producto[0]}"><button><img src="../../static/image/visualizar_producto/editar.png" alt="edit"width="20px"></button></a>
-                          </td>
-                          <td>
-                            <a onclick="return confirm('¿Está seguro que desea eliminarlo?')" href="/borrarP/{{producto[0]}}"><button><img src="imagenes/eliminar.png" alt="delete"width="20px"></button></a>
-                          </td>
-                        </tr>
-                        {% endfor %}
           
-                      </tbody>
-                    </table>
-                
-          </div>
-          </main>
-
-         
 
           <!-- CONTENIDO -->          
         </div>

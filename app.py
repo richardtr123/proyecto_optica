@@ -1,8 +1,9 @@
 from re import template
 from flask import Flask, url_for, redirect
 # Referencia a herramientas y librerias
-from flask import render_template, request
-from  datetime import datetime
+from flask import render_template, request, jsonify
+from flask_mysqldb import MySQL,MySQLdb
+from datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
 from datetime import date #para la hora :v
 
@@ -50,7 +51,9 @@ def index():  # def index()<--- nombre de la funcion
     return render_template('/index.html')
 
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
-
+@app.route('/crear_venta')
+def crearventa():
+    return render_template('venta/crear_venta.html')
 
 @app.route("/insertar_paciente")
 def insertar_paciente():
@@ -153,12 +156,49 @@ def actualizar_paciente():
 
 @app.route("/historial_paciente")
 def paciente_historial():
-    # conn=mysql.connect()
-    # cursor=conn.cursor()
-    # cursor.execute("SELECT a.his_ojoizq,a.his_ojoder,a.his_distanciainter,a.his_adicion,a.his_observacion,a.his_fecha,a.his_cli_fk FROM HISTORIAL_OFT a INNER JOIN CLIENTE b on a.his_cli_fk=b.%s",(id))
-    # registros=cursor.fetchall()
-    # conn.commit()
-    return render_template("paciente/paciente_historial.html")
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM CLIENTE")
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template("paciente/paciente_historial.html", registros=registros)
+
+@app.route("/tipopaciente",methods=["POST","GET"])
+def carbrand(): 
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    if request.method == 'POST':
+        category_id = request.form['category_id'] 
+        print(category_id)  
+        cursor.execute("SELECT * FROM HISTORIAL_OFT WHERE his_cli_fk = %s ORDER BY his_id ASC", [category_id] )
+        historiales = cursor.fetchall()  
+        OutputArray = []
+        for row in historiales:
+            outputObj = {
+                'id': row[6],
+                'name': row[7],
+                }
+            OutputArray.append(outputObj)
+    return jsonify(OutputArray)
+
+@app.route("/delall")
+def relleno():
+    _id=request.form['']
+    _fecha=request.form['']
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    sql="SELECT * FROM HISTORIAL_OFT WHERE his_cli_fk=%s and his_fecha=%s"
+    datos=(_id,_fecha)
+    cursor.execute(sql,datos)
+    rellenito=cursor.fetchall()
+    conn.commit()
+    return redirect("paciente/paciente_historial", rellenito=rellenito)
+
+@app.route("/delall", methods=['GET', 'POST'])
+def delall():
+    
+    return redirect('/registro_paciente')
+
 
 @app.route('/proveedor')
 def proveedor():
@@ -169,6 +209,7 @@ def proveedor():
 def insertar_producto():
     return render_template('inventario/insertar_producto.html')
 
+# *PRODUCTOS
 @app.route('/almacenar_pro', methods=['POST'])
 def almacenarproducto():
     _nombre = ""
