@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial</title>
     <!-- Estilos de la pagina -->
+    <link rel="stylesheet" href="../static/css/app.css">
     
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
@@ -22,6 +23,7 @@
     
      
     <!-- estilos para produccion -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente_historial.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
@@ -250,10 +252,10 @@
         </div>
       </section>
     
-
+      <script src="../../static/js/app.js"></script>
       <script src="../../static/js/bootstrap.bundle.min.js"></script>
       <script src="../../static/js/bootstrap-select.js"></script>
-
+      
       <script>
 
         // Paciente
@@ -302,38 +304,6 @@
             });
 
            
-
-
-
-
-
-
-
-        // NO TOCAR
-           let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e)=>{
-        let arrowParent = e.target.parentElement.parentElement;
-        arrowParent.classList.toggle("showMenu");
-            });
-        }
-        
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", ()=>{
-            sidebar.classList.toggle("close");
-        });
-
-        const list=document.querySelectorAll('.list');
-        function activeLink(){
-          list.forEach((item) =>
-          item.classList.remove('active'));
-          this.classList.add('active')
-        }
-        list.forEach((item)=>
-        item.addEventListener('click',activeLink));
-        
       </script>
 </body>
 </html>
