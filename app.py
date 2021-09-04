@@ -50,6 +50,7 @@ mysql.init_app(app)
 def index():  # def index()<--- nombre de la funcion
     return render_template('/index.html')
 
+
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
 @app.route('/crear_venta')
 def crearventa():
@@ -155,6 +156,7 @@ def actualizar_paciente():
     return redirect('/registro_paciente')
 
 
+
 #*Ver historial de pacientes
 @app.route("/historial_paciente")
 def histo_pacientes():
@@ -216,6 +218,7 @@ def actualizar_historial():
 @app.route('/proveedor')
 def proveedor():
     return render_template('proveedor/proveedor.html')
+
 
 # *PRODUCTOS
 @app.route('/insertar_producto')
@@ -335,6 +338,85 @@ def almacenarproducto():
 
 
 
+@app.route('/proveedor')
+def visualizarP():
+    sql="SELECT * FROM `proveedor`;"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+
+    proveedores=cursor.fetchall()
+    #print(proveedores)
+
+    conn.commit()
+    return render_template('proveedor/proveedor.html', proveedores=proveedores)
+
+@app.route('/proveedor', methods=['POST'])
+def registrarProveedor():
+
+    _nombreP=request.form['nombre']
+    _telefonoP=request.form['numero']
+    _correoP=request.form['email']
+    #_direccionP=request.form['']
+    #_dnirucP=request.form['']
+    _empresaP=request.form['empre']
+
+    sql="INSERT INTO proveedor (prov_id, prov_nombre, prov_telefono, prov_correo, prov_direccion, prov_dni_o_ruc, prov_empresa) VALUES (NULL, %s, %s, %s, NULL, NULL, %s);"
+
+    datos=(_nombreP, _telefonoP, _correoP,_empresaP) #_direccionP, _dnirucP, 
+
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit() 
+    return redirect('/proveedor')
+
+@app.route('/borrarP/<int:id>')
+def borrarP(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM proveedor WHERE prov_id = %s",(id))
+    conn.commit()
+    return redirect('/proveedor')
+
+@app.route('/actualizarP', methods=['POST'])
+def actualizarP():
+
+    _nombreP=request.form['nombre']
+    _telefonoP=request.form['numero']
+    _correoP=request.form['email']
+    #_direccionP=request.form['']
+    #_dnirucP=request.form['']
+    _empresaP=request.form['empre']
+
+    _id=request.form['txtid']
+
+    sql="UPDATE proveedor SET prov_nombre = %s, prov_telefono = %s, prov_correo = %s, prov_empresa = %s  WHERE proveedor.prov_id = %s ;" #prov_direccion = NULL, prov_dni_o_ruc = NULL
+
+    datos=(_nombreP, _telefonoP, _correoP,_empresaP,_id) #_direccionP, _dnirucP, 
+
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit() 
+
+    return redirect('/proveedor')
+
+@app.route('/editarP/<int:id>')
+def editarP(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM proveedor WHERE prov_id = %s",(id))
+    
+    proveedores=cursor.fetchall()
+    conn.commit()
+    print(proveedores)
+
+    return render_template('proveedor/proveedor_edit.html',proveedores=proveedores)
+
+@app.route("/visualizar_productoss")
+def visualizarProducto():
+    return render_template('inventario/visualizar_productoss.html')
 if __name__ == '__main__':  # para empezar la aplicacion
     app.run(debug=True)
 

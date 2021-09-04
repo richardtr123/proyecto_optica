@@ -31,46 +31,84 @@
     <br> -->
 
     <div class="sidebar">
-      <div class="logo-details">
-          <i class='bx bx-glasses-alt'></i>
-          <span class="logo_name">Optica MyM</span>
-      </div>
-      <ul class="nav-links"> <!--! Enlaces--->
-        <li class="list active"><a href="/">
-            <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
-            <span class="pagina_link">Dashboard</span>
-          </a>           
-        </li>
-        <li class="list">
-          <div class="iocn-link">
+        <div class="logo-details">
+            <i class='bx bx-glasses-alt'></i>
+            <span class="logo_name">Optica MyM</span>
+        </div>
+        <ul class="nav-links"> <!--! Enlaces--->
+          <li class="list "><a href="#">
+              <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
+              <span class="pagina_link">Dashboard</span>
+            </a>           
+          </li>
+          <li class="list">
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bxl-dropbox' ></i>
+                <span class="pagina_link">Productos</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="pagina_link" href="#">Category</a></li>
+              <li><a href="/insertar_producto">Agregar Producto</a></li>
+              <li><a href="#">Almacen</a></li>
+              <li><a href="#">Lente de contacto</a></li>
+              <li><a href="#">Accesorios</a></li>
+            </ul>                      
+          </li>
+          <li class="list">
             <a href="#">
-              <i class='bx bxl-dropbox' ></i>
-              <span class="pagina_link">Productos</span>
-            </a>
-            <i class='bx bxs-chevron-down arrow' ></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="pagina_link" href="#">Category</a></li>
-            <li><a href="/insertar_producto">Agregar Producto</a></li>
-            <li><a href="#">Almacen</a></li>
-            <li><a href="#">Lente de contacto</a></li>
-            <li><a href="#">Accesorios</a></li>
-          </ul>                      
-        </li>
-        <li class="list">
-          <a href="#">
-            <i class='bx bx-list-check' ></i>
-            <span class="pagina_link">Inventario</span>
-          </a>            
-        </li>
-        <li class="list">
-          <a href="#">
-            <i class='bx bxs-cart-add'></i>
-            <span class="pagina_link">Ventas</span>
-          </a>            
-        </li>
-        <li class="list">
-          <div class="iocn-link">
+              <i class='bx bx-list-check' ></i>
+              <span class="pagina_link">Inventario</span>
+            </a>            
+          </li>
+          <li class="list">
+            <a href="#">
+              <i class='bx bxs-cart-add'></i>
+              <span class="pagina_link">Ventas</span>
+            </a>            
+          </li>
+          <li class="list">
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-collection' ></i>
+                <span class="pagina_link">Categoría</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="pagina_link" href="#">Category</a></li>
+              <li><a href="#">Luna</a></li>
+              <li><a href="#">Montura</a></li>
+              <li><a href="#">Lente de contacto</a></li>
+              <li><a href="#">Accesorios</a></li>
+            </ul>
+          </li>   
+          <li class="list active">
+            <a href="/proveedor">
+              <i class='bx bxs-truck' ></i>
+              <span class="pagina_link">Proveedores</span>
+            </a>            
+          </li>    
+          <li class="list">
+            <div class="iocn-link">
+              <a href="#">
+                <i class='bx bx-user' ></i>
+                <span class="pagina_link">Pacientes</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+              <li><a class="pagina_link" href="#">Category</a></li>
+              <li><a href="/insertar_paciente">Nuevo paciente</a></li>
+              <li><a href="/registro_paciente">Registro de pacientes</a></li>
+              <li><a href="#">Lente de contacto</a></li>
+              <li><a href="#">Accesorios</a></li>
+            </ul>          
+          </li>
+          <li class="list">
+
             <a href="#">
               <i class='bx bx-collection' ></i>
               <span class="pagina_link">Categoría</span>
@@ -152,6 +190,7 @@
         <div class="home-content">
           <i class='bx bx-menu' ></i>
           <span class="text"><h1>Proveedor</h1></span>
+
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -163,82 +202,101 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
-            <div class="box">
-              <form >
-                  
-                 
-                 
-                  <div class="row">
-                  
-                      <div class="input-group">
-                          <input type="text" id="nombre" required>
-                          <label for="nombre"> Nombres</label>
-                      </div>
-                      <div class="input-group">
-                          <input type="text" id="numero" required>
-                          <label for="numero">N.telefono</label>
-                      </div>
-                      
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class>
+                    <span class="text"></span><h1></h1></span>
                   </div>
-                  
-                <div class="row">
-                  <div class="input-group">
-                      <input type="email" id="email"required>
-                      <label for="email">correo </label>
-                  </div>
-      
-                  <div class="input-group">
-                      <input type="text" id="empre" required>
-                      <label for="empre">Empresa</label>
-                  </div>
-      
-                  
+                  <table class="table table-light table-striped" >
+                    <thead class="thead-dark table-striped">
+                      <tr>
+                       <th>#</th>
+                       <th>Nombres</th>
+                       <th>N.telefono</th>
+                       <th>Correo</th>
+                       <th>Empresa</th>
+                       <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                         {% for proveedor in proveedores %}
+                         <tr>
+                          <td>{{proveedor[0] }}</td>
+                          <td>{{proveedor[1] }}</td>
+                          <td>{{proveedor[2] }}</td>
+                          <td>{{proveedor[3] }}</td>
+                          <td>{{proveedor[6] }}</td>
+                          <td> 
+                            <a href="/editarP/{{proveedor[0]}}">Editar</a> | 
+                            <a onclick="return confirm('¿Esta seguro que quiere eliminarlo?')" href="/borrarP/{{proveedor[0]}}">Eliminar - </a>
+                            <a href="">M</a>               
+                          </td>
+                         </tr>
+                         {% endfor %}  
+                    </tbody>
+                  </table> 
                 </div>
-      
-               <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">-->
-      
-               <input class="form" type="submit" name="Registrar" value="Registrar">
-                
-                <div class="container">
-                    <div class="row">
-                        <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>
+                <div class="col-md-4">
+                  <div class="box">
+                    <span class="text"></span><h1>Agregar Proveedor</h1></span>
+                  </div>
+                  
+                  <form method="POST" action="/proveedor" enctype="multipart/form-data">           
+                    
+                        <div class="input-group">
+                            <input type="text" name="nombre" id="nombre" required>
+                            <label for="nombre"> Nombres</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="numero" id="numero" required>
+                            <label for="numero">N.telefono</label>
+                        </div>   
+                    
+                    
+                  
+                    <div class="input-group">
+                        <input type="email" name="email" id="email"required>
+                        <label for="email">correo </label>
                     </div>
+                    <div class="input-group">
+                        <input type="text" name="empre" id="empre" required>
+                        <label for="empre">Empresa</label>
+                    </div>  
+                  
+                    
+                 <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">-->                
+                    
+                    <div class="input-group">
+                      <input type="submit" name="Registrar" value="Registrar">
+                    </div> 
+
+                  </form>
                 </div>
-               
-                   
-                      <div class="container">
-                          <table class="table">
-                              <thead id="tablapersonas"class="text-center">
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Nombres</th>
-                                  <th scope="col">N.telefono</th>
-                                  <th scope="col">correo</th>
-                                  <th scope="col">Empresa</th>
-                                  <th scope="col">Acciones</th>
-                                </tr>
-                              </thead>
-                              
-                             
-                            </table>
-                          <tbody>
-                              <tr>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th>
-                                      
-                                  </th>
-                                  
-                              </tr>
-                          </tbody>
+                  <div class="center">
+                    <input type="checkbox" id="click">
+                    <label for="click" class="click-me">Nuevo</label>
+                    <div class="content">
+                        <div class="header">
+                            <!--Form de nuevo --> 
+                          <h4>Nuevo-Proveedor</h4> 
+                          <label for="click" class="icon-close"></label>
+                        </div>
+                        <p>
+                          <input class="controls"type="text" name="nombres" id="inputNombre" placeholder="Ingrese Nombre" >
+                          <input class="controls"type="text" name="numero" id="inputRuc" placeholder="Ingrese N.Telefono">
+                          <input class="controls"type="text" name="telefono" id="inputEmail" placeholder="Ingrese correo">
+                          <input class="controls"type="text" name="correo" id="inputEmpre" placeholder="Ingrese Empresa">
+                          <input class="form" type="submit" name="Registrar" value="Registrar">
+                          <input class="form" type="reset" name="Eliminar" value="Eliminar">
                           
-                      </div>
-      
-              </form>
-              
+                      </p>   
+                    </div>
+                    
+                  </div>
+              </div>
+            </div>
+            
           </div>
           <!-- Button trigger modal -->
       <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
