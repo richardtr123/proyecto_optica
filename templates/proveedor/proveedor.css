@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'poppins' sans-serif;
+    font-family:initial;
     box-sizing: border-box;
 }
 .box{
@@ -14,13 +14,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: sans-serif;
 }
 form{
     width: 90%;
     max-width: 700px;
 }
-
-
 
 .input-group{
     margin-bottom: 30px;
@@ -32,7 +31,6 @@ input, textarea{
     padding: 10px;
     outline: 0;
     border: 1px solid rgb(247, 241, 241);
-    color: #fff;
     background:#e8ebed;
     font-size: 15px;
 }
@@ -46,20 +44,6 @@ label{
     cursor: text;
     transition: 0.2s;
 }
-button{
-    padding: 10px ;
-    color: #fff;
-    outline:none ;
-    background: rgb(43, 150, 47);
-    border: 1px solid #fff;
-    width: 20%;
-    cursor: pointer;
-    float: right;
-    
-    
-}
-
-
 input:focus~label,
 input:valid~label,
 textarea:focus~label,
@@ -73,58 +57,173 @@ textarea:valid~label{
     justify-content: space-between;
 
 }
+.row .btn {
+    width: 20%;
+    left: 1%;
+    top: 1%;
+    position: relative;
+    background: rgb(56, 77, 145);
+    
+}
 .row .input-group{
     flex-basis: 48%;
    
 }
 .box input[type="submit"]{
-    padding: 10px ;
     color: #fff;
     outline:none ;
-    background: rgb(32, 216, 32);
-    border: 1px solid #fff;
-    width: 20%;
+    background: #55b47b;
+    background: rgb(201, 184, 29);
+    width: 7%;
+    position: absolute;
+    left: 68%;
+    top: 50%;
     cursor: pointer;
     float: right;
-    margin: 0.5rem 0.5rem 0.5rem;
+    margin: 1rem 0rem 9rem;
+    transition: .5s;
 }
 
-.box input[type="reset"]{
-    padding: 10px ;
-    color: #fff;
-    outline:none ;
-    background: rgb(32, 118, 216);
-    border: 1px solid #fff;
-    width: 20%;
-    cursor: pointer;
-    float: right;
-    margin: 0.5rem 0.5rem 0.5rem;
-    
-}
+/*........crud xdxdxd.........*/
 
-
-/*crud xdxdxd*/
-.table tr,th,td{
-    border: 1px solid rgb(32, 118, 216);
- 
-}
-.table{
-    width: 100%;
-    
-}
 .table tr th, .table tr td{
     padding: 10px;
-    
+   
+}
+.table {
+    margin: 2rem 0rem 10rem;
+}
+.form-register{
+    width: 400px;}
 
+body{
+    margin: 10;
+    padding: 0;
+    font-family: initial;
+    background: linear-gradient(#e0eafc,#cfdef3);
+    height: 100vh;
 }
-.table tr:first-child{
-    background-color:rgb(32, 118, 216);
-    color: rgb(238, 235, 235);
+/*-----------Modal*-----------*/
+.center , .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+}
+
+#click {
+    display: none;
+}
+.click-me{
+    display:flow-root;
+    width: 400px;
+    height: 50px;
+    background: #55b47b;
+    background: rgb(8, 202, 66);
+    color: rgb(247, 238, 238);
+    text-align: center;
+    font-family:initial;
+    font-size: 20px;
+    width: 8%;
+    left: 25%;
+    top: 50%;
+    position: absolute;
+    cursor: pointer;
+    transition: .5s;
+    margin:2.7rem 0rem 10rem;
+}
+.click-me:hover{
+    background: #26a65b;
+}
+.content{
+    opacity: 0;
+    visibility: hidden;
+    width: 350px;
+    height: 450px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 2px 12px 0 rgb(0, 0, 0, .4);
+}
+#click:checked ~ .content{
+    opacity: 1;
+    visibility: visible;
+}
+.header{
+    height: 50px;
+    background: rgb(233, 197, 119);
+    overflow: hidden;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 1 2px 3px 0 rgba(0, 0,0. 0);
+}
+.header h4{/*titulo*/
+    color: white;
+    padding-left: 15px;
+    top: 5px;
+    position: initial;
+    margin: 1rem 3rem 0rem;
     
 }
-.container{
-    margin-left: 1%;
+.icon-close{
+    position: absolute;
+    left: 310px;
+    top: 10px;
+    color: #0f0f11;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+/*...........Nuevo Proveedor.........*/
+p{
+    padding-top: 8px;
+    font-size: 19px;
+    color: #1a1a1a;
+    text-align:center
+}
+.controls{
+    width: 300px;
+    background:while ;
     padding: 10px;
-    
+    border-radius: 3px;
+    margin-bottom: 16px;
+    border: 1px solid #0c6d94;
+    font-family:initial;
+    font-size: 16px;
+    color: rgb(18, 19, 18);
+}
+.content input[type="submit"]{ /* Registrar*/
+    border: none;
+    outline: none;
+    height: 50px;
+    background: #dd7777;
+    color:black;
+    font-size: 14px;
+    width: 30%; 
+    left:120px;
+    top:300px;
+    margin: 1rem -5rem 2rem;
+}
+.content input[type="submit"]:hover{
+    cursor: pointer;
+    background: rgb(199, 195, 193);
+    color: #000;
+}
+.content  input[type="reset"]{/* eliminar*/
+    border: none;
+    outline: none;
+    height: 50px;
+    background: #6598da;
+    color: black;
+    font-size: 14px;
+    width: 30%;
+    margin: 0.5rem 13rem 1rem;
 
 }
+.content input[type="reset"]:hover{
+    cursor: pointer;
+    background: rgb(199, 195, 193);
+    color: #000;
+}
+
+
+
