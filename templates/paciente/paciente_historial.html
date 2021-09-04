@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paciente</title>
+    <title>Historial</title>
     <!-- Estilos de la pagina -->
     <link rel="stylesheet" href="../../static/css/app.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/datatables.min.css"/>
+ 
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/css/paciente.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap-select.css">
+    <link rel="stylesheet" href="../../static/css/font_awesome.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.bundle.css">
     <script src="../../static/js/jquery.min.js"></script>
-    <script src="../../static/js/bootstrap.min.js"></script>
-    <!-- estilos para produccion -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>   -->
+    <link rel="stylesheet" href="../../static/css/paciente_historial.css">
     
+    <!-- <script src="../../static/js/bootstrap.min.js"></script> -->
+     
+    <!-- Latest compiled and minified JavaScript -->
+    
+     
+    <!-- estilos para produccion -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente_historial.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+    
+    
     <!-- <script src="../../static/js/paciente.js"></script> -->
 </head>
 <body> 
@@ -153,7 +165,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Nuevo paciente</h1></span>
+          <span class="text"><h1>Historial paciente</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -164,48 +176,82 @@
         </div>
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
-          <main>
-            <form method="POST" action="/almacenar_paciente" enctype="multipart/form-data" name="pacienteform">
-            <label for="text-nombre">Nombre </label>
-            <input type="text" name="nombre-pac" id="text-nombre" placeholder="nombre">
-            <label for="text-apellido">Apellido</label>
-            <input type="text" name="apellido-pac" id="text-apellido" placeholder="apellido">
-            <label for="text-dni_o_ruc">Dni/Ruc</label>
-            <input type="text" name="dni_o_ruc-pac" id="text-dni_o_ruc" placeholder="dni o ruc">
-            <label for="correo">Fecha de nacimiento</label>
-            <input type="date" name="fechanac-pac" id="date-fechanac" placeholder="18/05/2000">
-            <label for="text-genero">Género</label>
-              <div class="genero">
-                <input type="radio" name="genero-pac" id="radio-masculino" value="hombre">
-                <label for="rectangulo">Hombre</label>
-                <input type="radio" name="genero-pac" id="radio-femenino" value="mujer">
-                <label for="circulo">Mujer</label>                
-              </div>              
-            <label for="correo">Correo</label>
-            <input type="email" name="correo-pac" id="email-correo" placeholder="richard.alex.t1@gmail.com">
-            <label for="text-telefono">Teléfono</label>
-            <input type="text" name="telefono-pac" id="text-telefono" placeholder="telefono">
-            <label for="text-direccion">Dirección</label>
-            <input type="text" name="direccion-pac" id="text-direccion" placeholder="direccion">
-            <img src="../../static/image/paciente.png" alt="ofltamologo.png" id="imagenpaciente">
-            <div class="botones">
-              <button type="reset">Limpiar</button>
-              <button id="open" type="submit">Registrar</button>              
-            </div>            
-            </form>
-           
+          <main>    
+            <table id="table_id" class="display">
+              <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre y Apellidos</th>
+                    <th>OJOizq</th>
+                    <th>OJOder</th>
+                    <th>DIP</th>
+                    <th>ADICION</th>
+                    <th>OBSERVACION</th>
+                    <th>FECHA</th>
+                    <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for paciente in resultados %}
+                <tr>
+                 <td>{{ paciente[0] }}</td>
+                 <td>{{ paciente[1] }}</td>
+                 <td>{{ paciente[2] }}</td>
+                 <td>{{ paciente[3] }}</td>
+                 <td>{{ paciente[4] }}</td>
+                 <td>{{ paciente[5] }}</td>
+                 <td>{{ paciente[6] }}</td>
+                 <td>{{ paciente[7] }}</td>                               
+                 <td>
+                   <a href="/editar_historial/{{paciente[0]}}">Editar</a>
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                     Eliminar
+                   </button>      
+                                                 <!-- Modal -->
+                       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                         <div class="modal-dialog modal-dialog-centered" role="document">
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <h5 class="modal-title" id="exampleModalLongTitle"><i class='bx bxs-error'></i>Eliminar historial </h5>
+                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                               </button>
+                             </div>
+                             <div class="modal-body">
+                                   OJO: Se eliminará el historial oftalmológico
+                             </div>
+                             <div class="modal-footer">
+                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                               <button type="button" class="btn btn-primary alerta"><a id="alerta_roja" href="/destruir_historial/{{paciente[0]}}">Eliminar</a></button>
+                             </div>
+                           </div>
+                         </div>
+                       </div>        
+                 </td>
+               </tr>
+                {% endfor %}            
+              </tbody>
+          </table>
         </main>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>
       </section>
     
-
-
       <script src="../../static/js/app.js"></script>
-      <script>
+      
+      <script src="../../static/js/bootstrap.bundle.min.js"></script>
+      <script src="../../static/js/bootstrap-select.js"></script>
+      <script type="text/javascript" src="../../static/js/datatables.min.js"></script>
 
-        
-        
+      <script>
+        $(document).ready( function () {
+              $('#table_id').DataTable({
+                "language":{
+                  "url":"../../static/json/spanish.json"
+                }
+              });
+          } );
+           
       </script>
 </body>
 </html>
