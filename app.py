@@ -154,51 +154,64 @@ def actualizar_paciente():
 
     return redirect('/registro_paciente')
 
+
+#*Ver historial de pacientes
 @app.route("/historial_paciente")
-def paciente_historial():
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    cursor.execute("SELECT * FROM CLIENTE")
-    registros=cursor.fetchall()
-    conn.commit()
-    return render_template("paciente/paciente_historial.html", registros=registros)
-
-@app.route("/tipopaciente",methods=["POST","GET"])
-def carbrand(): 
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    if request.method == 'POST':
-        category_id = request.form['category_id'] 
-        print(category_id)  
-        cursor.execute("SELECT * FROM HISTORIAL_OFT WHERE his_cli_fk = %s ORDER BY his_id ASC", [category_id] )
-        historiales = cursor.fetchall()  
-        OutputArray = []
-        for row in historiales:
-            outputObj = {
-                'id': row[6],
-                'name': row[7],
-                }
-            OutputArray.append(outputObj)
-    return jsonify(OutputArray)
-
-@app.route("/delall")
-def relleno():
-    _id=request.form['']
-    _fecha=request.form['']
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    sql="SELECT * FROM HISTORIAL_OFT WHERE his_cli_fk=%s and his_fecha=%s"
-    datos=(_id,_fecha)
-    cursor.execute(sql,datos)
-    rellenito=cursor.fetchall()
-    conn.commit()
-    return redirect("paciente/paciente_historial", rellenito=rellenito)
-
-@app.route("/delall", methods=['GET', 'POST'])
-def delall():
+def histo_pacientes():
+    sql = "SELECT b.his_id,CONCAT(a.cli_nombre,' ',a.cli_apellido1),b.his_ojoizq,b.his_ojoder,b.his_distanciainter,b.his_adicion,b.his_observacion, date_format(b.his_fecha, '%d-%m-%Y') as fecha FROM CLIENTE a INNER JOIN HISTORIAL_OFT b on a.cli_id=b.his_cli_fk;"
+    # los parametros segun el orden de datos
     
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    resultados=consultarSql(sql)
+    print(resultados)
+    return render_template('paciente/paciente_historial.html', resultados=resultados)
+#*Eliminar historial
+@app.route('/destruir_historial/<int:id>')#recibimos un parametro el id
+def destroy_historial(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM HISTORIAL_OFT WHERE his_id=%s",(id))
+    conn.commit()
     return redirect('/registro_paciente')
 
+#*editar historial
+@app.route("/editar_historial/<int:id>")
+def edit_historial(id):  
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM HISTORIAL_OFT WHERE his_id=%s",(id))
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template('paciente/paciente_editar.html',registros=registros)
+
+#*actualizar
+
+@app.route("/actualizar_historial", methods=['POST'])
+def actualizar_historial():
+    
+    _nombre = request.form['nombre-pac']
+    _apellido = request.form['apellido-pac']
+    _dnioruc = request.form['dni_o_ruc-pac']
+    _correo = request.form['correo-pac']
+    _fechanac = request.form['fechanac-pac']
+    #_genero = request.form['genero-pac']
+    _telefono = request.form['telefono-pac']
+    _direccion = request.form['direccion-pac']
+    id = request.form['idtxt']
+                       
+    #!revisar luego el apellido OPTICA 
+ # recepcion de datos
+    sql = "UPDATE `CLIENTE` SET `cli_nombre`=%s, `cli_apellido1`=%s, `cli_correo`=%s, `cli_dni_o_ruc`=%s, `cli_fechanac`=%s, `cli_telefono`=%s, `cli_direccion`=%s WHERE cli_id=%s;"
+    # los parametros segun el orden de datos
+    datos = (_nombre,_apellido,_correo,_dnioruc,_fechanac,_telefono,_direccion,id)
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit() 
+
+    return redirect('/registro_paciente')
 
 @app.route('/proveedor')
 def proveedor():
