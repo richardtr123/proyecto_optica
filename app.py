@@ -107,7 +107,6 @@ def lista_pacientes():
     # cursor = conn.cursor()
     # cursor.execute(sql, datos)
     resultados=consultarSql(sql)
-    print(resultados)
     return render_template('paciente/paciente_registro.html', resultados=resultados)
 #*Eliminar paciente
 @app.route('/destruir_paciente/<int:id>')#recibimos un parametro el id
@@ -167,8 +166,48 @@ def histo_pacientes():
     # cursor = conn.cursor()
     # cursor.execute(sql, datos)
     resultados=consultarSql(sql)
-    print(resultados)
     return render_template('paciente/paciente_historial.html', resultados=resultados)
+
+
+@app.route("/insertar_historial/<int:id>")
+def insertar_historial(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT cli_id FROM CLIENTE WHERE cli_id=%s",(id))
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template('paciente/paciente_historialnuevo.html', registros=registros)
+
+@app.route("/almacenar_historial", methods=['POST', 'GET'])
+def almacenarhistorial():
+   
+    ojoder = ""
+    distanciainter = ""
+    adicion = ""
+    observacion = ""
+    avl = ""
+    id=""
+    # RECEPCION DE CATEGORIA
+    ojoizq = request.form['ojoizq-his']
+    ojoder = request.form['ojoder-his']
+    distanciainter = request.form['dpi-his']
+    adicion = request.form['adicion-his']
+    observacion = request.form['observacion-his']
+    avl = request.form['observacion-his']
+    id = request.form['id']
+
+ # recepcion de datos
+    sql = "INSERT INTO `HISTORIAL_OFT` (`his_id`, `his_ojoizq`, `his_ojoder`, `his_distanciainter`, `his_adicion`, `his_observacion`, `his_cli_fk`, `his_fecha`, `his_avl`) VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s);"
+    # los parametros segun el orden de datos
+    datos = (ojoizq,ojoder,distanciainter,adicion,observacion,id,date.today(),avl)
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    insertarSql(sql,datos)
+
+    return redirect('/registro_paciente')
+
+
 #*Eliminar historial
 @app.route('/destruir_historial/<int:id>')#recibimos un parametro el id
 def destroy_historial(id):
@@ -214,11 +253,6 @@ def actualizar_historial():
     conn.commit() 
 
     return redirect('/registro_paciente')
-
-@app.route('/proveedor')
-def proveedor():
-    return render_template('proveedor/proveedor.html')
-
 
 # *PRODUCTOS
 @app.route('/insertar_producto')
@@ -340,7 +374,7 @@ def almacenarproducto():
 
 @app.route('/proveedor')
 def visualizarP():
-    sql="SELECT * FROM `proveedor`;"
+    sql="SELECT * FROM `PROVEEDOR`;"
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute(sql)
@@ -416,7 +450,47 @@ def editarP(id):
 
 @app.route("/visualizar_productoss")
 def visualizarProducto():
+    sql= "SELECT pro_id,pro_imagen,pro_nombre,pro_material,pro_precio FROM `PRODUCTO` "
+    productos=consultarSql(sql)
     return render_template('inventario/visualizar_productoss.html')
+
+# VENTA
+@app.route("/crear_venta")
+def crear_venta():
+    sql = "SELECT v.ven_id,v.ven_fecha,pro.pro_nombre,c.cli_nombre,dp.det_cantidad,pro.pro_precio,v.ven_montototal FROM `VENTA` v inner join `PEDIDO` p ON v.ven_id=p.ped_ven_fk INNER JOIN `CLIENTE` c ON c.cli_id=p.ped_cli_fk INNER JOIN `DETALLE_PEDIDO` dp ON p.ped_id=dp.det_ped_fk INNER JOIN `PRODUCTO` pro ON pro.pro_id=dp.det_pro_fk"
+    ventas=consultarSql(sql)
+    sql2= "SELECT cli_nombre FROM `cliente` "
+    clientes=consultarSql(sql2)
+    sql3= "SELECT pro_nombre FROM `producto` "
+    productos=consultarSql(sql3)
+    return render_template('venta/crear_venta.html',ventas=ventas,clientes=clientes, productos=productos)
+    
+
+@app.route('/guardar_venta', methods=['POST'])
+def guardar():
+    _cliente=request.form['cliente_select']
+    _producto=request.form['producto_select']
+    _cantidad=request.form['formcantidad']
+    sql = "INSERT into `venta`(ven_id, ven_emp_fk) values(%s,%s)"
+    datos=(8,1)
+    insertarSql(sql,datos)
+    sql = "INSERT into `pedido`(ped_cli_fk,ped_ven_fk) values((select cli_id from `cliente` where cli_nombre=%s), %s)"
+    datos=(_cliente,8)
+    insertarSql(sql,datos)
+    sql = "INSERT into `detalle_pedido`(`det_pro_fk`, `det_cantidad`,`det_ped_fk`) values((select pro_id from `producto` where pro_nombre=%s), %s,%s)"
+    datos=(_producto, _cantidad,8)
+    insertarSql(sql,datos)
+    return render_template('venta/crear_venta.html')
+
+@app.route('/destruir_venta/<int:id>')#recibimos un parametro el id
+def destroy_venta(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM venta WHERE ven_id=%s",(id))
+    conn.commit()
+    return redirect('/crear_venta')
+
+    
 if __name__ == '__main__':  # para empezar la aplicacion
     app.run(debug=True)
 

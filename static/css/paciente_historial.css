@@ -146,6 +146,10 @@ main {
   font-weight: bold;
 }
 
+thead input {
+  width: 100%;
+}
+
 
 
 

@@ -14,7 +14,7 @@
 /*! Agregado por Runi */
 /** MENU PRINCIPAL */
 
-main {
+.home-espacio main {
   width: 100%;
   height: 100%;
   margin-left: 18px;
@@ -22,7 +22,7 @@ main {
   background:#fff;
 }
 
-.box{
+.home-espacio .box{
   width: 100%;
   height: 100%;
   background-position: center;
@@ -33,21 +33,21 @@ main {
   /*justify-content: center;*/
 }
 
-.h1, h1 {
+.home-espacio .h1,.home-espacio h1 {
   font-size: 1.5rem;
 }
 
-form{
+.home-espacio form{
   width: 90%;
   /*max-width: 1100px;*/
 }
 
-.input-group{
+.home-espacio .input-group{
   margin-bottom: 30px;
   position: relative;
 
 }
-input{
+.home-espacio input{
   width: 100%;
   padding: 10px;
   outline: 0;
@@ -56,7 +56,7 @@ input{
   background:#e8edea;
   font-size: 15px;
 }
-label{
+.home-espacio label{
   height: 100%;
   position: absolute;
   left: 0;
@@ -66,7 +66,7 @@ label{
   cursor: text;
   transition: 0.2s;
 }
-button{
+.home-espacio button{
   padding: 10px ;
   color: #fff;
   outline:none ;
@@ -79,24 +79,24 @@ button{
   
 }
 
-input:focus~label,
-input:valid~label,
-textarea:focus~label,
-textarea:valid~label{
+.home-espacio input:focus~label,
+.home-espacio input:valid~label,
+.home-espacio textarea:focus~label,
+.home-espacio textarea:valid~label{
   top: -35px;
   font-size: 14px;
 }
-.row{
+.home-espacio .row{
   display: flex;
   align-items: center;
   justify-content: space-between;
 
 }
-.row .input-group{
+.home-espacio .row .input-group{
   flex-basis: 48%;
  
 }
-.container input[type="submit"]{
+.home-espacio .container input[type="submit"]{
   padding: 10px ;
   color: #fff;
   outline:none ;
@@ -107,7 +107,7 @@ textarea:valid~label{
   float: right;  
 }
 
-.box input[type="reset"]{
+.home-espacio .box input[type="reset"]{
   padding: 10px ;
   color: #fff;
   outline:none ;
@@ -142,17 +142,17 @@ textarea:valid~label{
 }*/
 
 /*-----------Modal*-----------*/
-.center , .content{
+.home-espacio .center , .content{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);  
 }
 
-#click {
+.home-espacio #click {
   display: none;
 }
-.click-me{
+.home-espacio .click-me{
   display:flow-root;
   width: 400px;
   height: 50px;
@@ -170,10 +170,10 @@ textarea:valid~label{
   transition: .5s;
   margin:2.7rem 0rem 10rem;
 }
-.click-me:hover{
+.home-espacio .click-me:hover{
   background: #26a65b;
 }
-.content{
+.home-espacio .content{
   opacity: 0;
   visibility: hidden;
   width: 350px;
@@ -182,18 +182,18 @@ textarea:valid~label{
   border-radius: 3px;
   box-shadow: 0 2px 12px 0 rgb(0, 0, 0, .4);
 }
-#click:checked ~ .content{
+.home-espacio #click:checked ~ .content{
   opacity: 1;
   visibility: visible;
 }
-.header{
+.home-espacio .header{
   height: 50px;
   background: rgb(233, 197, 119);
   overflow: hidden;
   border-radius: 2px 2px 0 0;
   box-shadow: 1 2px 3px 0 rgba(0, 0,0. 0);
 }
-.header h4{/*titulo*/
+.home-espacio .header h4{/*titulo*/
   color: white;
   padding-left: 15px;
   top: 5px;
@@ -201,7 +201,7 @@ textarea:valid~label{
   margin: 1rem 3rem 0rem;
   
 }
-.icon-close{
+.home-espacio .icon-close{
   position: absolute;
   left: 310px;
   top: 10px;
@@ -212,19 +212,19 @@ textarea:valid~label{
   
 }
 /*-----------Fin Modal*-----------*/
-.col-md-8 {
+.home-espacio .col-md-8 {
   -ms-flex: 0 0 66.666667%;
   flex: 0 0 66.666667%;
   max-width: 66.666667%;
 }
 
-.col-md-4 {
+.home-espacio .col-md-4 {
   -ms-flex: 0 0 33.333333%;
   flex: 0 0 33.333333%;
   max-width: 33.333333%;
 }
 
-.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-auto, .col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-auto, .col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md-auto, .col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-auto {
+.home-espacio .col,.home-espacio .col-1,.home-espacio .col-2,.home-espacio .col-3,.home-espacio .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-auto, .col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-auto, .col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md-auto, .col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-auto {
   position: relative;
   width: 100%;
   min-height: 1px;
@@ -232,7 +232,7 @@ textarea:valid~label{
   padding-left: 15px;
 }
 
-.container{
+.home-espacio .container{
   
   padding: 10px;
 }

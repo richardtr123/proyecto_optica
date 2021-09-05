@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proveedor</title>
     <!-- Estilos de la pagina -->
-    <link rel="stylesheet" href="../static/css/app.css">
+    <link rel="stylesheet" href="../../static/css/app.css">  
     
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/css/proveedor.css">
+    <link rel="stylesheet" href="../../static/css/proveedor.css">  
     <script src="../../static/js/jquery.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
     <!-- estilos para produccion -->
@@ -30,85 +30,48 @@
     <i class='bx bxl-facebook-square'></i>
     <br> -->
 
+    
     <div class="sidebar">
-        <div class="logo-details">
-            <i class='bx bx-glasses-alt'></i>
-            <span class="logo_name">Optica MyM</span>
-        </div>
-        <ul class="nav-links"> <!--! Enlaces--->
-          <li class="list "><a href="#">
-              <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
-              <span class="pagina_link">Dashboard</span>
-            </a>           
-          </li>
-          <li class="list">
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bxl-dropbox' ></i>
-                <span class="pagina_link">Productos</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="pagina_link" href="#">Category</a></li>
-              <li><a href="/insertar_producto">Agregar Producto</a></li>
-              <li><a href="#">Almacen</a></li>
-              <li><a href="#">Lente de contacto</a></li>
-              <li><a href="#">Accesorios</a></li>
-            </ul>                      
-          </li>
-          <li class="list">
+      <div class="logo-details">
+          <i class='bx bx-glasses-alt'></i>
+          <span class="logo_name">Optica MyM</span>
+      </div>
+      <ul class="nav-links"> <!--! Enlaces--->
+        <li class="list active"><a href="/">
+            <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
+            <span class="pagina_link">Dashboard</span>
+          </a>           
+        </li>
+        <li class="list">
+          <div class="iocn-link">
             <a href="#">
-              <i class='bx bx-list-check' ></i>
-              <span class="pagina_link">Inventario</span>
-            </a>            
-          </li>
-          <li class="list">
-            <a href="#">
-              <i class='bx bxs-cart-add'></i>
-              <span class="pagina_link">Ventas</span>
-            </a>            
-          </li>
-          <li class="list">
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bx-collection' ></i>
-                <span class="pagina_link">Categoría</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="pagina_link" href="#">Category</a></li>
-              <li><a href="#">Luna</a></li>
-              <li><a href="#">Montura</a></li>
-              <li><a href="#">Lente de contacto</a></li>
-              <li><a href="#">Accesorios</a></li>
-            </ul>
-          </li>   
-          <li class="list active">
-            <a href="/proveedor">
-              <i class='bx bxs-truck' ></i>
-              <span class="pagina_link">Proveedores</span>
-            </a>            
-          </li>    
-          <li class="list">
-            <div class="iocn-link">
-              <a href="#">
-                <i class='bx bx-user' ></i>
-                <span class="pagina_link">Pacientes</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-              <li><a class="pagina_link" href="#">Category</a></li>
-              <li><a href="/insertar_paciente">Nuevo paciente</a></li>
-              <li><a href="/registro_paciente">Registro de pacientes</a></li>
-              <li><a href="#">Lente de contacto</a></li>
-              <li><a href="#">Accesorios</a></li>
-            </ul>          
-          </li>
-          <li class="list">
-
+              <i class='bx bxl-dropbox' ></i>
+              <span class="pagina_link">Productos</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="pagina_link" href="#">Category</a></li>
+            <li><a href="/insertar_producto">Agregar Producto</a></li>
+            <li><a href="#">Almacen</a></li>
+            <li><a href="#">Lente de contacto</a></li>
+            <li><a href="#">Accesorios</a></li>
+          </ul>                      
+        </li>
+        <li class="list">
+          <a href="#">
+            <i class='bx bx-list-check' ></i>
+            <span class="pagina_link">Inventario</span>
+          </a>            
+        </li>
+        <li class="list">
+          <a href="#">
+            <i class='bx bxs-cart-add'></i>
+            <span class="pagina_link">Ventas</span>
+          </a>            
+        </li>
+        <li class="list">
+          <div class="iocn-link">
             <a href="#">
               <i class='bx bx-collection' ></i>
               <span class="pagina_link">Categoría</span>
@@ -140,7 +103,7 @@
           <ul class="sub-menu">
             <li><a class="pagina_link" href="#">Category</a></li>
             <li><a href="/insertar_paciente">Nuevo paciente</a></li>
-            <li><a href="/registro_paciente">Registro de pacientes</a></li>
+            <li><a href="#">Registro de pacientes</a></li>
             <li><a href="#">Lente de contacto</a></li>
             <li><a href="#">Accesorios</a></li>
           </ul>          
@@ -186,19 +149,18 @@
     </li>
   </ul>
     </div>
-      <section class="home-section">
-        <div class="home-content">
-          <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Proveedor</h1></span>
-
-          <div class="user-wrapper">
-            <img src="jb.png" alt="50px" height="50px" alt="">
-            <div> 
-                <h4>Karen D</h4>
-                <small>Admin</small>
-            </div>
-        </div>
-        </div>
+    <section class="home-section">
+      <div class="home-content">
+        <i class='bx bx-menu' ></i>
+        <span class="text"><h1>Nuevo producto</h1></span>
+        <div class="user-wrapper">
+          <img src="jb.png" alt="50px" height="50px" alt="">
+          <div> 
+              <h4>Karen D</h4>
+              <small>Admin</small>
+          </div>
+      </div>
+      </div>
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
