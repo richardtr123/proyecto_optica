@@ -152,11 +152,6 @@ def actualizar_paciente():
 
     return redirect('/registro_paciente')
 
-
-#@app.route('/proveedor')
-#def proveedor():
-#    return render_template('proveedor/proveedor.html')
-
 # *PRODUCTOS
 @app.route('/insertar_producto')
 def insertar_producto():
