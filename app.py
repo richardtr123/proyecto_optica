@@ -138,7 +138,7 @@ def lista_pacientes():
     # cursor = conn.cursor()
     # cursor.execute(sql, datos)
     resultados=consultarSql(sql)
-    print(resultados)
+    
     return render_template('paciente/paciente_registro.html', resultados=resultados)
 #*Eliminar paciente
 @app.route('/destruir_paciente/<int:id>')#recibimos un parametro el id
@@ -362,6 +362,205 @@ def actualizarP():
     conn.commit() 
 
     return redirect('/proveedor')
+
+#HISTORIAL
+
+#*Ver historial de pacientes
+@app.route("/historial_paciente")
+def histo_pacientes():
+    sql = "SELECT b.his_id,CONCAT(a.cli_nombre,' ',a.cli_apellido1),b.his_ojoizq,b.his_ojoder,b.his_distanciainter,b.his_adicion,b.his_observacion, date_format(b.his_fecha, '%d-%m-%Y') as fecha FROM CLIENTE a INNER JOIN HISTORIAL_OFT b on a.cli_id=b.his_cli_fk;"
+    # los parametros segun el orden de datos
+    
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    resultados=consultarSql(sql)
+    return render_template('paciente/paciente_historial.html', resultados=resultados)
+
+
+@app.route("/insertar_historial/<int:id>")
+def insertar_historial(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT cli_id FROM CLIENTE WHERE cli_id=%s",(id))
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template('paciente/paciente_historialnuevo.html', registros=registros)
+
+@app.route("/almacenar_historial", methods=['POST', 'GET'])
+def almacenarhistorial():
+   
+    ojoder = ""
+    distanciainter = ""
+    adicion = ""
+    observacion = ""
+    avl = ""
+    id=""
+    # RECEPCION DE CATEGORIA
+    ojoizq = request.form['ojoizq-his']
+    ojoder = request.form['ojoder-his']
+    distanciainter = request.form['dpi-his']
+    adicion = request.form['adicion-his']
+    observacion = request.form['observacion-his']
+    avl = request.form['observacion-his']
+    id = request.form['id']
+
+ # recepcion de datos
+    sql = "INSERT INTO `HISTORIAL_OFT` (`his_id`, `his_ojoizq`, `his_ojoder`, `his_distanciainter`, `his_adicion`, `his_observacion`, `his_cli_fk`, `his_fecha`, `his_avl`) VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s);"
+    # los parametros segun el orden de datos
+    datos = (ojoizq,ojoder,distanciainter,adicion,observacion,id,date.today(),avl)
+    # conn = mysql.connect()
+    # cursor = conn.cursor()
+    # cursor.execute(sql, datos)
+    insertarSql(sql,datos)
+
+    return redirect('/registro_paciente')
+
+
+#*Eliminar historial
+@app.route('/destruir_historial/<int:id>')#recibimos un parametro el id
+def destroy_historial(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM HISTORIAL_OFT WHERE his_id=%s",(id))
+    conn.commit()
+    return redirect('/registro_paciente')
+
+#*editar historial
+@app.route("/editar_historial/<int:id>")
+def edit_historial(id):  
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM HISTORIAL_OFT WHERE his_id=%s",(id))
+    registros=cursor.fetchall()
+    conn.commit()
+    return render_template('paciente/paciente_editar.html',registros=registros)
+
+#*actualizar
+
+@app.route("/actualizar_historial", methods=['POST'])
+def actualizar_historial():
+    
+    _nombre = request.form['nombre-pac']
+    _apellido = request.form['apellido-pac']
+    _dnioruc = request.form['dni_o_ruc-pac']
+    _correo = request.form['correo-pac']
+    _fechanac = request.form['fechanac-pac']
+    #_genero = request.form['genero-pac']
+    _telefono = request.form['telefono-pac']
+    _direccion = request.form['direccion-pac']
+    id = request.form['idtxt']
+                       
+    #!revisar luego el apellido OPTICA 
+ # recepcion de datos
+    sql = "UPDATE `CLIENTE` SET `cli_nombre`=%s, `cli_apellido1`=%s, `cli_correo`=%s, `cli_dni_o_ruc`=%s, `cli_fechanac`=%s, `cli_telefono`=%s, `cli_direccion`=%s WHERE cli_id=%s;"
+    # los parametros segun el orden de datos
+    datos = (_nombre,_apellido,_correo,_dnioruc,_fechanac,_telefono,_direccion,id)
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql, datos)
+    conn.commit() 
+
+    return redirect('/registro_paciente')
+#HISTORIAL
+
+
+
+
+
+#STOCK
+@app.route('/stock_producto')
+def stock_producto():
+    sql="SELECT DATE_FORMAT(pro_fechae,' %d/%m/%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk)"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+
+    productos=cursor.fetchall()
+    conn.commit()
+    
+    return render_template('inventario/stock.html',productos=productos)
+    
+
+@app.route('/destroy_stock/<int:id>')
+def destroy(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+
+    cursor.execute("DELETE FROM PRODUCTO WHERE pro_id=%s",(id))
+    conn.commit()
+    return redirect('/stock_producto')
+
+@app.route('/save_stock', methods=['POST'])
+def save():
+    _stock=request.form['txt_stock']
+    _precio=request.form['txt_precio']
+    id=request.form['txtID']
+    fecha=date.today()
+    sql="UPDATE PRODUCTO set pro_stock=%s, pro_precio=%s,pro_fechae=%s where pro_id=%s"
+
+    datos=(_stock,_precio,fecha,id)
+    #print(fecha)
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql,datos)
+    conn.commit()
+    return redirect('/stock_producto')
+
+@app.route('/delete_stock/<int:id>')
+def delete(id):
+    sql="SELECT DATE_FORMAT(pro_fechae,' %d/%m/%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk)"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT pro_id,pro_nombre,pro_codigo FROM `PRODUCTO` WHERE pro_id=%s",(id))
+    productos=cursor.fetchall()
+    conn.commit()
+    cursor.execute(sql)
+    stocks=cursor.fetchall()
+    conn.commit()
+    print(productos)
+    return render_template('inventario/delete_stock.html',productos=productos,id=id,stocks=stocks)
+
+@app.route('/edit_stock/<int:id>')
+def edit(id):
+    sql="SELECT DATE_FORMAT(pro_fechae,' %d/%m/%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk)"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT DATE_FORMAT(pro_fechae,' %%d/%%m/%%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk) and pro_id=%s",(id))
+    productos=cursor.fetchall()
+    conn.commit()
+    cursor.execute(sql)
+    stocks=cursor.fetchall()
+    conn.commit()
+    print(productos)
+    return render_template('inventario/edit_stock.html',productos=productos,id=id,stocks=stocks)
+
+@app.route('/movimiento/<int:tipo>')
+def movimiento(tipo):
+    
+    if tipo == 2:
+	    sql="select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 2, 'Entrada', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,COMPRA_PRODUCTO.cop_cantidad,(kar_cantidad + COMPRA_PRODUCTO.cop_cantidad),PRODUCTO.pro_precio,(PRODUCTO.pro_precio*COMPRA_PRODUCTO.cop_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN COMPRA_PRODUCTO WHERE (kar_cop_pro_fk=PRODUCTO.pro_id) AND (kar_cop_fk=COMPRA_PRODUCTO.cop_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=2)"
+    elif tipo == 3:
+	    sql="select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 1, 'Salida', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,DETALLE_PEDIDO.det_cantidad,(kar_cantidad - DETALLE_PEDIDO.det_cantidad),PRODUCTO.pro_precio,(PRODUCTO.pro_precio*DETALLE_PEDIDO.det_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN DETALLE_PEDIDO WHERE (kar_det_pro_fk=PRODUCTO.pro_id) AND (kar_det_fk=DETALLE_PEDIDO.det_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=1)"
+    else:
+	    sql="select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 1, 'Salida', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,DETALLE_PEDIDO.det_cantidad,(kar_cantidad - DETALLE_PEDIDO.det_cantidad),PRODUCTO.pro_precio,(PRODUCTO.pro_precio*DETALLE_PEDIDO.det_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN DETALLE_PEDIDO WHERE (kar_det_pro_fk=PRODUCTO.pro_id) AND (kar_det_fk=DETALLE_PEDIDO.det_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=1) union select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 2, 'Entrada', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,COMPRA_PRODUCTO.cop_cantidad,(kar_cantidad+COMPRA_PRODUCTO.cop_cantidad),PRODUCTO.pro_precio,(PRODUCTO.pro_precio*COMPRA_PRODUCTO.cop_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN COMPRA_PRODUCTO WHERE (kar_cop_pro_fk=PRODUCTO.pro_id) AND (kar_cop_fk=COMPRA_PRODUCTO.cop_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=2)"
+    
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+
+    movimientos=cursor.fetchall()
+    conn.commit()
+    return render_template('inventario/movimiento.html',movimientos=movimientos)
+
+@app.route('/venta_estadisticas')
+def venta_estadisticas():
+    return render_template('venta/ventas_est.html')
+#STOCK
+
+
+
+
 
 @app.route("/visualizar_productoss")
 def visualizarProducto():
