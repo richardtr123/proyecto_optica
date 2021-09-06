@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de Ventas</title>
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../static/css/insertar_producto.css">
+    <!-- estilos para produccion -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/insertar_producto.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+
+</head>
+
+
+      
+<body> 
+    <script src="../../static/js/insertar_producto.js"></script>
+
+    
+    <!-- <i class='bx bx-user'></i>
+    <i class='bx bxs-user'></i>
+    <i class='bx bxl-facebook-square'></i>
+    <br> -->
+
+    <div class="sidebar">
+      <div class="logo-details">
+          <i class='bx bx-glasses-alt'></i>
+          <span class="logo_name">Optica MyM</span>
+      </div>
+      <ul class="nav-links"> <!--! Enlaces--->
+        <li class="list active"><a href="/">
+            <i class='bx bx-grid-alt' ></i>  <!-- *Imagen-->
+            <span class="pagina_link">Dashboard</span>
+          </a>           
+        </li>
+        <li class="list">
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bxl-dropbox' ></i>
+              <span class="pagina_link">Productos</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="pagina_link" href="#">Category</a></li>
+            <li><a href="/insertar_producto">Agregar Producto</a></li>
+            <li><a href="#">Almacen</a></li>
+            <li><a href="#">Lente de contacto</a></li>
+            <li><a href="#">Accesorios</a></li>
+          </ul>                      
+        </li>
+        <li class="list">
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-list-check' ></i>
+              <span class="pagina_link">Inventario</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="pagina_link" href="#">Category</a></li>
+            <li><a href="/stock_producto">Stock de Productos</a></li>
+            <li><a href="/movimiento/1">Movimientos</a></li>
+          </ul>                      
+        </li>
+        <li class="list">
+          <a href="#">
+            <i class='bx bxs-cart-add'></i>
+            <span class="pagina_link">Ventas</span>
+          </a>            
+        </li>
+        <li class="list">
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-collection' ></i>
+              <span class="pagina_link">Categoría</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="pagina_link" href="#">Category</a></li>
+            <li><a href="#">Luna</a></li>
+            <li><a href="#">Montura</a></li>
+            <li><a href="#">Lente de contacto</a></li>
+            <li><a href="#">Accesorios</a></li>
+          </ul>
+        </li>   
+        <li class="list">
+          <a href="/proveedor">
+            <i class='bx bxs-truck' ></i>
+            <span class="pagina_link">Proveedores</span>
+          </a>            
+        </li>    
+        <li class="list">
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-user' ></i>
+              <span class="pagina_link">Pacientes</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="pagina_link" href="#">Category</a></li>
+            <li><a href="/insertar_paciente">Nuevo paciente</a></li>
+            <li><a href="/registro_paciente">Registro de pacientes</a></li>
+            <li><a href="/historial_paciente">Historial de pacientes</a></li>
+          </ul>          
+        </li>
+        <li class="list">
+          <a href="/venta_estadisticas">
+            <i class='bx bx-line-chart' ></i>
+            <span class="pagina_link">Estadísticas</span>
+          </a>            
+        </li>
+        <li class="list">
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-plug' ></i>
+              <span class="pagina_link">Plugins</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="pagina_link" href="#">Plugins</a></li>
+            <li><a href="#">UI Face</a></li>
+            <li><a href="#">Pigments</a></li>
+            <li><a href="#">Box Icons</a></li>
+          </ul>
+        </li>
+        <li class="list">
+          <a href="#">
+            <i class='bx bx-shield-quarter' ></i>
+            <span class="pagina_link">Seguridad</span>
+          </a>            
+        </li>     
+        <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <!--<img src="image/profile.jpg" alt="profile">-->
+        </div>
+        <div class="name-job">
+          <div class="profile_name">Sadbois'team</div>
+          <div class="job">Equipo de desarrollo</div>
+        </div>
+        <i class='bx bx-log-out' ></i>
+      </div>
+    </li>
+  </ul>
+    </div>
+      <section class="home-section">
+        <div class="home-content">
+          <i class='bx bx-menu' ></i>
+          <span class="text"><h1>Estadísticas de Ventas</h1></span>
+          <div class="user-wrapper">
+            <img src="jb.png" alt="50px" height="50px" alt="">
+            <div> 
+                <h4> Karen D</h4>
+                <small>Admin</small>
+            </div>
+        </div>
+        </div>
+        <div class="home-espacio">
+          <!-- CONTENIDO -->
+
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+     google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Meses', 'Gastos', 'Ventas'],
+          ['Junio',  0,      32],
+          ['Julio',  0,      50],
+          ['Agosto',  0,       21],
+          ['Setiembre',  0,      72]
+        ]);
+
+        var options = {
+          title: 'Ventas Totales',
+        
+          vAxis: {minValue: 0}
+        };
+
+        
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      
+        
+        google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Luna', 'Accesorio', 'Lente de Contacto', 'Montura'],
+          ['Junio', 5, 7, 3, 14],
+          ['Julio', 7, 5, 2, 14],
+          ['Agosto', 4, 15, 8, 12],
+          ['Setiembre', 16, 23, 10, 32]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Venta de las diferentes categorias',
+            subtitle: 'Luna, Accesorio,Lente de contacto y Montura: Junio-Setiembre',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+   
+      }
+    </script>
+        
+          <div id="chart_div" style="width: 100%; height: 480px; margin: 10px;"></div>
+          
+          <div id="columnchart_material" style="width: 100%; height: 480px; margin: 10px;"></div>
+         
+          <!-- CONTENIDO -->          
+        </div>
+      </section>
+    
+      <script src="../static/js/app.js"></script>
+
+      <script>  
+      </script>
+
+</body>
+
+</html>
