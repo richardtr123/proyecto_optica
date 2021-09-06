@@ -9,22 +9,22 @@
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/css/proveedor.css">
-    <script src="../../static/js/jquery.min.js"></script>
+
+    <script src="../../static/js/jquery-3.3.1.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
+
     <!-- estilos para produccion -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/proveedor.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+    <!-- estilos para datatables -->
+    <link rel="stylesheet" type="text/css" href="/static/datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/datatables/DataTables-1.11.1/css/dataTables.bootstrap4.min.css">
+
 </head>
 <body> 
-    <!-- <script src="../../static/js/insertar_producto.js"></script>
-    <script src="{{
-      url_for('static', filename='js/insertar_producto.js') }}"></script> -->
-    
-    
-    <!-- <i class='bx bx-user'></i>
-    <i class='bx bxs-user'></i>
-    <i class='bx bxl-facebook-square'></i>
-    <br> -->
+  <script type="text/javascript" src="/static/datatables/datatables.min.js"></script>
+  <script type="text/javascript" src="/static/js/mainProv.js"></script>
+
 
     <div class="sidebar">
         <div class="logo-details">
@@ -161,146 +161,155 @@
           <main>
             <div class="container">
               <div class="row">
-                <div class="col-md-8">
-                  <div class>
-                    <span class="text"></span><h1></h1></span>
-                  </div>
-                  <table class="table table-light table-striped" >
-                    <thead class="thead-dark table-striped">
-                      <tr>
-                       <th>#</th>
-                       <th>Nombres</th>
-                       <th>N.telefono</th>
-                       <th>Correo</th>
-                       <th>Empresa</th>
-                       <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                         {% for proveedor in proveedores %}
-                         <tr>
-                          <td>{{proveedor[0] }}</td>
-                          <td>{{proveedor[1] }}</td>
-                          <td>{{proveedor[2] }}</td>
-                          <td>{{proveedor[3] }}</td>
-                          <td>{{proveedor[6] }}</td>
-                          <td> 
-                            <a href="/editarP/{{proveedor[0]}}">Editar</a> | 
-                            <a onclick="return confirm('¿Esta seguro que quiere eliminarlo?')" href="/borrarP/{{proveedor[0]}}">Eliminar - </a>
-                            <a href="">M</a>               
-                          </td>
-                         </tr>
-                         {% endfor %}  
-                    </tbody>
-                  </table> 
+                <div class="col-lg-12">
+                  <button id="btnNuevo" type="button" class="btn btn-success" >Nuevo</button>
                 </div>
-                <div class="col-md-4">
-                  <div class="box">
-                    <span class="text"></span><h1>Agregar Proveedor</h1></span>
-                  </div>
-                  
-                  <form method="POST" action="/proveedor" enctype="multipart/form-data">           
-                    
-                        <div class="input-group">
-                            <input type="text" name="nombre" id="nombre" required>
-                            <label for="nombre"> Nombres</label>
-                        </div>
-                        <div class="input-group">
-                            <input type="text" name="numero" id="numero" required>
-                            <label for="numero">N.telefono</label>
-                        </div>   
-                    
-                    
-                  
-                    <div class="input-group">
-                        <input type="email" name="email" id="email"required>
-                        <label for="email">correo </label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="empre" id="empre" required>
-                        <label for="empre">Empresa</label>
-                    </div>  
-                  
-                    
-                 <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">-->                
-                    
-                    <div class="input-group">
-                      <input type="submit" name="Registrar" value="Registrar">
-                    </div> 
+              </div>
+            </div>
 
-                  </form>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="table-responsive">
+                    <table id="tabla_proveedores" class="table table-light table-striped" >
+                      <thead class="thead-dark table-striped">
+                        <tr>
+                         <th>#</th>
+                         <th>Nombres</th>
+                         <th>N.telefono</th>
+                         <th>Correo</th>
+                         <th>Direccion</th>
+                         <th>Dni o Ruc</th>
+                         <th>Empresa</th>
+                         <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                           {% for proveedor in proveedores %}
+                           <tr>
+                            <td>{{proveedor[0] }}</td>
+                            <td>{{proveedor[1] }}</td>
+                            <td>{{proveedor[2] }}</td>
+                            <td>{{proveedor[3] }}</td>
+                            <td>{{proveedor[4] }}</td>
+                            <td>{{proveedor[5] }}</td>
+                            <td>{{proveedor[6] }}</td>
+                            <td> 
+                              <div class="text-center">
+                                <div class="btn-group">
+                                  <button class="btn btn-primary btnEditar" type="button">Editar</button>
+                                  <!--<button class="btn btn-danger btnEliminar" type="button">Eliminar</button>-->
+                                  <a class="btn btn-danger" onclick="return confirm('¿Esta seguro que quiere eliminarlo?')" href="/borrarP/{{proveedor[0]}}">Eliminar</a>
+                                </div>
+                              </div>
+                              <!-- <a href="/editarP/{{proveedor[0]}}">Editar</a> | -->
+                              <!--<a onclick="return confirm('¿Esta seguro que quiere eliminarlo?')" href="/borrarP/{{proveedor[0]}}">Eliminar</a> |-->               
+                            </td>
+                           </tr>
+                           {% endfor %}  
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                  <div class="center">
-                    <input type="checkbox" id="click">
-                    <label for="click" class="click-me">Nuevo</label>
-                    <div class="content">
-                        <div class="header">
-                            <!--Form de nuevo --> 
-                          <h4>Nuevo-Proveedor</h4> 
-                          <label for="click" class="icon-close"></label>
-                        </div>
-                        <p>
-                          <input class="controls"type="text" name="nombres" id="inputNombre" placeholder="Ingrese Nombre" >
-                          <input class="controls"type="text" name="numero" id="inputRuc" placeholder="Ingrese N.Telefono">
-                          <input class="controls"type="text" name="telefono" id="inputEmail" placeholder="Ingrese correo">
-                          <input class="controls"type="text" name="correo" id="inputEmpre" placeholder="Ingrese Empresa">
-                          <input class="form" type="submit" name="Registrar" value="Registrar">
-                          <input class="form" type="reset" name="Eliminar" value="Eliminar">
-                          
-                      </p>   
-                    </div>
-                    
+              </div>
+            </div>
+            <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <form id="formProveedores" method="POST" action="/proveedor" enctype="multipart/form-data">           
+                          <div class="modal-body">
+                              <div class="form-group">
+                                <label for="nombre">Nombres</label>
+                                <input id="nombre" class="form-control" type="text" name="nombre">  
+                              </div>
+                              <div class="form-group">
+                                <label for="numero">Telefono</label>
+                                <input id="numero" class="form-control" type="text" name="numero">  
+                              </div>
+                              <div class="form-group">
+                                <label for="email">Correo</label>
+                                <input id="email" class="form-control" type="text" name="email">                                  
+                              </div>
+                              <div class="form-group">
+                                <label for="direccion">Direccion</label>
+                                <input id="direccion" class="form-control" type="text" name="direccion">                                
+                              </div> 
+                              <div class="form-group">
+                                <label for="dniRuc">Dni o Ruc</label>
+                                <input id="dniRuc" class="form-control" type="text" name="dniRuc">                                
+                              </div>   
+                              <div class="form-group">
+                                <label for="empre">Empresa</label>
+                                <input id="empre" class="form-control" type="text" name="empre">                                  
+                              </div>   
+                          <div class="modal-footer">
+                              <button class="btn btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                              <button class="btn btn-success" type="submit" id="btnRegistrar">Registrar</button>
+                          </div>
+                          <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">  -->
+                          </div>       
+                      </form>
                   </div>
               </div>
             </div>
-            
-          </div>
-          <!-- Button trigger modal -->
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Launch static backdrop modal
-        </button> -->
-        
-        <!-- Modal -->
-        <!-- <div class="modal fade" id="modalCRUD" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="ejampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="modalCRUDEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <form id="formProveedoresEdit" method="POST" action="/actualizarP" enctype="multipart/form-data">           
+                          <div class="modal-body">
+                              <div class="form-group">
+                                <label for="txtid">ID</label>
+                                <input id="txtid" class="form-control" type="text" name="txtid" readonly="readonly">  
+                              </div>
+                              <div class="form-group">
+                                <label for="txtnombre">Nombres</label>
+                                <input id="txtnombre" class="form-control" type="text" name="txtnombre">  
+                              </div>
+                              <div class="form-group">
+                                <label for="txtnumero">Telefono</label>
+                                <input id="txtnumero" class="form-control" type="text" name="txtnumero">  
+                              </div>
+                              <div class="form-group">
+                                <label for="txtemail">Correo</label>
+                                <input id="txtemail" class="form-control" type="text" name="txtemail">                                  
+                              </div>
+                              <div class="form-group">
+                                <label for="txtdireccion">Direccion</label>
+                                <input id="txtdireccion" class="form-control" type="text" name="txtdireccion">                                
+                              </div> 
+                              <div class="form-group">
+                                <label for="txtdniRuc">Dni o Ruc</label>
+                                <input id="txtdniRuc" class="form-control" type="text" name="txtdniRuc">                                
+                              </div>   
+                              <div class="form-group">
+                                <label for="txtempre">Empresa</label>
+                                <input id="txtempre" class="form-control" type="text" name="txtempre">                                  
+                              </div>   
+                          <div class="modal-footer">
+                              <button class="btn btn-dark" type="button" data-dismiss="modal">Cancelar</button>
+                              <button class="btn btn-primary" type="submit" id="btnRegistrar">Actualizar</button>
+                          </div>
+                          <!---- <input class="form" type="reset" name="Eliminar" value="Limpiar">  -->
+                          </div>       
+                      </form>
+                  </div>
               </div>
-           <form id="formpersonas">
-               <div class="modal-body">
-                   <div class="form-group">
-                   <label for="nombre"class="col-form label">Nombres</label>
-                   <input type="text" class="form-control" id="nombre" >
-               </div>
-               <div class="modal-body">
-                  <div class="form-group">
-                  <label for="numero"class="col-form label">N.telefono</label>
-                  <input type="text" class="form-control" id="numero" >
-              </div>
-              <div class="modal-body">
-                  <div class="form-group">
-                  <label for="email"class="col-form label">correo</label>
-                  <input type="text" class="form-control" id="email" >
-              </div>
-              
-              </div>      
-           </from>   
-      
             </div>
-           </div>
-          </div>
-          </div>    
-      </div> -->
-        </main>
-            <!--COLOCAR ACA EL CONTENIDO-->   
+          </main>   
         </div>
       </section>
-    
-
-
-
       <script>
 
         // NO TOCAR
@@ -328,5 +337,7 @@
         list.forEach((item)=>
         item.addEventListener('click',activeLink));
       </script>
+
+      
 </body>
 </html>

@@ -282,7 +282,6 @@ def visualizarP():
     cursor.execute(sql)
 
     proveedores=cursor.fetchall()
-    #print(proveedores)
 
     conn.commit()
     return render_template('proveedor/proveedor.html', proveedores=proveedores)
@@ -293,13 +292,13 @@ def registrarProveedor():
     _nombreP=request.form['nombre']
     _telefonoP=request.form['numero']
     _correoP=request.form['email']
-    #_direccionP=request.form['']
-    #_dnirucP=request.form['']
+    _direccionP=request.form['direccion']
+    _dnirucP=request.form['dniRuc']
     _empresaP=request.form['empre']
 
-    sql="INSERT INTO proveedor (prov_id, prov_nombre, prov_telefono, prov_correo, prov_direccion, prov_dni_o_ruc, prov_empresa) VALUES (NULL, %s, %s, %s, NULL, NULL, %s);"
+    sql="INSERT INTO proveedor (prov_id, prov_nombre, prov_telefono, prov_correo, prov_direccion, prov_dni_o_ruc, prov_empresa) VALUES (NULL, %s, %s, %s,  %s,  %s, %s);"
 
-    datos=(_nombreP, _telefonoP, _correoP,_empresaP) #_direccionP, _dnirucP, 
+    datos=(_nombreP, _telefonoP, _correoP, _direccionP , _dnirucP , _empresaP) 
 
     conn=mysql.connect()
     cursor=conn.cursor()
@@ -318,18 +317,18 @@ def borrarP(id):
 @app.route('/actualizarP', methods=['POST'])
 def actualizarP():
 
-    _nombreP=request.form['nombre']
-    _telefonoP=request.form['numero']
-    _correoP=request.form['email']
-    #_direccionP=request.form['']
-    #_dnirucP=request.form['']
-    _empresaP=request.form['empre']
+    _nombreP=request.form['txtnombre']
+    _telefonoP=request.form['txtnumero']
+    _correoP=request.form['txtemail']
+    _direccionP=request.form['txtdireccion']
+    _dnirucP=request.form['txtdniRuc']
+    _empresaP=request.form['txtempre']
 
     _id=request.form['txtid']
 
-    sql="UPDATE proveedor SET prov_nombre = %s, prov_telefono = %s, prov_correo = %s, prov_empresa = %s  WHERE proveedor.prov_id = %s ;" #prov_direccion = NULL, prov_dni_o_ruc = NULL
+    sql="UPDATE proveedor SET prov_nombre = %s, prov_telefono = %s, prov_correo = %s, prov_direccion = %s, prov_dni_o_ruc = %s, prov_empresa = %s  WHERE proveedor.prov_id = %s ;" #prov_direccion = NULL, prov_dni_o_ruc = NULL
 
-    datos=(_nombreP, _telefonoP, _correoP,_empresaP,_id) #_direccionP, _dnirucP, 
+    datos=(_nombreP, _telefonoP, _correoP,_direccionP, _dnirucP,_empresaP,_id) #_direccionP, _dnirucP, 
 
     conn=mysql.connect()
     cursor=conn.cursor()
@@ -337,18 +336,6 @@ def actualizarP():
     conn.commit() 
 
     return redirect('/proveedor')
-
-@app.route('/editarP/<int:id>')
-def editarP(id):
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    cursor.execute("SELECT * FROM proveedor WHERE prov_id = %s",(id))
-    
-    proveedores=cursor.fetchall()
-    conn.commit()
-    print(proveedores)
-
-    return render_template('proveedor/proveedor_edit.html',proveedores=proveedores)
 
 @app.route("/visualizar_productoss")
 def visualizarProducto():
