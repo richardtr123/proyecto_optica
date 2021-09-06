@@ -1,0 +1,104 @@
+.home-espacio{
+ /* !NO TOCAR */
+ width: 100%;
+ height: 93.3vh;
+ /* !NO TOCAR */
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+main {
+  width: 100%;
+  height: 100%;
+  margin-left: 18px;
+  padding: 2rem 1.5rem;
+  background: #d6ddc2;
+  }
+  
+
+main .box1 {
+    position:fixed;
+    width: 700px;
+    height: 100px;
+    margin-left: 50px;
+    margin-top: 50px;
+    border-style: none;
+    border-width: thin;
+    background: white;
+    padding: 20px;
+}
+
+main .box2 {
+    position:fixed;
+    width: 300px;
+    height: 250px;
+    margin-left: 780px;
+    margin-top: 20px;
+}
+
+main .box3 {
+    position:fixed;
+    width: 1000px;
+    height: 100px;
+    margin-left: 50px;
+    margin-top: 180px;
+    border-style: none;
+    border-width: thin;
+    background: white;
+    padding: 20px;
+}
+main .box4 {
+    position:fixed;
+    width: 360px;
+    height: 150px;
+    margin-left: 50px;
+    margin-top: 300px;
+}
+main .box5 {
+    position:fixed;
+    width: 1000px;
+    height: 600px;
+    margin-left: 50px;
+    margin-top: 350px;
+    
+}
+main h1,h2{
+    text-align: center;
+}
+main select{
+  box-shadow: 0 3px 3px rgba(161, 161, 161, 0.24);
+  font-size: 1rem;
+  padding: 1rem 1.5rem 1em 1.5em;
+  background: rgb(156, 152, 138);
+  color: rgb(255, 255, 255);
+  border: 0;
+}
+main .custom-select{
+  position: relative;
+}
+main .custom-arrow{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  background: rgb(41, 38, 35);
+  height: 100%;
+  width: 4em;
+  pointer-events: none;
+}
+
+    
+main table,th,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+          
+        background-color: rgb(245, 223, 157);
+      }
+      main  th,td{
+        padding: 10px;
+        
+      }
+      main th{
+        text-align: center;
+      }

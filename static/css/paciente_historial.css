@@ -127,6 +127,27 @@ main {
 /*! Agregado por Runi */
 
 
+.contenedor-historial{
+  margin-top: 1em;
+  padding: 0.5em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 800px;
+  height: auto;
+  background:cornsilk
+}
+.contenedor-historial h3, .contenedor-historial h4{
+  align-self: center;
+}
+
+.contenedor-historial h3{
+  color: rgb(10, 131, 179);
+  font-weight: bold;
+}
+
+
+
 
 
 

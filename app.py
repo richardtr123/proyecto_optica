@@ -328,7 +328,7 @@ def actualizarP():
 
     sql="UPDATE proveedor SET prov_nombre = %s, prov_telefono = %s, prov_correo = %s, prov_direccion = %s, prov_dni_o_ruc = %s, prov_empresa = %s  WHERE proveedor.prov_id = %s ;" #prov_direccion = NULL, prov_dni_o_ruc = NULL
 
-    datos=(_nombreP, _telefonoP, _correoP,_direccionP, _dnirucP,_empresaP,_id) #_direccionP, _dnirucP, 
+    datos=(_nombreP, _telefonoP, _correoP,_direccionP, _dnirucP,_empresaP,_id) 
 
     conn=mysql.connect()
     cursor=conn.cursor()
