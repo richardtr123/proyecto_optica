@@ -25,6 +25,8 @@
      
     <!-- estilos para produccion -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/datatables.min.css') }}">
+
     <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente_historial.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
@@ -117,8 +119,7 @@
             <li><a class="pagina_link" href="#">Category</a></li>
             <li><a href="/insertar_paciente">Nuevo paciente</a></li>
             <li><a href="/registro_paciente">Registro de pacientes</a></li>
-            <li><a href="#">Lente de contacto</a></li>
-            <li><a href="#">Accesorios</a></li>
+            <li><a href="/historial_paciente">Historial de pacientes</a></li>
           </ul>          
         </li>
         <li class="list">
@@ -246,12 +247,15 @@
       <script>
         $(document).ready( function () {
               $('#table_id').DataTable({
+                "order": [[ 0, "desc" ]],
                 "language":{
                   "url":"../../static/json/spanish.json"
-                }
+                }                
               });
           } );
            
+         
+        
       </script>
 </body>
 </html>

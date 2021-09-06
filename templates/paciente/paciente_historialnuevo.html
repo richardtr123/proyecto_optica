@@ -105,8 +105,7 @@
             <li><a class="pagina_link" href="#">Category</a></li>
             <li><a href="/insertar_paciente">Nuevo paciente</a></li>
             <li><a href="/registro_paciente">Registro de pacientes</a></li>
-            <li><a href="#">Lente de contacto</a></li>
-            <li><a href="#">Accesorios</a></li>
+            <li><a href="/historial_paciente">Historial de pacientes</a></li>
           </ul>          
         </li>
         <li class="list">
@@ -153,7 +152,7 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Nuevo paciente</h1></span>
+          <span class="text"><h1>Nuevo Historial</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
@@ -165,35 +164,30 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
-            <form method="POST" action="/almacenar_paciente" enctype="multipart/form-data" name="pacienteform">
-            <label for="text-nombre">Nombre </label>
-            <input type="text" name="nombre-pac" id="text-nombre" placeholder="nombre">
-            <label for="text-apellido">Apellido</label>
-            <input type="text" name="apellido-pac" id="text-apellido" placeholder="apellido">
-            <label for="text-dni_o_ruc">Dni/Ruc</label>
-            <input type="text" name="dni_o_ruc-pac" id="text-dni_o_ruc" placeholder="dni o ruc">
-            <label for="correo">Fecha de nacimiento</label>
-            <input type="date" name="fechanac-pac" id="date-fechanac" placeholder="18/05/2000">
-            <label for="text-genero">Género</label>
-              <div class="genero">
-                <input type="radio" name="genero-pac" id="radio-masculino" value="hombre">
-                <label for="rectangulo">Hombre</label>
-                <input type="radio" name="genero-pac" id="radio-femenino" value="mujer">
-                <label for="circulo">Mujer</label>                
-              </div>              
-            <label for="correo">Correo</label>
-            <input type="email" name="correo-pac" id="email-correo" placeholder="richard.alex.t1@gmail.com">
-            <label for="text-telefono">Teléfono</label>
-            <input type="text" name="telefono-pac" id="text-telefono" placeholder="telefono">
-            <label for="text-direccion">Dirección</label>
-            <input type="text" name="direccion-pac" id="text-direccion" placeholder="direccion">
+            <form method="POST" action="/almacenar_historial" enctype="multipart/form-data" name="pacienteform">
+              
+              <label for="id">id</label>
+              {% for registro in registros %}
+              <input type="text" value="{{registro[0]}}" name="id" id="ahh" placeholder="nombre">
+              {% endfor %}              
+            <label for="ojoizq-his">Ojo izquierdo </label>
+            <input type="text" name="ojoizq-his" id="ojoizq-his" placeholder="nombre">
+            <label for="ojoder-his">Ojo derecho</label>
+            <input type="text" name="ojoder-his" id="text-apellido" placeholder="apellido">
+            <label for="dpi-his">Distancia Interpupilar</label>
+            <input type="text" name="dpi-his" id="text-dni_o_ruc" placeholder="dni o ruc">
+            <label for="adicion-his">Adición</label>
+            <input type="text" name="adicion-his" id="text-apellido" placeholder="apellido">
+            <label for="avl-his">Agudeza Visual de lejos(AVL)</label>
+            <input type="text" name="avl-his" id="text-er" placeholder="apellido">
+            <label for="observacion">Observación</label>
+            <textarea name="observacion-his" id="textarea-observacion" cols="50" rows="6"></textarea>          
             <img src="../../static/image/historial-medico.png" alt="ofltamologo.png" id="imagenpaciente">
             <div class="botones">
               <button type="reset">Limpiar</button>
               <button id="open" type="submit">Registrar</button>              
             </div>            
-            </form>
-           
+            </form>           
         </main>
             <!--COLOCAR ACA EL CONTENIDO-->   
         </div>

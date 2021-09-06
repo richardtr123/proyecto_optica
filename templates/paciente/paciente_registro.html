@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../../static/css/boxicons.min.css">    
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/css/paciente_registro.css">
-    
+    <link rel="stylesheet" type="text/css" href="../../static/css/datatables.min.css"/>
+
     <script src="../../static/js/jquery.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
     
@@ -20,6 +21,8 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     <!-- estilos para produccion -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/datatables.min.css') }}">
+
     <link rel="stylesheet" href="{{ url_for('static',filename='css/paciente_registro.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
@@ -110,8 +113,7 @@
             <li><a class="pagina_link" href="#">Category</a></li>
             <li><a href="/insertar_paciente">Nuevo paciente</a></li>
             <li><a href="/registro_paciente">Registro de pacientes</a></li>
-            <li><a href="#">Lente de contacto</a></li>
-            <li><a href="#">Accesorios</a></li>
+            <li><a href="/historial_paciente">Historial de pacientes</a></li>
           </ul>          
         </li>
         <li class="list">
@@ -171,8 +173,8 @@
         <div class="home-espacio">
           <!--COLOCAR ACA EL CONTENIDO-->
           <main>
-           <table class="table table-light">
-             <thead class="thead-light">
+           <table id="table_id" class="display">
+             <thead>
                <tr>
                  <th>#</th>
                  <th>Nombre</th>
@@ -195,6 +197,8 @@
                 <td>{{ paciente[8] }}</td>
                 <td>{{ paciente[7] }}</td>
                 <td>
+                  <a href="/insertar_historial/{{paciente[0]}}">New his</a>
+||
                   <a href="/editar_paciente/{{paciente[0]}}">Editar</a>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                     Eliminar
@@ -233,11 +237,21 @@
         </div>
       </section>
     
+      <script src="../../static/js/bootstrap.bundle.min.js"></script>
+      <script src="../../static/js/bootstrap-select.js"></script>
 
+      <script type="text/javascript" src="../../static/js/datatables.min.js"></script>
 
       <script src="../../static/js/app.js"></script>
       <script>   
-        
+         $(document).ready( function () {
+              $('#table_id').DataTable({
+                
+                "language":{
+                  "url":"../../static/json/spanish.json"
+                }                
+              });
+          } );
         
       </script>
 </body>
