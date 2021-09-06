@@ -1,8 +1,8 @@
 from re import template
 from flask import Flask, url_for, redirect
 # Referencia a herramientas y librerias
-from flask import render_template, request, jsonify
-from flask_mysqldb import MySQL,MySQLdb
+from flask import render_template, request, jsonify,redirect
+#from flask_mysqldb import MySQL,MySQLdb
 from datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
 from datetime import date #para la hora :v
@@ -50,6 +50,93 @@ mysql.init_app(app)
 def index():  # def index()<--- nombre de la funcion
     return render_template('/index.html')
 
+@app.route('/stock_producto')
+def stock_producto():
+    sql="SELECT DATE_FORMAT(pro_fechae,' %d/%m/%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk)"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+
+    productos=cursor.fetchall()
+    conn.commit()
+    
+    return render_template('inventario/stock.html',productos=productos)
+    
+
+@app.route('/destroy_stock/<int:id>')
+def destroy(id):
+    conn=mysql.connect()
+    cursor=conn.cursor()
+
+    cursor.execute("DELETE FROM PRODUCTO WHERE pro_id=%s",(id))
+    conn.commit()
+    return redirect('/stock_producto')
+
+@app.route('/save_stock', methods=['POST'])
+def save():
+    _stock=request.form['txt_stock']
+    _precio=request.form['txt_precio']
+    id=request.form['txtID']
+    fecha=date.today()
+    sql="UPDATE PRODUCTO set pro_stock=%s, pro_precio=%s,pro_fechae=%s where pro_id=%s"
+
+    datos=(_stock,_precio,fecha,id)
+    #print(fecha)
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql,datos)
+    conn.commit()
+    return redirect('/stock_producto')
+
+@app.route('/delete_stock/<int:id>')
+def delete(id):
+    sql="SELECT DATE_FORMAT(pro_fechae,' %d/%m/%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk)"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT pro_id,pro_nombre,pro_codigo FROM `PRODUCTO` WHERE pro_id=%s",(id))
+    productos=cursor.fetchall()
+    conn.commit()
+    cursor.execute(sql)
+    stocks=cursor.fetchall()
+    conn.commit()
+    print(productos)
+    return render_template('inventario/delete_stock.html',productos=productos,id=id,stocks=stocks)
+
+@app.route('/edit_stock/<int:id>')
+def edit(id):
+    sql="SELECT DATE_FORMAT(pro_fechae,' %d/%m/%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk)"
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT DATE_FORMAT(pro_fechae,' %%d/%%m/%%Y'),CATEGORIA.cat_nombre,pro_id,pro_nombre,pro_marca,pro_stock,pro_precio,pro_codigo FROM `PRODUCTO` inner JOIN CATEGORIA WHERE (CATEGORIA.cat_id=pro_cat_fk) and pro_id=%s",(id))
+    productos=cursor.fetchall()
+    conn.commit()
+    cursor.execute(sql)
+    stocks=cursor.fetchall()
+    conn.commit()
+    print(productos)
+    return render_template('inventario/edit_stock.html',productos=productos,id=id,stocks=stocks)
+
+@app.route('/movimiento/<int:tipo>')
+def movimiento(tipo):
+    
+    if tipo == 2:
+	    sql="select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 2, 'Entrada', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,COMPRA_PRODUCTO.cop_cantidad,PRODUCTO.pro_stock,PRODUCTO.pro_precio,(PRODUCTO.pro_precio*COMPRA_PRODUCTO.cop_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN COMPRA_PRODUCTO WHERE (kar_cop_pro_fk=PRODUCTO.pro_id) AND (kar_cop_fk=COMPRA_PRODUCTO.cop_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=2)"
+    elif tipo == 3:
+	    sql="select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 1, 'Salida', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,DETALLE_PEDIDO.det_cantidad,PRODUCTO.pro_stock,PRODUCTO.pro_precio,(PRODUCTO.pro_precio*DETALLE_PEDIDO.det_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN DETALLE_PEDIDO WHERE (kar_det_pro_fk=PRODUCTO.pro_id) AND (kar_det_fk=DETALLE_PEDIDO.det_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=1)"
+    else:
+	    sql="select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 1, 'Salida', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,DETALLE_PEDIDO.det_cantidad,PRODUCTO.pro_stock,PRODUCTO.pro_precio,(PRODUCTO.pro_precio*DETALLE_PEDIDO.det_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN DETALLE_PEDIDO WHERE (kar_det_pro_fk=PRODUCTO.pro_id) AND (kar_det_fk=DETALLE_PEDIDO.det_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=1) union select DATE_FORMAT(kar_fecha,' %d/%m/%Y'), IF(kar_movimiento = 2, 'Entrada', kar_movimiento),CATEGORIA.cat_nombre,PRODUCTO.pro_codigo,PRODUCTO.pro_nombre,PRODUCTO.pro_marca,kar_cantidad,COMPRA_PRODUCTO.cop_cantidad,PRODUCTO.pro_stock,PRODUCTO.pro_precio,(PRODUCTO.pro_precio*COMPRA_PRODUCTO.cop_cantidad) FROM KARDEX inner JOIN PRODUCTO inner JOIN CATEGORIA inner JOIN COMPRA_PRODUCTO WHERE (kar_cop_pro_fk=PRODUCTO.pro_id) AND (kar_cop_fk=COMPRA_PRODUCTO.cop_id) AND (CATEGORIA.cat_id=pro_cat_fk) AND (kar_movimiento=2)"
+    
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+
+    movimientos=cursor.fetchall()
+    conn.commit()
+    return render_template('inventario/movimiento.html',movimientos=movimientos)
+
+@app.route('/venta_estadisticas')
+def venta_estadisticas():
+    return render_template('venta/ventas_est.html')
 
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
 @app.route('/crear_venta')

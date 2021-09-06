@@ -4,25 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
-    <!-- Estilos de la pagina -->
-    <link rel="stylesheet" href="../static/css/app.css">
-    <link rel="stylesheet" href="../static/css/boxicons.min.css">
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
-    <script src="../../static/js/jquery.min.js"></script>
-    <script src="../../static/js/bootstrap.min.js"></script>
+    <title>Estadísticas de Ventas</title>
+    <link rel="stylesheet" href="../../static/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../static/css/insertar_producto.css">
     <!-- estilos para produccion -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/insertar_producto.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/boxicons.min.css') }}">
+
 </head>
+
+
+      
 <body> 
-    <!-- <script src="../../static/js/insertar_producto.js"></script>
-    <script src="{{
-      url_for('static', filename='js/insertar_producto.js') }}"></script> -->
-    
+    <script src="../../static/js/insertar_producto.js"></script>
+
     
     <!-- <i class='bx bx-user'></i>
     <i class='bx bxs-user'></i>
@@ -157,123 +152,85 @@
       <section class="home-section">
         <div class="home-content">
           <i class='bx bx-menu' ></i>
-          <span class="text"><h1>Menu Principal</h1></span>
+          <span class="text"><h1>Estadísticas de Ventas</h1></span>
           <div class="user-wrapper">
             <img src="jb.png" alt="50px" height="50px" alt="">
             <div> 
-                <h4>Karen D</h4>
+                <h4> Karen D</h4>
                 <small>Admin</small>
             </div>
         </div>
         </div>
         <div class="home-espacio">
-          <!--COLOCAR ACA EL CONTENIDO-->
-          <main>
-            
-            <div class="cards">
-                <a href="Producto.html">
-                <div class="card-single">
-                    <div>
-                        <h1>50</h1>
-                        <span>Producto</span>
-                    </div>
-                    <div>
-                        <span class="icon-box"></span>
-                    </div>
-                </div>
-               </a>
-                <a href="Inventario.html">
-                <div class="card-single">
-                    <div>
-                        <h1>100</h1>
-                        <span>Inventario</span>
-                    </div>
-                    <div>
-                        <span class="icon-clipboard-list"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Categoria.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Categoria</span>
-                    </div>
-                    <div>
-                        <span class="icon-tag-cord"></span>
-                    </div>
-                </div>
-                </a>
-                <a href="Proveedor.html">
-                <div class="card-single">
-                    <div>
-                        <h1>10</h1>
-                        <span>Proveedor</span>
-                    </div>
-                    <div>
-                        <span class="icon-local_shipping"></span>
-                    </div>
-                </div>
-                </a>
+          <!-- CONTENIDO -->
 
-                <a href="Clientes.html">
-                <div class="card-single">
-                    <div>
-                        <h1>40</h1>
-                        <span>Clientes</span>
-                    </div>
-                    <div>
-                        <span class="icon-user"></span>
-                    </div>
-                </div>
-               </a>
-               <a href="Estadistica.html">
-                <div class="card-single">
-                    <div>
-                        <h1>35 </h1>
-                        <span>Estadistica</span>
-                    </div>
-                    <div>
-                        <span class="icon-connection-25"></span>
-                    </div>
-                </div>
-               </a>
-            </div>
-            <div class="recent-flex">
-                <div class="Producto">
-                </div>
-                <div class="Inventario">
-                    <div class="card-header">
-                        <h2></h2>
-                        <button> <pan class="las la-arrow-right"></pan></button>
-                    </div>
-                    <div class="card-body">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </main>
-            <!--COLOCAR ACA EL CONTENIDO-->   
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+     google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Meses', 'Gastos', 'Ventas'],
+          ['Junio',  0,      32],
+          ['Julio',  0,      50],
+          ['Agosto',  0,       21],
+          ['Setiembre',  0,      72]
+        ]);
+
+        var options = {
+          title: 'Ventas Totales',
+        
+          vAxis: {minValue: 0}
+        };
+
+        
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      
+        
+        google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Luna', 'Accesorio', 'Lente de Contacto', 'Montura'],
+          ['Junio', 5, 7, 3, 14],
+          ['Julio', 7, 5, 2, 14],
+          ['Agosto', 4, 15, 8, 12],
+          ['Setiembre', 16, 23, 10, 32]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Venta de las diferentes categorias',
+            subtitle: 'Luna, Accesorio,Lente de contacto y Montura: Junio-Setiembre',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+   
+      }
+    </script>
+        
+          <div id="chart_div" style="width: 100%; height: 480px; margin: 10px;"></div>
+          
+          <div id="columnchart_material" style="width: 100%; height: 480px; margin: 10px;"></div>
+         
+          <!-- CONTENIDO -->          
         </div>
       </section>
     
+      <script src="../static/js/app.js"></script>
 
-
-<script src="../static/js/app.js"></script>
-      <script>
-
-      
+      <script>  
       </script>
+
 </body>
+
 </html>
