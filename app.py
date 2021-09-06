@@ -5,6 +5,7 @@ from flask import render_template, request
 from  datetime import datetime
 from flaskext.mysql import MySQL  # Base del modulo de Mysql
 from datetime import date #para la hora :v
+from flask import session,flash
 
 #* declaracion de funciones
 def insertarSql(sql,datos):
@@ -44,13 +45,46 @@ mysql.init_app(app)
 
 # TODO: DETALLES BD
 
-
-@app.route('/')  # Recibe solicitudes mediante la url
+app.secret_key = 'super secret key'
+@app.route('/menu_principal')  # Recibe solicitudes mediante la url
 def index():  # def index()<--- nombre de la funcion
     return render_template('/index.html')
 
 
+
+@app.route('/')  # Recibe solicitudes mediante la url
+def main():  # def index()<--- nombre de la funcion
+    if 'nombre' in session:
+        return render_template('index.html')
+    else:
+        return render_template('login/login.html')
+
+@app.route('/iniciar', methods=['POST'])
+def iniciar():
+    _usuario=request.form['usuario']
+    _contra=request.form['contra']
+    sql='SELECT seg_nombres from SEGURIDAD where (seg_apodo= %s AND seg_contrasenia= %s)'
+    datos=(_usuario,_contra)
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql,datos)
+    respuesta=cursor.fetchone()
+    conn.commit()
+    if(respuesta != None):
+        session['nombre']=_usuario
+        session['contra']=_contra
+        return render_template("index.html")
+    else:
+        flash("Contraseña Incorrecta", "alert-warning")
+        return render_template("login/login.html")
+
+
 # si clonaste esto es porque ya aprendiste a actulizar desde la master
+
+@app.route("/salir")
+def cerrar():
+     session.clear()
+     return redirect("/")
 
 
 @app.route("/insertar_paciente")
@@ -292,9 +326,7 @@ def registrarProveedor():
     _empresaP=request.form['empre']
 
     sql="INSERT INTO proveedor (prov_id, prov_nombre, prov_telefono, prov_correo, prov_direccion, prov_dni_o_ruc, prov_empresa) VALUES (NULL, %s, %s, %s,  %s,  %s, %s);"
-
     datos=(_nombreP, _telefonoP, _correoP, _direccionP , _dnirucP , _empresaP) 
-
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute(sql, datos)
@@ -323,8 +355,7 @@ def actualizarP():
 
     sql="UPDATE proveedor SET prov_nombre = %s, prov_telefono = %s, prov_correo = %s, prov_direccion = %s, prov_dni_o_ruc = %s, prov_empresa = %s  WHERE proveedor.prov_id = %s ;" #prov_direccion = NULL, prov_dni_o_ruc = NULL
 
-    datos=(_nombreP, _telefonoP, _correoP,_direccionP, _dnirucP,_empresaP,_id) 
-
+    datos=(_nombreP, _telefonoP, _correoP,_direccionP, _dnirucP,_empresaP,_id) #_direccionP, _dnirucP, 
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute(sql, datos)

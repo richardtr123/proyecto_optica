@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de M&M</title>
+    <link rel="stylesheet" href="/static/css/logo.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+   
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+           <div class="jb">
+            <img  src="/static/image/m&M.png"  >
+           </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="right-column text-center">
+                    <!--Titulo-->
+                    <h1>Administrador</h1>
+                    <p class="info">Inicie sesión para ver sus ventas.
+                    </p>
+                    <button type="submit"class="btn btn-primary btn-block"></button>
+                    <p class="or">...</p>
+                    <form method="POST" action="/iniciar" enctype="multipart/form-data">
+                        <!--Usuario-->
+                        <div class="form-group">
+                            <input type="text" name="usuario" id="usuario" placeholder="Nombre usuario">
+                        </div>
+                        <!--contraseña-->
+                        <div class="form-group">
+                            <input type="password" name="contra" id="contra" placeholder="Contraseña">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Iniciar  sesi&oacuten</button>
+                        
+                        <!--Preguntas-->
+                    </form>
+                    <p class="terms"><a href=" #" >¿Perdiste tu contraseña?</a><br>
+                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
