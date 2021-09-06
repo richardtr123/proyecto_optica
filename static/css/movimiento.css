@@ -300,8 +300,8 @@
  align-items: center;
  justify-content: center;
  padding-top: 2.5%;
- padding-left: 5%;
- padding-right: 5%;
+ padding-left: 2.5%;
+ padding-right: 2.5%;
 }
 /*
 .home-espacio form{
@@ -691,4 +691,8 @@ tr.resaltar {
   border: 0px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 13px;
+  table-layout: fixed;
+  width: 100%;
+  height: 1px;
 }
