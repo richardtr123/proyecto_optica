@@ -562,9 +562,9 @@ def venta_estadisticas():
 
 
 
-@app.route("/visualizar_productoss")
+@app.route("/visualizar_productos")
 def visualizarProducto():
-    return render_template('inventario/visualizar_productoss.html')
+    return render_template('inventario/visualizar_productos.html')
 if __name__ == '__main__':  # para empezar la aplicacion
     app.run(debug=True)
 
