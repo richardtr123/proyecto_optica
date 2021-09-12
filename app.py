@@ -206,7 +206,7 @@ def almacenarproducto():
     _tipofiltro = ""
     _tipocontacto = ""
     _forma = ""
-    _nombre = ""
+    _nombre = ""    
     _marca = ""
     _codigo = ""
     # RECEPCION DE CATEGORIA
@@ -257,11 +257,11 @@ def almacenarproducto():
         nuevoNombreFoto=tiempo+_foto.filename
         _foto.save("uploads/"+nuevoNombreFoto)
     
-    
+    fecha=date.today()
  # recepcion de datos
-    sql = "INSERT INTO `PRODUCTO` (`pro_cat_fk`, `pro_stock`, `pro_color`, `pro_material`, `pro_precio`, `pro_marca`, `pro_codigo`, `pro_proteccionuv`, `pro_genero`, `pro_nombre`, `pro_imagen`, `pro_tipoluna`, `pro_filtro`, `pro_lentecontacto`,`pro_medida`,`pro_forma`) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s)"
+    sql = "INSERT INTO `PRODUCTO` (`pro_cat_fk`, `pro_stock`, `pro_color`, `pro_material`, `pro_precio`, `pro_marca`, `pro_codigo`, `pro_proteccionuv`, `pro_genero`, `pro_nombre`, `pro_imagen`, `pro_tipoluna`, `pro_filtro`, `pro_lentecontacto`,`pro_medida`,`pro_forma`,`pro_fechae`) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s,%s)"
     # los parametros segun el orden de datos
-    datos = (_categoria,_stock,_color,_tipomaterial,_precio,_marca,_codigo,_uv,_genero,_nombre,_foto.filename,_tipoluna,_tipofiltro,_tipocontacto,_medida,_forma)
+    datos = (_categoria,_stock,_color,_tipomaterial,_precio,_marca,_codigo,_uv,_genero,_nombre,_foto.filename,_tipoluna,_tipofiltro,_tipocontacto,_medida,_forma,fecha)
     # conn = mysql.connect()
     # cursor = conn.cursor()
     # cursor.execute(sql, datos)
